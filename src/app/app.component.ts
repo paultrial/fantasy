@@ -64,6 +64,16 @@ export class AppComponent implements OnInit {
         athlete.pricePerPoint = athlete.totalpoints > 0 ? (athlete.value / +athlete.totalpoints).toFixed(2) : 0
         return athlete;
       }).filter(a => !a.injury).sort((a, b) => +b.value - +a.value);
+
+      const localStorageTeam = JSON.parse(window.localStorage.getItem("team") as string);
+      localStorageTeam.forEach((athlete: any) => {
+        const id = this.data.map((e: any) => e.id).indexOf(athlete.id)
+        this.data[id].selected = true;
+      });
+      this.team = this.data.filter((e: any) => e.selected);
+
+      this.sum = this.team.reduce((acc, a) => acc + +a.value, 0);
+      this.budget = this.money - this.sum;
     });
   }
 
@@ -93,6 +103,8 @@ export class AppComponent implements OnInit {
       athlete.overBudget = athlete.value > this.budget;
     });
     this.error();
+
+    window.localStorage.setItem("team", JSON.stringify(this.team));
   };
 
   deselectAthlete(a: any): void {
@@ -109,6 +121,9 @@ export class AppComponent implements OnInit {
       athlete.overBudget = athlete.value > this.budget;
     });
     this.error();
+
+    window.localStorage.removeItem("team");
+    window.localStorage.setItem("team", JSON.stringify(this.team));
   };
 
   applyFilters(): void {
@@ -164,6 +179,7 @@ export class AppComponent implements OnInit {
       e.selected = false;
     });
     this.team = [];
+    window.localStorage.removeItem("team");
   }
 
   computeProgressionScore = (athlete: any) => {
