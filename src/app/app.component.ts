@@ -81,7 +81,6 @@ export class AppComponent implements OnInit {
       }
       
       this.historyTeams = this.getLSTeamHistory();
-      debugger
     });
   }
 
