@@ -16,7 +16,11 @@ export class AppComponent implements OnInit {
   data: any;
   team: any[] = [];
   sum: number = 0;
-  totalPointsfilter = 0;
+  totalPointsfilter = {
+    min: undefined,
+    max: undefined
+  }
+
   sortKey = ""
   errorMessage: string = '';
 
@@ -63,8 +67,8 @@ export class AppComponent implements OnInit {
     });
   }
 
-  sortBy(){
-    const key =  this.sortKey.split('/')[0]
+  sortBy() {
+    const key = this.sortKey.split('/')[0]
     const direction = this.sortKey.split('/')[1]
     this.filteredAthletes.sort((a: any, b: any) => {
       const x = direction == "fw" ? a[key] - b[key] : b[key] - a[key];
@@ -118,14 +122,17 @@ export class AppComponent implements OnInit {
         return (!filter?.min || value >= filter.min);
       });
 
-      const totalPointsfilterMatch = athlete.totalpoints >= this.totalPointsfilter;
-
+      const totalPointsfilterMatch = (!this.totalPointsfilter?.min || athlete.totalpoints >= this.totalPointsfilter.min) && (!this.totalPointsfilter?.max || athlete.totalpoints <= this.totalPointsfilter.max);
 
       return genderMatch && roundsMatch && totalPointsfilterMatch;
     }).sort((a: any, b: any) => +b.value - +a.value);
   }
 
   resetFilters(): void {
+    this.totalPointsfilter = {
+      min: undefined,
+      max: undefined
+    }
     this.filterGender = '';
     this.filteredAthletes = [...this.data];
     this.rounds.forEach(r => {

@@ -102,7 +102,8 @@
           </select>
           <div class="fiter-row">
             <label for="totalPoints">Total Points</label>
-            <input type="number" placeholder="Total Points" [(ngModel)]="totalPointsfilter" (input)="applyFilters()" />
+            <input type="number" placeholder="min Total Points" [(ngModel)]="totalPointsfilter.min" (input)="applyFilters()" />
+            <input type="number" placeholder="max Total Points" [(ngModel)]="totalPointsfilter.max" (input)="applyFilters()" />
           </div>
 
           <div *ngFor="let round of rounds" class="filter-row">
@@ -137,6 +138,13 @@
   <div class="right-side">
     <section>
       <ul class="athleteList" *ngIf="data">
+        <li class="athlete">
+          <div class="name">Name</div>
+          <div class="price">Price</div>
+          <div class="points">Points</div>
+          <div class="pricePerPoint">Price Per Point</div>
+          <div class="action">+/-</div>
+        </li>
         <li class="athlete" *ngFor="let athlete of data"
           [ngClass]="{injury: athlete.injury, overBudget: athlete.overBudget}">
           <div class="name"> {{ athlete.firstname }} {{ athlete.lastname }}</div>
@@ -151,7 +159,14 @@
       </ul>
     </section>
     <section>
-      <ul class="athleteList">
+      <ul *ngIf="filteredAthletes.length > 0" class="athleteList">
+        <li class="athlete">
+          <div class="name">Name</div>
+          <div class="price">Price</div>
+          <div class="points">Points</div>
+          <div class="pricePerPoint">Price Per Point</div>
+          <div class="action">+/-</div>
+        </li>
         <li class="athlete" *ngFor="let athlete of filteredAthletes" [ngClass]="{overBudget: athlete.overBudget}">
           <div class="name"> {{ athlete.firstname }} {{ athlete.lastname }}</div>
           <div class="price">{{ athlete.value }}$ </div>
