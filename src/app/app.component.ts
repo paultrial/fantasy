@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { DataService } from './data-service.service';
-import { NgIf, NgFor, NgClass } from '@angular/common';
+import { NgIf, NgFor, NgClass, KeyValuePipe, JsonPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NgIf, NgFor, NgClass, FormsModule],
+  imports: [RouterOutlet, NgIf, NgFor, NgClass, FormsModule, KeyValuePipe, JsonPipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.less'
 })
@@ -32,6 +32,7 @@ export class AppComponent implements OnInit {
   weights = <any>[];
   filterGender = '';
   filteredAthletes: any[] = [];
+  historyTeams: any[] = [];
 
   roundFilters: { [key: string]: { min?: number; max?: number } } = {};
   rounds = Array.from({ length: 5 }, (_, i) => `round${i + 1}`);
@@ -66,6 +67,8 @@ export class AppComponent implements OnInit {
       }).filter(a => !a.injury).sort((a, b) => +b.value - +a.value);
 
       const localStorageTeam = JSON.parse(window.localStorage.getItem("team") as string);
+
+      // TODO imi da aici props of null
       localStorageTeam.forEach((athlete: any) => {
         const id = this.data.map((e: any) => e.id).indexOf(athlete.id)
         this.data[id].selected = true;
@@ -74,6 +77,8 @@ export class AppComponent implements OnInit {
 
       this.sum = this.team.reduce((acc, a) => acc + +a.value, 0);
       this.budget = this.money - this.sum;
+
+      this.historyTeams = this.getLSTeamHistory();
     });
   }
 
@@ -209,6 +214,47 @@ export class AppComponent implements OnInit {
     };
   }
 
+  saveForLater() {
+    const items = { ...localStorage };
+    const keys = Object.keys(items).filter(e => {return e.indexOf("team/") > -1})
+    const next = Math.max(...keys.map(e => +e.split("/")[1])) + 1;
+    const nextKey = `team/${next}`;
+    window.localStorage.setItem(nextKey, JSON.stringify(this.team));
+
+    this.historyTeams = this.getLSTeamHistory();
+  }
+
+  getLSTeamHistory(){
+    const response:any[] = [];
+    const h:any = {};
+    const items = { ...localStorage };
+    const keys = Object.keys(items).filter(e => {return e.indexOf("team/") > -1});
+    keys.map(e => e.split("/")[1]).forEach((nr, i) => {
+      h[nr] = JSON.parse(items[`team/${nr}`]);
+    });
+    Object.keys(h).forEach(numeleDinNumar => {
+      response.push({
+        number: numeleDinNumar,
+        data: h[numeleDinNumar]
+      });
+    });
+    return response;
+  }
+
+  deleteOneFromHistory(number:number){    
+    const key = `team/${number}`;
+    localStorage.removeItem(key);
+    console.log(this.historyTeams);
+    const index = this.historyTeams.map(e => e.number).indexOf(number);
+    this.historyTeams.splice(index, 1)
+  }
+
+  clearHistory(){
+    const items = { ...localStorage };
+    const keys = Object.keys(items).filter(e => {return e.indexOf("team/") > -1});
+    alert("nu prea face ceva butonul asta")
+    this.historyTeams = [];
+  }
 
 }
 

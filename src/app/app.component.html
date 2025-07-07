@@ -131,7 +131,27 @@
           </li>
         </ul>
         <button *ngIf="team.length > 0" (click)="clearTeam()">Clear team</button>
+        <button *ngIf="team.length > 0" (click)="saveForLater()">Save For Later</button>
       </section>
+      <section>
+        <h4>History</h4>
+        <!-- historyTeams -->
+        <ul class="athleteList" *ngFor="let team of historyTeams">
+          #{{team.number}}
+          <li class="athlete" *ngFor="let athlete of team.data">
+            <div class="name">{{ athlete.firstname }} {{ athlete.lastname }}</div>
+            <div class="data">
+              <div class="price">{{ athlete.value }}$ </div>
+              <div class="points">{{ athlete.totalpoints }}</div>
+              <div class="pricePerPoint">{{ athlete.pricePerPoint }}</div>
+              <div class="teamAction" *ngIf="!athlete.selected" (click)="selectAthlete(athlete)">+</div>
+              <div class="teamAction" *ngIf="athlete.selected" (click)="deselectAthlete(athlete)">-</div>
+            </div>
+          </li>
+          <button (click)="deleteOneFromHistory(team.number)">delete this from history</button>
+        </ul>
+      </section>
+      <button (click)="clearHistory()">Clear History</button>
     </div>
   </div>
   <div class="divider" role="separator" aria-label="Divider"></div>
@@ -178,7 +198,6 @@
         </li>
       </ul>
     </section>
-
   </div>
 </main>
 
