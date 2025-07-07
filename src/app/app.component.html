@@ -82,14 +82,28 @@
 
       <!-- filter section -->
       <section>
-        <h1>Filters</h1>
         <div class="filters">
+        <h2>Sort</h2>
+        <label for="sort">Sort</label>
+        <select name="sort" id="sort" [(ngModel)]="sortKey" (change)="sortBy()">
+          <option value="value/fw">Price ascending</option>
+          <option value="value/rw">Price descending</option>
+          <option value="totalpoints/fw">Total Points ascending</option>
+          <option value="totalpoints/rw">Total Points descending</option>
+          <option value="pricePerPoint/fw">Price per point ascending</option>
+          <option value="pricePerPoint/rw">Price per point descending</option>
+        </select>
+        <h2>Filters</h2>
           <label for="gender">gender</label>
           <select id="gender" [(ngModel)]="filterGender" (change)="applyFilters()">
             <option value="">All Genders</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
           </select>
+          <div class="fiter-row">
+            <label for="totalPoints">Total Points</label>
+            <input type="number" placeholder="Total Points" [(ngModel)]="totalPointsfilter" (input)="applyFilters()" />
+          </div>
 
           <div *ngFor="let round of rounds" class="filter-row">
             <label>{{ round }}</label>
@@ -109,6 +123,7 @@
             <div class="data">
               <div class="price">{{ athlete.value }}$ </div>
               <div class="points">{{ athlete.totalpoints }}</div>
+              <div class="pricePerPoint">{{ athlete.pricePerPoint }}</div>
               <div class="teamAction" *ngIf="!athlete.selected" (click)="selectAthlete(athlete)">+</div>
               <div class="teamAction" *ngIf="athlete.selected" (click)="deselectAthlete(athlete)">-</div>
             </div>
@@ -128,6 +143,7 @@
           <div class="data">
             <div class="price">{{ athlete.value }}$ </div>
             <div class="points">{{ athlete.totalpoints }}</div>
+            <div class="pricePerPoint">{{ athlete.pricePerPoint }}</div>
             <div class="teamAction" *ngIf="!athlete.selected" (click)="selectAthlete(athlete)">+</div>
             <div class="teamAction" *ngIf="athlete.selected" (click)="deselectAthlete(athlete)">-</div>
           </div>
@@ -140,6 +156,7 @@
           <div class="name"> {{ athlete.firstname }} {{ athlete.lastname }}</div>
           <div class="price">{{ athlete.value }}$ </div>
           <div class="points">{{ athlete.totalpoints }}</div>
+          <div class="pricePerPoint">{{ athlete.pricePerPoint }}</div>
           <div class="teamAction" *ngIf="!athlete.selected" (click)="selectAthlete(athlete)">+</div>
           <div class="teamAction" *ngIf="athlete.selected" (click)="deselectAthlete(athlete)">-</div>
         </li>

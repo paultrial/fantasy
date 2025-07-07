@@ -11,20 +11,21 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './app.component.html',
   styleUrl: './app.component.less'
 })
-export class AppComponent implements OnInit {  
+export class AppComponent implements OnInit {
   title = 'fantasy';
   data: any;
   team: any[] = [];
   sum: number = 0;
-
-  errorMessage:string = '';
+  totalPointsfilter = 0;
+  sortKey = ""
+  errorMessage: string = '';
 
   maxNrWomenPerTeam = 2
   maxNrMenPerTeam = 4
 
   money: number = 1500000;
   budget: number = 1500000;
-  weights = <any>[];  
+  weights = <any>[];
   filterGender = '';
   filteredAthletes: any[] = [];
 
@@ -53,12 +54,26 @@ export class AppComponent implements OnInit {
         values.forEach((e: any, i: number) => { valorileVechi['round' + i.toString()] = +values[i].split(":")[1] });
         athlete["valorileVechi"] = valorileVechi;
         athlete.selected = false;
-
+        athlete.totalpoints = +athlete.totalpoints;
         athlete.gender = +athlete.gender == 1 ? 'Male' : 'Female';
         athlete.progressionScore = this.computeProgressionScore(athlete);
+        athlete.pricePerPoint = athlete.totalpoints > 0 ? (athlete.value / +athlete.totalpoints).toFixed(2) : 0
         return athlete;
       }).filter(a => !a.injury).sort((a, b) => +b.value - +a.value);
     });
+  }
+
+  sortBy(){
+    const key =  this.sortKey.split('/')[0]
+    const direction = this.sortKey.split('/')[1]
+    this.filteredAthletes.sort((a: any, b: any) => {
+      const x = direction == "fw" ? a[key] - b[key] : b[key] - a[key];
+      return x;
+    })
+    this.data.sort((a: any, b: any) => {
+      const x = direction == "fw" ? a[key] - b[key] : b[key] - a[key];
+      return x;
+    })
   }
 
   selectAthlete(a: any): void {
@@ -85,7 +100,7 @@ export class AppComponent implements OnInit {
     this.team = this.data.filter((e: any) => e.selected);
     this.sum = this.team.reduce((acc, a) => acc + +a.value, 0);
     this.budget = this.money - this.sum;
-    
+
     this.data.forEach((athlete: any) => {
       athlete.overBudget = athlete.value > this.budget;
     });
@@ -95,17 +110,19 @@ export class AppComponent implements OnInit {
   applyFilters(): void {
     this.filteredAthletes = this.data.filter((athlete: any) => {
       const genderMatch =
-      !this.filterGender || athlete.gender === this.filterGender;
-      
+        !this.filterGender || athlete.gender === this.filterGender;
+
       const roundsMatch = this.rounds.every(round => {
         const filter = this.roundFilters[round];
         const value = (athlete as any)[round] || 0;
         return (!filter?.min || value >= filter.min);
       });
 
+      const totalPointsfilterMatch = athlete.totalpoints >= this.totalPointsfilter;
 
-      return genderMatch && roundsMatch;
-    });
+
+      return genderMatch && roundsMatch && totalPointsfilterMatch;
+    }).sort((a: any, b: any) => +b.value - +a.value);
   }
 
   resetFilters(): void {
@@ -119,7 +136,7 @@ export class AppComponent implements OnInit {
     })
   };
 
-  error(){
+  error() {
 
     if (this.team.filter(e => e.gender == "Male").length > this.maxNrMenPerTeam) {
       this.errorMessage = "Too many men on the team";
@@ -135,7 +152,7 @@ export class AppComponent implements OnInit {
     }
   }
 
-  clearTeam(){
+  clearTeam() {
     this.data.forEach((e: any) => {
       e.selected = false;
     });
@@ -168,7 +185,7 @@ export class AppComponent implements OnInit {
     };
   }
 
-  
+
 }
 
 /*
