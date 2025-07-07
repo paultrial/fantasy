@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './app.component.less'
 })
 export class AppComponent implements OnInit {
-  title = 'fantasy';
+  title = 'P.B. Fantasy DH';
   data: any;
   team: any[] = [];
   sum: number = 0;

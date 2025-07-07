@@ -31,17 +31,6 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  h1 {
-    font-size: 3.125rem;
-    color: var(--gray-900);
-    font-weight: 500;
-    line-height: 100%;
-    letter-spacing: -0.125rem;
-    margin: 0;
-    font-family: "Inter Tight", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-      Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-      "Segoe UI Symbol";
-  }
 
   p {
     margin: 0;
@@ -78,7 +67,7 @@
 <main class="main">
   <div class="left-side">
     <div class="content">
-      <h1>Hello, {{ title }} PB</h1>
+      <h1>{{ title }}</h1>
 
       <!-- filter section -->
       <section>
@@ -155,6 +144,7 @@
   <div class="divider" role="separator" aria-label="Divider"></div>
   <div class="right-side">
     <section>
+      <h2>Use some filters, see what you get</h2>
       <ul *ngIf="filteredAthletes.length > 0" class="athleteList">
         <li class="athlete">
           <div class="name">Name</div>
