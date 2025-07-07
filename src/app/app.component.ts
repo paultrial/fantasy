@@ -26,13 +26,14 @@ export class AppComponent implements OnInit {
 
   maxNrWomenPerTeam = 2
   maxNrMenPerTeam = 4
-
+  localStorageTeam = undefined;
   money: number = 1500000;
   budget: number = 1500000;
   weights = <any>[];
   filterGender = '';
   filteredAthletes: any[] = [];
   historyTeams: any[] = [];
+  prevTeam: any = {};
 
   roundFilters: { [key: string]: { min?: number; max?: number } } = {};
   rounds = Array.from({ length: 5 }, (_, i) => `round${i + 1}`);
@@ -68,17 +69,19 @@ export class AppComponent implements OnInit {
 
       const localStorageTeam = JSON.parse(window.localStorage.getItem("team") as string);
 
-      // TODO imi da aici props of null
-      localStorageTeam.forEach((athlete: any) => {
-        const id = this.data.map((e: any) => e.id).indexOf(athlete.id)
-        this.data[id].selected = true;
-      });
-      this.team = this.data.filter((e: any) => e.selected);
+      if (!!localStorageTeam) {
+        localStorageTeam.forEach((athlete: any) => {
+          const id = this.data.map((e: any) => e.id).indexOf(athlete.id)
+          this.data[id].selected = true;
+        });
+        this.team = this.data.filter((e: any) => e.selected);
 
-      this.sum = this.team.reduce((acc, a) => acc + +a.value, 0);
-      this.budget = this.money - this.sum;
-
+        this.sum = this.team.reduce((acc, a) => acc + +a.value, 0);
+        this.budget = this.money - this.sum;
+      }
+      
       this.historyTeams = this.getLSTeamHistory();
+      debugger
     });
   }
 
@@ -128,7 +131,7 @@ export class AppComponent implements OnInit {
     this.error();
 
     window.localStorage.removeItem("team");
-    window.localStorage.setItem("team", JSON.stringify(this.team));
+    // window.localStorage.setItem("team", JSON.stringify(this.team));
   };
 
   applyFilters(): void {
@@ -216,19 +219,30 @@ export class AppComponent implements OnInit {
 
   saveForLater() {
     const items = { ...localStorage };
-    const keys = Object.keys(items).filter(e => {return e.indexOf("team/") > -1})
-    const next = Math.max(...keys.map(e => +e.split("/")[1])) + 1;
-    const nextKey = `team/${next}`;
-    window.localStorage.setItem(nextKey, JSON.stringify(this.team));
-
+    const keys = Object.keys(items).filter(e => { return e.indexOf("team") > -1 });
+    if (!!keys.length) {
+      const next = keys.length == 1 ? 1 : Math.max(...keys.filter(e => e.indexOf("/") > 0-1).map(e => +e.split("team/")[1])) + 1;
+      const nextKey = `team/${next}`;
+      window.localStorage.setItem(nextKey, JSON.stringify(this.team));
+    }else{
+      window.localStorage.setItem('team', JSON.stringify(this.team));
+    }
     this.historyTeams = this.getLSTeamHistory();
   }
 
-  getLSTeamHistory(){
-    const response:any[] = [];
-    const h:any = {};
+  deleteOneFromHistory(number: number) {
+    const key = `team/${number}`;
+    localStorage.removeItem(key);
+    console.log(this.historyTeams);
+    const index = this.historyTeams.map(e => e.number).indexOf(number);
+    this.historyTeams.splice(index, 1)
+  }
+
+  getLSTeamHistory() {
+    const response: any[] = [];
+    const h: any = {};
     const items = { ...localStorage };
-    const keys = Object.keys(items).filter(e => {return e.indexOf("team/") > -1});
+    const keys = Object.keys(items).filter(e => { return e.indexOf("team/") > -1 });
     keys.map(e => e.split("/")[1]).forEach((nr, i) => {
       h[nr] = JSON.parse(items[`team/${nr}`]);
     });
@@ -241,18 +255,10 @@ export class AppComponent implements OnInit {
     return response;
   }
 
-  deleteOneFromHistory(number:number){    
-    const key = `team/${number}`;
-    localStorage.removeItem(key);
-    console.log(this.historyTeams);
-    const index = this.historyTeams.map(e => e.number).indexOf(number);
-    this.historyTeams.splice(index, 1)
-  }
-
-  clearHistory(){
+  clearHistory() {
     const items = { ...localStorage };
-    const keys = Object.keys(items).filter(e => {return e.indexOf("team/") > -1});
-    alert("nu prea face ceva butonul asta")
+    const keys = Object.keys(items).filter(e => { return e.indexOf("team/") > -1 });
+    // alert("nu prea face ceva butonul asta")
     this.historyTeams = [];
   }
 
@@ -295,7 +301,5 @@ rounds.forEach(rn => {
 });
 
 women.forEach(athlete => { console.log(`${athlete.firstname} ${athlete.lastname} ${athlete.progressionScore.weightedPriceDelta} ${athlete.progressionScore.weightedPointDelta}`) });
-
-debugger;
 }
 */
