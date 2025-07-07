@@ -83,27 +83,27 @@
       <!-- filter section -->
       <section>
         <div class="filters">
-        <h2>Sort</h2>
-        <label for="sort">Sort</label>
-        <select name="sort" id="sort" [(ngModel)]="sortKey" (change)="sortBy()">
-          <option value="value/fw">Price ascending</option>
-          <option value="value/rw">Price descending</option>
-          <option value="totalpoints/fw">Total Points ascending</option>
-          <option value="totalpoints/rw">Total Points descending</option>
-          <option value="pricePerPoint/fw">Price per point ascending</option>
-          <option value="pricePerPoint/rw">Price per point descending</option>
-        </select>
-        <h2>Filters</h2>
+          <h2>Sort</h2>
+          <label for="sort">Sort</label>
+          <select name="sort" id="sort" [(ngModel)]="sortKey" (change)="sortBy()">
+            <option value="value/fw">Price ascending</option>
+            <option value="value/rw">Price descending</option>
+            <option value="totalpoints/fw">Total Points ascending</option>
+            <option value="totalpoints/rw">Total Points descending</option>
+            <option value="pricePerPoint/fw">Price per point ascending</option>
+            <option value="pricePerPoint/rw">Price per point descending</option>
+          </select>
+          <h2>Filters</h2>
           <label for="gender">gender</label>
           <select id="gender" [(ngModel)]="filterGender" (change)="applyFilters()">
             <option value="">All Genders</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
           </select>
-          <div class="fiter-row">
-            <label for="totalPoints">Total Points</label>
-            <input type="number" placeholder="min Total Points" [(ngModel)]="totalPointsfilter.min" (input)="applyFilters()" />
-            <input type="number" placeholder="max Total Points" [(ngModel)]="totalPointsfilter.max" (input)="applyFilters()" />
+          <div class="filter-row totalPoints">
+            <label>Total Points</label>
+            <input type="number" placeholder="Min" [(ngModel)]="totalPointsfilter.min" (input)="applyFilters()" />
+            <input type="number" placeholder="Max" [(ngModel)]="totalPointsfilter.max" (input)="applyFilters()" />
           </div>
 
           <div *ngFor="let round of rounds" class="filter-row">
@@ -145,7 +145,8 @@
           <div class="pricePerPoint">Price Per Point</div>
           <div class="action">+/-</div>
         </li>
-        <li class="athlete" *ngFor="let athlete of filteredAthletes" [ngClass]="{overBudget: athlete.overBudget, selected: athlete.selected}">
+        <li class="athlete" *ngFor="let athlete of filteredAthletes"
+          [ngClass]="{overBudget: athlete.overBudget, selected: athlete.selected}">
           <div class="name"> {{ athlete.firstname }} {{ athlete.lastname }}</div>
           <div class="price">{{ athlete.value }}$ </div>
           <div class="points">{{ athlete.totalpoints }}</div>
@@ -177,7 +178,7 @@
         </li>
       </ul>
     </section>
-    
+
   </div>
 </main>
 

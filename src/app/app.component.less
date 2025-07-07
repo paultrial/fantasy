@@ -2,8 +2,8 @@ main {
     width: 100%;
     min-height: 100%;
     display: flex;
-    
-    
+
+
     padding: 1rem;
     box-sizing: inherit;
     position: relative;
@@ -24,7 +24,8 @@ main {
     }
 }
 
-.overBudget, .errorMessage {
+.overBudget,
+.errorMessage {
     background-color: red;
     color: white;
 }
@@ -72,15 +73,15 @@ ul {
         .price {
             margin: 0 5px 0 0;
         }
-        
+
         .points {
             margin: 0 5px 0 0;
         }
-        
+
         .name {
             width: 30%;
         }
-        
+
         .data {
             width: 70%;
             display: flex;
@@ -88,12 +89,12 @@ ul {
 
         }
 
-        &.overBudget{
+        &.overBudget {
             background-color: burlywood;
             color: black
         }
 
-        &.selected{
+        &.selected {
             background-color: black;
             color: white
         }
@@ -101,48 +102,57 @@ ul {
 }
 
 .filters {
-  display: flex;
-  flex-direction: column;
-  max-width: 300px;
-  padding: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 12px;
-  background-color: #f9f9f9;
-  font-family: Arial, sans-serif;
-
-  label {
-    margin-top: 0.5rem;
-    font-weight: bold;
-    font-size: 14px;
-  }
-
-  select,
-  input[type="number"] {
-    padding: 0.4rem;
-    margin-bottom: 0.5rem;
-    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
     border: 1px solid #ccc;
-    border-radius: 6px;
-    width: 100%;
-    box-sizing: border-box;
-  }
+    border-radius: 12px;
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
 
-  .filter-row {
-    margin-bottom: 0.5rem;
-  }
-
-  .reset-button {
-    margin-top: 1rem;
-    padding: 0.6rem 1rem;
-    font-size: 14px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-
-    &:hover {
-      background-color: #0056b3;
+    label {
+        margin-top: 0.5rem;
+        font-weight: bold;
+        font-size: 14px;
+        width: 100%;
+        display: block;
+        clear: both;
     }
-  }
+
+    .filter-row {
+        margin-bottom: 0.5rem;
+        width: 100%;
+
+        &.totalPoints {
+            input {
+                width: 50% !important;
+            }
+        }
+    }
+
+    select,
+    input[type="number"] {
+        padding: 0.4rem;
+        margin-bottom: 0.5rem;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .reset-button {
+        margin-top: 1rem;
+        padding: 0.6rem 1rem;
+        font-size: 14px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #0056b3;
+        }
+    }
 }

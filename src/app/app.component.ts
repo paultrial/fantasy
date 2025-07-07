@@ -140,7 +140,8 @@ export class AppComponent implements OnInit {
       const totalPointsfilterMatch = (!this.totalPointsfilter?.min || athlete.totalpoints >= this.totalPointsfilter.min) && (!this.totalPointsfilter?.max || athlete.totalpoints <= this.totalPointsfilter.max);
 
       return genderMatch && roundsMatch && totalPointsfilterMatch;
-    }).sort((a: any, b: any) => +b.value - +a.value);
+    });
+    this.sortBy();
   }
 
   resetFilters(): void {
