@@ -137,6 +137,25 @@
   <div class="divider" role="separator" aria-label="Divider"></div>
   <div class="right-side">
     <section>
+      <ul *ngIf="filteredAthletes.length > 0" class="athleteList">
+        <li class="athlete">
+          <div class="name">Name</div>
+          <div class="price">Price</div>
+          <div class="points">Points</div>
+          <div class="pricePerPoint">Price Per Point</div>
+          <div class="action">+/-</div>
+        </li>
+        <li class="athlete" *ngFor="let athlete of filteredAthletes" [ngClass]="{overBudget: athlete.overBudget, selected: athlete.selected}">
+          <div class="name"> {{ athlete.firstname }} {{ athlete.lastname }}</div>
+          <div class="price">{{ athlete.value }}$ </div>
+          <div class="points">{{ athlete.totalpoints }}</div>
+          <div class="pricePerPoint">{{ athlete.pricePerPoint }}</div>
+          <div class="teamAction" *ngIf="!athlete.selected" (click)="selectAthlete(athlete)">+</div>
+          <div class="teamAction" *ngIf="athlete.selected" (click)="deselectAthlete(athlete)">-</div>
+        </li>
+      </ul>
+    </section>
+    <section>
       <ul class="athleteList" *ngIf="data">
         <li class="athlete">
           <div class="name">Name</div>
@@ -146,7 +165,7 @@
           <div class="action">+/-</div>
         </li>
         <li class="athlete" *ngFor="let athlete of data"
-          [ngClass]="{injury: athlete.injury, overBudget: athlete.overBudget}">
+          [ngClass]="{injury: athlete.injury, overBudget: athlete.overBudget, selected: athlete.selected}">
           <div class="name"> {{ athlete.firstname }} {{ athlete.lastname }}</div>
           <div class="data">
             <div class="price">{{ athlete.value }}$ </div>
@@ -158,25 +177,7 @@
         </li>
       </ul>
     </section>
-    <section>
-      <ul *ngIf="filteredAthletes.length > 0" class="athleteList">
-        <li class="athlete">
-          <div class="name">Name</div>
-          <div class="price">Price</div>
-          <div class="points">Points</div>
-          <div class="pricePerPoint">Price Per Point</div>
-          <div class="action">+/-</div>
-        </li>
-        <li class="athlete" *ngFor="let athlete of filteredAthletes" [ngClass]="{overBudget: athlete.overBudget}">
-          <div class="name"> {{ athlete.firstname }} {{ athlete.lastname }}</div>
-          <div class="price">{{ athlete.value }}$ </div>
-          <div class="points">{{ athlete.totalpoints }}</div>
-          <div class="pricePerPoint">{{ athlete.pricePerPoint }}</div>
-          <div class="teamAction" *ngIf="!athlete.selected" (click)="selectAthlete(athlete)">+</div>
-          <div class="teamAction" *ngIf="athlete.selected" (click)="deselectAthlete(athlete)">-</div>
-        </li>
-      </ul>
-    </section>
+    
   </div>
 </main>
 
