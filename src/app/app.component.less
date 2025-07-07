@@ -1,0 +1,143 @@
+main {
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    
+    
+    padding: 1rem;
+    box-sizing: inherit;
+    position: relative;
+}
+
+.teamAction {
+    border-radius: 100%;
+    border: 1px solid gray;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    margin: 0 10px 0 0;
+    cursor: pointer;
+
+    &:hover {
+        background-color: aquamarine;
+    }
+}
+
+.overBudget, .errorMessage {
+    background-color: red;
+    color: white;
+}
+
+.left-side {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+}
+
+.right-side {
+    width: calc(100% - 20% - 16px);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    section {
+        width: 50%;
+    }
+}
+
+ul {
+    padding: 0;
+}
+
+.athleteList {
+    // list-style: none;
+
+    .athlete {
+        border-bottom: 1px solid #ccc;
+
+        &.injury {
+            border-bottom: 1px solid red;
+        }
+
+        display: flex;
+        justify-content: space-between;
+
+        .name {
+            margin: 0 5px 0 0
+        }
+
+        .price {
+            margin: 0 5px 0 0;
+        }
+        
+        .points {
+            margin: 0 5px 0 0;
+        }
+        
+        .name {
+            width: 60%;
+        }
+        
+        .data {
+            width: 60%;
+            display: flex;
+            justify-content: space-between;
+
+        }
+
+        &.overBudget{
+            background-color: burlywood;
+            color: black
+        }
+    }
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+
+  label {
+    margin-top: 0.5rem;
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  select,
+  input[type="number"] {
+    padding: 0.4rem;
+    margin-bottom: 0.5rem;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .filter-row {
+    margin-bottom: 0.5rem;
+  }
+
+  .reset-button {
+    margin-top: 1rem;
+    padding: 0.6rem 1rem;
+    font-size: 14px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+}
