@@ -68,11 +68,8 @@
   <div class="left-side">
     <div class="content">
       <h1>{{ title }}</h1>
-
-      <!-- filter section -->
       <section>
         <div class="filters">
-          <h2>Sort</h2>
           <label for="sort">Sort</label>
           <select name="sort" id="sort" [(ngModel)]="sortKey" (change)="sortBy()">
             <option value="value/fw">Price ascending</option>
@@ -82,21 +79,22 @@
             <option value="pricePerPoint/fw">Price per point ascending</option>
             <option value="pricePerPoint/rw">Price per point descending</option>
           </select>
-          <h2>Filters</h2>
-          <label for="gender">gender</label>
+          <br>
+          <h3>Filters</h3>
+          <label for="gender">by gender</label>
           <select id="gender" [(ngModel)]="filterGender" (change)="applyFilters()">
             <option value="">All Genders</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
           </select>
           <div class="filter-row totalPoints">
-            <label>Total Points</label>
+            <label> by total Points</label>
             <input type="number" placeholder="Min" [(ngModel)]="totalPointsfilter.min" (input)="applyFilters()" />
             <input type="number" placeholder="Max" [(ngModel)]="totalPointsfilter.max" (input)="applyFilters()" />
           </div>
 
           <div *ngFor="let round of rounds" class="filter-row">
-            <label>{{ round }}</label>
+            <label>by # nr points / {{ round }}</label>
             <input type="number" placeholder="Min" [(ngModel)]="roundFilters[round].min" (input)="applyFilters()" />
           </div>
 
