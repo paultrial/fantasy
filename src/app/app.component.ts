@@ -291,7 +291,8 @@ export class AppComponent implements OnInit {
     Object.keys(h).forEach(numeleDinNumar => {
       response.push({
         number: numeleDinNumar,
-        data: h[numeleDinNumar]
+        data: h[numeleDinNumar],
+        sum: h[numeleDinNumar].reduce((acc:any, a:any) => acc + +a.value, 0)
       });
     });
 
