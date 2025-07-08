@@ -316,15 +316,4 @@ export class AppComponent implements OnInit {
     // alert("nu prea face ceva butonul asta")
     this.historyTeams = [];
   }
-
 }
-
-/*
-const stats = {};
-rounds.forEach(rn => {
-  stats[rn] = {
-    points: team.reduce((acc, i) => acc + +i[rn], 0),
-    price: team.reduce((acc, i) => acc + i.valorileVechi[rn], 0)
-  }
-});
-*/
