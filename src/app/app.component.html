@@ -97,6 +97,18 @@
             <input type="number" placeholder="Max" [(ngModel)]="totalPointsfilter.max" (input)="applyFilters()" />
           </div>
 
+          <div class="filter-row totalPoints">
+            <label> by total weightedPointDelta</label>
+            <input type="number" placeholder="{{minweightedPointDelta}}" [(ngModel)]="weightedPointDeltaFilter.min" (input)="applyFilters()" />
+            <input type="number" placeholder="{{maxweightedPointDelta}}" [(ngModel)]="weightedPointDeltaFilter.max" (input)="applyFilters()" />
+          </div>
+
+          <div class="filter-row totalPoints">
+            <label> by total weightedPriceDelta</label>
+            <input type="number" placeholder="{{minweightedPriceDelta}}" [(ngModel)]="weightedPriceDeltaFilter.min" (input)="applyFilters()" />
+            <input type="number" placeholder="{{maxweightedPriceDelta}}" [(ngModel)]="weightedPriceDeltaFilter.max" (input)="applyFilters()" />
+          </div>
+
           <div *ngFor="let round of rounds, index as i" class="filter-row">
             <label>by # points / {{roundsAliases[i]}}</label>
             <input type="number" placeholder="Min" [(ngModel)]="roundFilters[round].min" (input)="applyFilters()" />
@@ -157,7 +169,7 @@
           <div class="pricePerPoint">Price Per Point</div>
           <div class="action">+/-</div>
         </li>
-        <li class="athlete" *ngFor="let athlete of filteredAthletes" title="{{athlete.roundsPoints | json}}"
+        <li class="athlete" *ngFor="let athlete of filteredAthletes" title="{{athlete.roundsPoints | json}} {{athlete.progressionScore | json}}"
           [ngClass]="{overBudget: athlete.overBudget, selected: athlete.selected}">
           <div class="name"> {{ athlete.firstname }} {{ athlete.lastname }}</div>
           <div class="price">{{ athlete.value | currency: 'USD':'symbol':'1.0-0'}} </div>
@@ -177,7 +189,7 @@
           <div class="pricePerPoint">Price Per Point</div>
           <div class="action">+/-</div>
         </li>
-        <li class="athlete" *ngFor="let athlete of data" title="{{athlete.roundsPoints | json}}"
+        <li class="athlete" *ngFor="let athlete of data" title="{{athlete.roundsPoints | json}} {{athlete.progressionScore | json}}"
           [ngClass]="{injury: athlete.injury, overBudget: athlete.overBudget, selected: athlete.selected}">
           <div class="name"> {{ athlete.firstname }} {{ athlete.lastname }}</div>
           <div class="data">
@@ -192,9 +204,4 @@
     </section>
   </div>
 </main>
-
-<!-- todo -->
-<!-- stats for teams from LS and current -->
-
-
 <router-outlet />

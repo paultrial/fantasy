@@ -15,13 +15,29 @@ export class AppComponent implements OnInit {
   title = 'P.B. Fantasy DH';
   data: any;
   team: any[] = [];
+  progressionScores: number[] = [];
   sum: number = 0;
   totalPointsfilter = {
     min: undefined,
     max: undefined
   }
 
-  injuryfilter = false;
+  weightedPriceDeltaFilter = {
+    min: undefined,
+    max: undefined
+  }
+
+  weightedPointDeltaFilter = {
+    min: undefined,
+    max: undefined
+  }
+
+  minweightedPointDelta: number | undefined;
+  maxweightedPointDelta: number | undefined;
+  minweightedPriceDelta: number | undefined;
+  maxweightedPriceDelta: number | undefined;
+
+  injuryfilter: boolean | undefined;
 
   usedFilters = false;
 
@@ -82,11 +98,11 @@ export class AppComponent implements OnInit {
         athlete.totalpoints = +athlete.totalpoints;
 
         athlete.roundsPoints = this.rounds.map(r => {
-          const ob:any = {};
-          ob[r]= athlete[r];
+          const ob: any = {};
+          ob[r] = athlete[r];
           return ob;
         })
-        
+
         athlete.gender = +athlete.gender == 1 ? 'Male' : 'Female';
         athlete.progressionScore = this.computeProgressionScore(athlete);
         athlete.pricePerPoint = athlete.totalpoints > 0 ? (athlete.value / +athlete.totalpoints).toFixed(2) : 0
@@ -117,6 +133,13 @@ export class AppComponent implements OnInit {
       }
 
       this.historyTeams = this.getLSTeamHistory();
+
+      this.progressionScores = this.data.map((a: any) => a.progressionScore).sort((a: any, b: any) => { a.weightedPointDelta - b.weightedPointDelta });
+
+      this.minweightedPointDelta = Math.min(...this.progressionScores.map((e: any) => +e.weightedPointDelta) as any);
+      this.maxweightedPointDelta = Math.max(...this.progressionScores.map((e: any) => +e.weightedPointDelta) as any);
+      this.minweightedPriceDelta = Math.min(...this.progressionScores.map((e: any) => +e.weightedPriceDelta) as any);
+      this.maxweightedPriceDelta = Math.max(...this.progressionScores.map((e: any) => +e.weightedPriceDelta) as any);
     });
   }
 
@@ -192,9 +215,12 @@ export class AppComponent implements OnInit {
       });
 
       const totalPointsfilterMatch = (!this.totalPointsfilter?.min || athlete.totalpoints >= this.totalPointsfilter.min) && (!this.totalPointsfilter?.max || athlete.totalpoints <= this.totalPointsfilter.max);
+      const weightedPointDeltaFilterMatch = (!this.weightedPointDeltaFilter?.min || athlete.progressionScore.weightedPointDelta >= this.weightedPointDeltaFilter.min) && (!this.weightedPointDeltaFilter?.max || athlete.progressionScore.weightedPointDelta <= this.weightedPointDeltaFilter.max);
+      const weightedPriceDeltaFilterMatch = (!this.weightedPriceDeltaFilter?.min || athlete.progressionScore.weightedPriceDelta >= this.weightedPriceDeltaFilter.min) && (!this.weightedPriceDeltaFilter?.max || athlete.progressionScore.weightedPriceDelta <= this.weightedPriceDeltaFilter.max);
+
       const injuryFilterMatch = this.injuryfilter !== athlete.injury;
 
-      return genderMatch && roundsMatch && totalPointsfilterMatch && injuryFilterMatch;
+      return genderMatch && roundsMatch && totalPointsfilterMatch && injuryFilterMatch && weightedPointDeltaFilterMatch && weightedPriceDeltaFilterMatch;
     });
     this.sortBy();
   }
@@ -213,6 +239,17 @@ export class AppComponent implements OnInit {
       }
     })
     this.usedFilters = false;
+
+    this.weightedPointDeltaFilter = {
+      min: undefined,
+      max: undefined
+    }
+    this.weightedPriceDeltaFilter = {
+      min: undefined,
+      max: undefined
+    }
+
+    this.injuryfilter = undefined;
   };
 
   error() {
@@ -299,7 +336,7 @@ export class AppComponent implements OnInit {
       response.push({
         number: numeleDinNumar,
         data: h[numeleDinNumar],
-        sum: h[numeleDinNumar].reduce((acc:any, a:any) => acc + +a.value, 0)
+        sum: h[numeleDinNumar].reduce((acc: any, a: any) => acc + +a.value, 0)
       });
     });
 
