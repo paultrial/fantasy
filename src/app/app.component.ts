@@ -80,6 +80,13 @@ export class AppComponent implements OnInit {
         athlete["valorileVechi"] = valorileVechi;
         athlete.selected = false;
         athlete.totalpoints = +athlete.totalpoints;
+
+        athlete.roundsPoints = this.rounds.map(r => {
+          const ob:any = {};
+          ob[r]= athlete[r];
+          return ob;
+        })
+        
         athlete.gender = +athlete.gender == 1 ? 'Male' : 'Female';
         athlete.progressionScore = this.computeProgressionScore(athlete);
         athlete.pricePerPoint = athlete.totalpoints > 0 ? (athlete.value / +athlete.totalpoints).toFixed(2) : 0
