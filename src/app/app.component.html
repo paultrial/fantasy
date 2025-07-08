@@ -81,6 +81,10 @@
           </select>
           <br>
           <h3>Filters</h3>
+          <div class="filter-row">
+            <label for="injuryFilter">injury</label>
+            <input type="checkbox" id="injuryFilter" [(ngModel)]="injuryfilter" (change)="applyFilters()">
+          </div>
           <label for="gender">by gender</label>
           <select id="gender" [(ngModel)]="filterGender" (change)="applyFilters()">
             <option value="">All Genders</option>
@@ -94,7 +98,7 @@
           </div>
 
           <div *ngFor="let round of rounds" class="filter-row">
-            <label>by # nr points / {{ round }}</label>
+            <label>by # points / {{ round }}</label>
             <input type="number" placeholder="Min" [(ngModel)]="roundFilters[round].min" (input)="applyFilters()" />
           </div>
 
@@ -123,8 +127,8 @@
       <section *ngIf="historyTeams">
         <h4>History</h4>
         <!-- historyTeams -->
-        <ul class="athleteList" *ngFor="let team of historyTeams">          
-          #{{team.number}}
+        <ul class="athleteList" *ngFor="let team of historyTeams">
+          #{{team.number}} - stats: {{team.stats | json}}
           <li class="athlete" *ngFor="let athlete of team.data">
             <div class="name">{{ athlete.firstname }} {{ athlete.lastname }}</div>
             <div class="data">

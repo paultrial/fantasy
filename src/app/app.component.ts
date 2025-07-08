@@ -21,6 +21,8 @@ export class AppComponent implements OnInit {
     max: undefined
   }
 
+  injuryfilter = false;
+
   usedFilters = false;
 
   sortKey = ""
@@ -67,7 +69,7 @@ export class AppComponent implements OnInit {
         athlete.progressionScore = this.computeProgressionScore(athlete);
         athlete.pricePerPoint = athlete.totalpoints > 0 ? (athlete.value / +athlete.totalpoints).toFixed(2) : 0
         return athlete;
-      }).filter(a => !a.injury).sort((a, b) => +b.value - +a.value);
+      }).sort((a, b) => +b.value - +a.value);
 
       const localStorageTeam = JSON.parse(window.localStorage.getItem("team") as string);
 
@@ -81,7 +83,7 @@ export class AppComponent implements OnInit {
         this.sum = this.team.reduce((acc, a) => acc + +a.value, 0);
         this.budget = this.money - this.sum;
       }
-      
+
       this.historyTeams = this.getLSTeamHistory();
     });
   }
@@ -148,8 +150,9 @@ export class AppComponent implements OnInit {
       });
 
       const totalPointsfilterMatch = (!this.totalPointsfilter?.min || athlete.totalpoints >= this.totalPointsfilter.min) && (!this.totalPointsfilter?.max || athlete.totalpoints <= this.totalPointsfilter.max);
+      const injuryFilterMatch = this.injuryfilter !== athlete.injury;
 
-      return genderMatch && roundsMatch && totalPointsfilterMatch;
+      return genderMatch && roundsMatch && totalPointsfilterMatch && injuryFilterMatch;
     });
     this.sortBy();
   }
@@ -224,10 +227,10 @@ export class AppComponent implements OnInit {
     const items = { ...localStorage };
     const keys = Object.keys(items).filter(e => { return e.indexOf("team") > -1 });
     if (!!keys.length) {
-      const next = keys.length == 1 ? 1 : Math.max(...keys.filter(e => e.indexOf("/") > 0-1).map(e => +e.split("team/")[1])) + 1;
+      const next = keys.length == 1 ? 1 : Math.max(...keys.filter(e => e.indexOf("/") > 0 - 1).map(e => +e.split("team/")[1])) + 1;
       const nextKey = `team/${next}`;
       window.localStorage.setItem(nextKey, JSON.stringify(this.team));
-    }else{
+    } else {
       window.localStorage.setItem('team', JSON.stringify(this.team));
     }
     this.historyTeams = this.getLSTeamHistory();
@@ -255,6 +258,18 @@ export class AppComponent implements OnInit {
         data: h[numeleDinNumar]
       });
     });
+
+    response.forEach(ht => {
+      const stats: any = {};
+      this.rounds.forEach(rn => {
+        stats[rn] = {
+          points: ht.data.reduce((acc:any, i:any) => acc + +i[rn], 0),
+          price: ht.data.reduce((acc:any, i:any) => acc + i.valorileVechi[rn], 0)
+        }
+      });
+      ht.stats = stats;
+    });
+
     return response;
   }
 
@@ -268,33 +283,6 @@ export class AppComponent implements OnInit {
 }
 
 /*
-athletes = athletes.filter(athlete => {
-  const injury = !!athlete.injury;
-  const every = rounds.every(r => +athlete[r] >= mp);
-  return every && !injury
-});
-
-athletes.forEach(athlete => {
-  athlete.progressionScore = computeProgressionScore(athlete);
-});
-
-const men = athletes.filter(athlete => {
-  return +athlete.gender == 1; 6
-});
-
-const women = athletes.filter(athlete => {
-  return +athlete.gender == 2;
-});
-
-const f2w = women.slice(0, 2);
-const f4m = men.slice(0, 4);
-const sum = men.slice(0, 4).reduce((acc, a) => acc + +a.value, 0) + women.slice(0, 2).reduce((acc, a) => acc + +a.value, 0);
-const team = [].concat(f2w, f4m);
-
-team.forEach(athlete => {
-  
-});
-
 const stats = {};
 rounds.forEach(rn => {
   stats[rn] = {
@@ -302,7 +290,4 @@ rounds.forEach(rn => {
     price: team.reduce((acc, i) => acc + i.valorileVechi[rn], 0)
   }
 });
-
-women.forEach(athlete => { console.log(`${athlete.firstname} ${athlete.lastname} ${athlete.progressionScore.weightedPriceDelta} ${athlete.progressionScore.weightedPointDelta}`) });
-}
 */
