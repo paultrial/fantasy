@@ -109,6 +109,7 @@
         <h4 [ngClass]="{overBudget: sum>money}">Your Team {{sum}}$</h4>
         <h4 [ngClass]="{overBudget: sum>money}">budget: {{budget}}$</h4>
         <h4 class="errorMessage">{{errorMessage}}</h4>
+        stats: {{currentStats | json}}
         <ul class="athleteList">
           <li class="athlete" *ngFor="let athlete of team">
             <div class="name">{{ athlete.firstname }} {{ athlete.lastname }}</div>

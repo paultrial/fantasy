@@ -28,6 +28,8 @@ export class AppComponent implements OnInit {
   sortKey = ""
   errorMessage: string = '';
 
+  currentStats = {};
+
   maxNrWomenPerTeam = 2
   maxNrMenPerTeam = 4
   localStorageTeam = undefined;
@@ -82,6 +84,16 @@ export class AppComponent implements OnInit {
 
         this.sum = this.team.reduce((acc, a) => acc + +a.value, 0);
         this.budget = this.money - this.sum;
+
+        const stats: any = {};
+        this.rounds.forEach(rn => {
+          stats[rn] = {
+            points: this.team.reduce((acc: any, i: any) => acc + +i[rn], 0),
+            price: this.team.reduce((acc: any, i: any) => acc + i.valorileVechi[rn], 0)
+          }
+        });
+
+        this.currentStats = stats;
       }
 
       this.historyTeams = this.getLSTeamHistory();
@@ -114,6 +126,16 @@ export class AppComponent implements OnInit {
       athlete.overBudget = athlete.value > this.budget;
     });
     this.error();
+
+    const stats: any = {};
+    this.rounds.forEach(rn => {
+      stats[rn] = {
+        points: this.team.reduce((acc: any, i: any) => acc + +i[rn], 0),
+        price: this.team.reduce((acc: any, i: any) => acc + i.valorileVechi[rn], 0)
+      }
+    });
+
+    this.currentStats = stats;
 
     window.localStorage.setItem("team", JSON.stringify(this.team));
   };
@@ -194,6 +216,7 @@ export class AppComponent implements OnInit {
       e.selected = false;
     });
     this.team = [];
+    this.currentStats = {};
     window.localStorage.removeItem("team");
   }
 
@@ -263,8 +286,8 @@ export class AppComponent implements OnInit {
       const stats: any = {};
       this.rounds.forEach(rn => {
         stats[rn] = {
-          points: ht.data.reduce((acc:any, i:any) => acc + +i[rn], 0),
-          price: ht.data.reduce((acc:any, i:any) => acc + i.valorileVechi[rn], 0)
+          points: ht.data.reduce((acc: any, i: any) => acc + +i[rn], 0),
+          price: ht.data.reduce((acc: any, i: any) => acc + i.valorileVechi[rn], 0)
         }
       });
       ht.stats = stats;
