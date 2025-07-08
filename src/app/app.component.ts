@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { DataService } from './data-service.service';
-import { NgIf, NgFor, NgClass, KeyValuePipe, JsonPipe } from '@angular/common';
+import { NgIf, NgFor, NgClass, KeyValuePipe, JsonPipe, CurrencyPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NgIf, NgFor, NgClass, FormsModule, KeyValuePipe, JsonPipe],
+  imports: [RouterOutlet, NgIf, NgFor, NgClass, FormsModule, KeyValuePipe, JsonPipe, CurrencyPipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.less'
 })
