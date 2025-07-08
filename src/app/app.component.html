@@ -169,7 +169,7 @@
           <div class="pricePerPoint">Price Per Point</div>
           <div class="action">+/-</div>
         </li>
-        <li class="athlete" *ngFor="let athlete of filteredAthletes" title="{{athlete.roundsPoints | json}} {{athlete.progressionScore | json}}"
+        <li class="athlete" *ngFor="let athlete of filteredAthletes" title="{{athlete.roundsPoints | json}} {{athlete.progressionScore | json}} {{athlete.roundValues}}"
           [ngClass]="{overBudget: athlete.overBudget, selected: athlete.selected}">
           <div class="name"> {{ athlete.firstname }} {{ athlete.lastname }}</div>
           <div class="price">{{ athlete.value | currency: 'USD':'symbol':'1.0-0'}} </div>
@@ -189,7 +189,7 @@
           <div class="pricePerPoint">Price Per Point</div>
           <div class="action">+/-</div>
         </li>
-        <li class="athlete" *ngFor="let athlete of data" title="{{athlete.roundsPoints | json}} {{athlete.progressionScore | json}}"
+        <li class="athlete" *ngFor="let athlete of data" title="{{athlete.roundsPoints | json}} {{athlete.progressionScore | json}} {{athlete.roundValues}}"
           [ngClass]="{injury: athlete.injury, overBudget: athlete.overBudget, selected: athlete.selected}">
           <div class="name"> {{ athlete.firstname }} {{ athlete.lastname }}</div>
           <div class="data">
