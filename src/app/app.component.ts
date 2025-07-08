@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { DataService } from './data-service.service';
-import { NgIf, NgFor, NgClass, KeyValuePipe, JsonPipe, CurrencyPipe } from '@angular/common';
+import { NgIf, NgFor, NgClass, KeyValuePipe, JsonPipe, CurrencyPipe, NgStyle } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NgIf, NgFor, NgClass, FormsModule, KeyValuePipe, JsonPipe, CurrencyPipe],
+  imports: [RouterOutlet, NgIf, NgFor, NgClass, FormsModule, KeyValuePipe, JsonPipe, CurrencyPipe, NgStyle],
   templateUrl: './app.component.html',
   styleUrl: './app.component.less'
 })
@@ -32,10 +32,10 @@ export class AppComponent implements OnInit {
     max: undefined
   }
 
-  minweightedPointDelta: number | undefined;
-  maxweightedPointDelta: number | undefined;
-  minweightedPriceDelta: number | undefined;
-  maxweightedPriceDelta: number | undefined;
+  minweightedPointDelta!: number;
+  maxweightedPointDelta!: number;
+  minweightedPriceDelta!: number;
+  maxweightedPriceDelta!: number;
 
   injuryfilter: boolean | undefined;
 
@@ -360,4 +360,20 @@ export class AppComponent implements OnInit {
     // alert("nu prea face ceva butonul asta")
     this.historyTeams = [];
   }
+
+
+  valueToRedBlackColor(value: number): string {
+  // Clamp value within range
+  const clamped = Math.max(this.minweightedPriceDelta, Math.min(value, this.maxweightedPriceDelta));
+
+  // Normalize to [0, 1]
+  const normalized = (clamped - this.minweightedPriceDelta) / (this.maxweightedPriceDelta - this.minweightedPriceDelta);
+
+  // Invert red channel (red to black)
+  const red = Math.round(255 * (1 - normalized));
+
+  // Return as CSS rgb string
+  return `rgb(${red}, 0, 0)`;
+}
+
 }
