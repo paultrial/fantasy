@@ -129,7 +129,7 @@
         <h4>History</h4>
         <!-- historyTeams -->
         <ul class="athleteList" *ngFor="let team of historyTeams">
-          <div class="stats" title="{{team.stats | json}}">#{{team.number}} - stats / price: {{team.sum | currency}}</div>
+          <div class="stats" title="{{team.stats | json}}">#{{team.number}} - stats / price: {{team.sum | currency}} leftovers: {{money-team.sum | currency}}</div>
           
           <li class="athlete"  title="{{team.stats | json}}" *ngFor="let athlete of team.data">
             <div class="name">{{ athlete.firstname }} {{ athlete.lastname }}</div>
