@@ -21,6 +21,8 @@ export class AppComponent implements OnInit {
     max: undefined
   }
 
+  usedFilters = false;
+
   sortKey = ""
   errorMessage: string = '';
 
@@ -134,6 +136,7 @@ export class AppComponent implements OnInit {
   };
 
   applyFilters(): void {
+    this.usedFilters = true;
     this.filteredAthletes = this.data.filter((athlete: any) => {
       const genderMatch =
         !this.filterGender || athlete.gender === this.filterGender;
@@ -164,6 +167,7 @@ export class AppComponent implements OnInit {
         max: undefined
       }
     })
+    this.usedFilters = false;
   };
 
   error() {
