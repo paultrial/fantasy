@@ -43,6 +43,19 @@ export class AppComponent implements OnInit {
 
   roundFilters: { [key: string]: { min?: number; max?: number } } = {};
   rounds = Array.from({ length: 5 }, (_, i) => `round${i + 1}`);
+  roundsAliases = [
+    "Bielsko-Biala World Cup #1",
+    "Loudenvielle World Cup #2",
+    "Leogang World Cup #3",
+    "Val di Sole World Cup #4",
+    "La Thuile World Cup #5",
+    "Andorra World Cup #6",
+    "Les Gets World Cup #7",
+    "2025 World Championships Champery",
+    "Lenzerheide World Cup #8",
+    "Lake Placid World Cup #9",
+    "Mont-Sainte-Anne World Cup #1",
+  ];
 
   constructor(private dataService: DataService) {
     // for (let rn = 1; rn <= 5; rn++) { this.rounds.push("round" + rn.toString()) }

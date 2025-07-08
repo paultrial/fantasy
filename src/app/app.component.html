@@ -97,8 +97,8 @@
             <input type="number" placeholder="Max" [(ngModel)]="totalPointsfilter.max" (input)="applyFilters()" />
           </div>
 
-          <div *ngFor="let round of rounds" class="filter-row">
-            <label>by # points / {{ round }}</label>
+          <div *ngFor="let round of rounds, index as i" class="filter-row">
+            <label>by # points / {{roundsAliases[i]}}</label>
             <input type="number" placeholder="Min" [(ngModel)]="roundFilters[round].min" (input)="applyFilters()" />
           </div>
 
