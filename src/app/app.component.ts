@@ -363,17 +363,18 @@ export class AppComponent implements OnInit {
 
 
   valueToRedBlackColor(value: number): string {
-  // Clamp value within range
-  const clamped = Math.max(this.minweightedPriceDelta, Math.min(value, this.maxweightedPriceDelta));
+    const clamped = Math.max(this.minweightedPriceDelta, Math.min(value, this.maxweightedPriceDelta));
+    const normalized = (clamped - this.minweightedPriceDelta) / (this.maxweightedPriceDelta - this.minweightedPriceDelta);
+    const red = Math.round(255 * (1 - normalized));
+    return `rgb(${red}, 0, 0)`;
+  }
 
-  // Normalize to [0, 1]
-  const normalized = (clamped - this.minweightedPriceDelta) / (this.maxweightedPriceDelta - this.minweightedPriceDelta);
 
-  // Invert red channel (red to black)
-  const red = Math.round(255 * (1 - normalized));
-
-  // Return as CSS rgb string
-  return `rgb(${red}, 0, 0)`;
-}
+  valueTogreenBlackColor(value: number): string {
+    const clamped = Math.max(this.minweightedPointDelta, Math.min(value, this.maxweightedPointDelta));
+    const normalized = (clamped - this.minweightedPointDelta) / (this.maxweightedPointDelta - this.minweightedPointDelta);
+    const green = Math.round(255 * normalized);
+    return `rgb(0, ${green}, 0)`;
+  }
 
 }
