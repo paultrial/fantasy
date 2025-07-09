@@ -338,8 +338,8 @@ export class AppComponent implements OnInit {
 
     response.forEach(ht => {
       const stats: any = {};
-      this.rounds.forEach(rn => {
-        stats[rn] = {
+      this.rounds.forEach((rn, i) => {
+        stats[this.roundsAliases[i]] = {
           points: ht.data.reduce((acc: any, i: any) => acc + +i[rn], 0),
           price: ht.data.reduce((acc: any, i: any) => acc + i.valorileVechi[rn], 0)
         }
