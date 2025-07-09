@@ -48,6 +48,8 @@ export class AppComponent implements OnInit {
 
   maxNrWomenPerTeam = 2
   maxNrMenPerTeam = 4
+  nrWomenPerTeam = 0
+  nrMenPerTeam = 0
   localStorageTeam = undefined;
   money: number = 1500000;
   budget: number = 1500000;
@@ -97,9 +99,9 @@ export class AppComponent implements OnInit {
         athlete.selected = false;
         athlete.totalpoints = +athlete.totalpoints;
 
-        athlete.roundsPoints = this.rounds.map(r => {
+        athlete.roundsPoints = this.rounds.map((r, i) => {
           const ob: any = {};
-          ob[r] = athlete[r];
+          ob[this.roundsAliases[i]] = athlete[r];
           return ob;
         })
 
@@ -129,6 +131,9 @@ export class AppComponent implements OnInit {
           }
         });
 
+        this.nrWomenPerTeam = this.team.filter(e => e.gender === "Female").length;
+        this.nrMenPerTeam = this.team.filter(e => e.gender === "Male").length;
+
         this.currentStats = stats;
       }
 
@@ -156,10 +161,10 @@ export class AppComponent implements OnInit {
     })
   }
 
-  selectAthlete(a: any): void {
+  actionAthlete(a: any): void {
     this.data.forEach((athlete: any) => {
       if (a.id == athlete.id) {
-        athlete.selected = true;
+        athlete.selected = !athlete.selected;
       }
     });
     this.team = this.data.filter((e: any) => e.selected);
@@ -179,27 +184,9 @@ export class AppComponent implements OnInit {
     });
 
     this.currentStats = stats;
-
+    this.nrWomenPerTeam = this.team.filter(e => e.gender === "Female").length;
+    this.nrMenPerTeam = this.team.filter(e => e.gender === "Male").length;
     window.localStorage.setItem("team", JSON.stringify(this.team));
-  };
-
-  deselectAthlete(a: any): void {
-    this.data.forEach((athlete: any) => {
-      if (a.id == athlete.id) {
-        athlete.selected = false;
-      }
-    });
-    this.team = this.data.filter((e: any) => e.selected);
-    this.sum = this.team.reduce((acc, a) => acc + +a.value, 0);
-    this.budget = this.money - this.sum;
-
-    this.data.forEach((athlete: any) => {
-      athlete.overBudget = athlete.value > this.budget;
-    });
-    this.error();
-
-    window.localStorage.removeItem("team");
-    // window.localStorage.setItem("team", JSON.stringify(this.team));
   };
 
   applyFilters(): void {
@@ -269,12 +256,21 @@ export class AppComponent implements OnInit {
   }
 
   clearTeam() {
-    this.data.forEach((e: any) => {
-      e.selected = false;
-    });
     this.team = [];
     this.currentStats = {};
+    this.budget = 1500000;
+    this.sum = 0;
     window.localStorage.removeItem("team");
+    this.nrWomenPerTeam = 0;
+    this.nrMenPerTeam = 0;
+    this.data.forEach((e: any) => {
+      e.selected = false;
+      e.overBudget = e.value > this.budget;
+    });
+    this.filteredAthletes.forEach((e: any) => {
+      e.selected = false;
+      e.overBudget = e.value > this.budget;
+    });
   }
 
   computeProgressionScore = (athlete: any) => {

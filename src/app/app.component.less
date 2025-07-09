@@ -39,6 +39,21 @@ h1 {
     }
 }
 
+h4.nrathletePerTeam{
+    span{
+        &.insuficient{
+            border-bottom: 3px solid yellow;
+        }
+        &.cool{
+            border-bottom: 3px solid green;
+        }
+        &.wrong{
+            border-bottom: 3px solid red;
+
+        }
+    }
+}
+
 .overBudget,
 .errorMessage {
     background-color: red;
@@ -76,6 +91,10 @@ ul {
 
     .athlete {
         border-bottom: 1px solid #ccc;
+
+        &:hover{
+            background-color: #ccc;
+        }
 
         &.injury {
             border-bottom: 1px solid red;
