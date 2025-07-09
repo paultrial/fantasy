@@ -121,7 +121,7 @@
           <button (click)="resetFilters()">Reset</button>
         </div>
       </section>
-      <section>
+      <section class="currentTeam">
         <h4 [ngClass]="{overBudget: sum>money}">Your Team {{sum | currency: 'USD':'symbol':'1.0-0'}} - budget: {{budget
           | currency: 'USD':'symbol':'1.0-0'}}</h4>
         <h4 class="errorMessage">{{errorMessage}}</h4>
@@ -148,7 +148,7 @@
         <button *ngIf="team.length > 0" (click)="clearTeam()">Clear team</button>
         <button *ngIf="team.length > 0" (click)="saveForLater()">Save For Later</button>
       </section>
-      <section *ngIf="historyTeams">
+      <section class="history" *ngIf="historyTeams">
         <h4>History</h4>
         <!-- historyTeams -->
         <ul class="athleteList" *ngFor="let team of historyTeams">
