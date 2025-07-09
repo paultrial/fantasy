@@ -1,0 +1,562 @@
+{
+  "elite_men": [
+    {
+      "firstname": "Kye",
+      "lastname": "A'HERN"
+    },
+    {
+      "firstname": "Joe",
+      "lastname": "BREEDEN"
+    },
+    {
+      "firstname": "Troy",
+      "lastname": "BROSNAN"
+    },
+    {
+      "firstname": "Loic",
+      "lastname": "BRUNI"
+    },
+    {
+      "firstname": "Pedro BURNS",
+      "lastname": "CONTRERAS"
+    },
+    {
+      "firstname": "Daniel CASTELLANOS",
+      "lastname": "LIBERAL"
+    },
+    {
+      "firstname": "Simon",
+      "lastname": "CHAPELET"
+    },
+    {
+      "firstname": "Jackson",
+      "lastname": "CONNELLY"
+    },
+    {
+      "firstname": "Benoit",
+      "lastname": "COULANGES"
+    },
+    {
+      "firstname": "George Ethan",
+      "lastname": "CRAIK"
+    },
+    {
+      "firstname": "Lucas",
+      "lastname": "CRUZ"
+    },
+    {
+      "firstname": "Thibaut",
+      "lastname": "DAPRELA"
+    },
+    {
+      "firstname": "Braedyn",
+      "lastname": "DAVIS"
+    },
+    {
+      "firstname": "Oliver",
+      "lastname": "DAVIS"
+    },
+    {
+      "firstname": "Michael",
+      "lastname": "DELESALLE"
+    },
+    {
+      "firstname": "Jacob",
+      "lastname": "DICKSON"
+    },
+    {
+      "firstname": "Austin",
+      "lastname": "DOOLEY"
+    },
+    {
+      "firstname": "Theo",
+      "lastname": "ERLANGSEN"
+    },
+    {
+      "firstname": "Thomas",
+      "lastname": "ESTAQUE"
+    },
+    {
+      "firstname": "Mylann",
+      "lastname": "FALQUET"
+    },
+    {
+      "firstname": "Angus",
+      "lastname": "FERGUSON"
+    },
+    {
+      "firstname": "Sam",
+      "lastname": "GALE"
+    },
+    {
+      "firstname": "Ignacio GARCIA",
+      "lastname": "AYORA"
+    },
+    {
+      "firstname": "Jackson",
+      "lastname": "GOLDSTONE"
+    },
+    {
+      "firstname": "Laurie",
+      "lastname": "GREENLAND"
+    },
+    {
+      "firstname": "Ryan",
+      "lastname": "GRIFFITH"
+    },
+    {
+      "firstname": "Oscar",
+      "lastname": "GRIFFITHS"
+    },
+    {
+      "firstname": "L\u00e9o",
+      "lastname": "GRISEL"
+    },
+    {
+      "firstname": "Aaron",
+      "lastname": "GWIN"
+    },
+    {
+      "firstname": "Danny",
+      "lastname": "HART"
+    },
+    {
+      "firstname": "Max",
+      "lastname": "HARTENSTERN"
+    },
+    {
+      "firstname": "Charlie",
+      "lastname": "HATTON"
+    },
+    {
+      "firstname": "Christian",
+      "lastname": "HAUSER"
+    },
+    {
+      "firstname": "Johnathan",
+      "lastname": "HELLY"
+    },
+    {
+      "firstname": "Sebastian HOLGUIN",
+      "lastname": "VILLA"
+    },
+    {
+      "firstname": "Finn",
+      "lastname": "ILES"
+    },
+    {
+      "firstname": "Stefano",
+      "lastname": "INTROZZI"
+    },
+    {
+      "firstname": "Dane",
+      "lastname": "JEWETT"
+    },
+    {
+      "firstname": "Jakob",
+      "lastname": "JEWETT"
+    },
+    {
+      "firstname": "Ferran",
+      "lastname": "JORBA"
+    },
+    {
+      "firstname": "Bernard",
+      "lastname": "KERR"
+    },
+    {
+      "firstname": "Henry",
+      "lastname": "KERR"
+    },
+    {
+      "firstname": "Henri",
+      "lastname": "KIEFER"
+    },
+    {
+      "firstname": "Rory",
+      "lastname": "KIRK"
+    },
+    {
+      "firstname": "Andreas",
+      "lastname": "KOLB"
+    },
+    {
+      "firstname": "Karolis",
+      "lastname": "KRUKAUSKAS"
+    },
+    {
+      "firstname": "Bodhi",
+      "lastname": "KUHN"
+    },
+    {
+      "firstname": "Lucas",
+      "lastname": "LAGNEAU"
+    },
+    {
+      "firstname": "Dylan",
+      "lastname": "LEVESQUE"
+    },
+    {
+      "firstname": "Castelli",
+      "lastname": "LUCIANO"
+    },
+    {
+      "firstname": "James",
+      "lastname": "MACDERMID"
+    },
+    {
+      "firstname": "Martin",
+      "lastname": "MAES"
+    },
+    {
+      "firstname": "Dylan",
+      "lastname": "MAPLES"
+    },
+    {
+      "firstname": "Hugo",
+      "lastname": "MARINI"
+    },
+    {
+      "firstname": "Evan",
+      "lastname": "MEDCALF"
+    },
+    {
+      "firstname": "Toby",
+      "lastname": "MEEK"
+    },
+    {
+      "firstname": "Luke",
+      "lastname": "MEIER-SMITH"
+    },
+    {
+      "firstname": "Remy",
+      "lastname": "MEIER-SMITH"
+    },
+    {
+      "firstname": "Loris",
+      "lastname": "MICHELLOD"
+    },
+    {
+      "firstname": "Fernando Juan",
+      "lastname": "MU\u00d1OZ"
+    },
+    {
+      "firstname": "Mateo",
+      "lastname": "NEGRI"
+    },
+    {
+      "firstname": "Matheus Braian",
+      "lastname": "NEITZKE"
+    },
+    {
+      "firstname": "Dakotah",
+      "lastname": "NORTON"
+    },
+    {
+      "firstname": "Oisin",
+      "lastname": "O\u2019CALLAGHAN"
+    },
+    {
+      "firstname": "Paul Daniel ORDONEZ",
+      "lastname": "OCHOA"
+    },
+    {
+      "firstname": "Roee",
+      "lastname": "OSTFELD"
+    },
+    {
+      "firstname": "Jeronimo",
+      "lastname": "PAEZ"
+    },
+    {
+      "firstname": "Davide",
+      "lastname": "PALAZZARI"
+    },
+    {
+      "firstname": "Alden",
+      "lastname": "PATE"
+    },
+    {
+      "firstname": "Tuhoto-Ariki",
+      "lastname": "PENE"
+    },
+    {
+      "firstname": "\u00c1lvaro",
+      "lastname": "PESTANA"
+    },
+    {
+      "firstname": "Jack",
+      "lastname": "PIERCY"
+    },
+    {
+      "firstname": "Amaury",
+      "lastname": "PIERRON"
+    },
+    {
+      "firstname": "Antoine",
+      "lastname": "PIERRON"
+    },
+    {
+      "firstname": "Baptiste",
+      "lastname": "PIERRON"
+    },
+    {
+      "firstname": "Ryan",
+      "lastname": "PINKERTON"
+    },
+    {
+      "firstname": "Hector QUINTEIRO",
+      "lastname": "LORENZO"
+    },
+    {
+      "firstname": "Pascal",
+      "lastname": "REUSSER"
+    },
+    {
+      "firstname": "Loris",
+      "lastname": "REVELLI"
+    },
+    {
+      "firstname": "Antoine",
+      "lastname": "ROGGE"
+    },
+    {
+      "firstname": "Yelco ROMERO",
+      "lastname": "BOULANDIER"
+    },
+    {
+      "firstname": "Richard RUDE",
+      "lastname": "JR"
+    },
+    {
+      "firstname": "Anthony",
+      "lastname": "RUIZ"
+    },
+    {
+      "firstname": "Luca",
+      "lastname": "SHAW"
+    },
+    {
+      "firstname": "Carter",
+      "lastname": "SLOAN"
+    },
+    {
+      "firstname": "Jed",
+      "lastname": "STANTON"
+    },
+    {
+      "firstname": "Lachlan",
+      "lastname": "STEVENS-MCNAB"
+    },
+    {
+      "firstname": "Angel SUAREZ",
+      "lastname": "ALONSO"
+    },
+    {
+      "firstname": "R\u00e9mi",
+      "lastname": "THIRION"
+    },
+    {
+      "firstname": "Luca",
+      "lastname": "THURLOW"
+    },
+    {
+      "firstname": "Gavin",
+      "lastname": "TOMLINSON"
+    },
+    {
+      "firstname": "Albertas",
+      "lastname": "TURBA"
+    },
+    {
+      "firstname": "Elliot",
+      "lastname": "VALLON"
+    },
+    {
+      "firstname": "Kelian",
+      "lastname": "VANREUSEL"
+    },
+    {
+      "firstname": "Lucio VELLUTINO",
+      "lastname": "MALAGA"
+    },
+    {
+      "firstname": "Loris",
+      "lastname": "VERGIER"
+    },
+    {
+      "firstname": "Taylor",
+      "lastname": "VERNON"
+    },
+    {
+      "firstname": "Roger",
+      "lastname": "VIEIRA"
+    },
+    {
+      "firstname": "Petr",
+      "lastname": "VINOKUROV"
+    },
+    {
+      "firstname": "Matt",
+      "lastname": "WALKER"
+    },
+    {
+      "firstname": "Luke",
+      "lastname": "WAYMAN"
+    },
+    {
+      "firstname": "Jordan",
+      "lastname": "WILLIAMS"
+    },
+    {
+      "firstname": "Greg",
+      "lastname": "WILLIAMSON"
+    },
+    {
+      "firstname": "Reece",
+      "lastname": "WILSON"
+    },
+    {
+      "firstname": "Kasper",
+      "lastname": "WOOLLEY"
+    },
+    {
+      "firstname": "Alejandro Mateo ZENTENO",
+      "lastname": "MENDOZA"
+    },
+    {
+      "firstname": "Oliver",
+      "lastname": "ZWAR"
+    }
+  ],
+  "elite_women": [
+    {
+      "firstname": "Camille",
+      "lastname": "BALANCHE"
+    },
+    {
+      "firstname": "Lisa",
+      "lastname": "BAUMANN"
+    },
+    {
+      "firstname": "Mathilde",
+      "lastname": "BERNARD"
+    },
+    {
+      "firstname": "Jess",
+      "lastname": "BLEWITT"
+    },
+    {
+      "firstname": "Lais",
+      "lastname": "BONNAURE"
+    },
+    {
+      "firstname": "Lisa",
+      "lastname": "BOULADOU"
+    },
+    {
+      "firstname": "Marine",
+      "lastname": "CABIROU"
+    },
+    {
+      "firstname": "Emily",
+      "lastname": "CARRICK-ANDERSON"
+    },
+    {
+      "firstname": "Vicky",
+      "lastname": "CLAVEL"
+    },
+    {
+      "firstname": "Sacha",
+      "lastname": "EARNEST"
+    },
+    {
+      "firstname": "Elise",
+      "lastname": "EMPEY"
+    },
+    {
+      "firstname": "Eleonora",
+      "lastname": "FARINA"
+    },
+    {
+      "firstname": "Louise-Anna",
+      "lastname": "FERGUSON"
+    },
+    {
+      "firstname": "Phoebe",
+      "lastname": "GALE"
+    },
+    {
+      "firstname": "Fernanda GILDEMEISTER",
+      "lastname": "MENZEL"
+    },
+    {
+      "firstname": "Harriet",
+      "lastname": "HARNDEN"
+    },
+    {
+      "firstname": "Jenna",
+      "lastname": "HASTINGS"
+    },
+    {
+      "firstname": "Gracey",
+      "lastname": "HEMSTREET"
+    },
+    {
+      "firstname": "Nina",
+      "lastname": "HOFFMANN"
+    },
+    {
+      "firstname": "Valentina",
+      "lastname": "H\u00d6LL"
+    },
+    {
+      "firstname": "Monika",
+      "lastname": "HRASTNIK"
+    },
+    {
+      "firstname": "Mille",
+      "lastname": "JOHNSET"
+    },
+    {
+      "firstname": "Anna",
+      "lastname": "NEWKIRK"
+    },
+    {
+      "firstname": "Myriam",
+      "lastname": "NICOLE"
+    },
+    {
+      "firstname": "Mireia PI",
+      "lastname": "MADRENAS"
+    },
+    {
+      "firstname": "Maria POMES",
+      "lastname": "GARCIA"
+    },
+    {
+      "firstname": "Valentina ROA",
+      "lastname": "SANCHEZ"
+    },
+    {
+      "firstname": "Frida Helena",
+      "lastname": "R\u00d8NNING"
+    },
+    {
+      "firstname": "Gloria",
+      "lastname": "SCARSI"
+    },
+    {
+      "firstname": "Tahnee",
+      "lastname": "SEAGRAVE"
+    },
+    {
+      "firstname": "Siel VAN DER",
+      "lastname": "VELDEN"
+    },
+    {
+      "firstname": "Erice VAN",
+      "lastname": "LEUVEN"
+    }
+  ]
+}
