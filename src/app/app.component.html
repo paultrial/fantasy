@@ -82,7 +82,7 @@
           <br>
           <h3>Filters</h3>
           <div class="filter-row checkbox">
-            <label for="injuryFilter">injury</label>
+            <label for="injuryFilter">with no injury</label>
             <input type="checkbox" id="injuryFilter" [(ngModel)]="injuryfilter" (change)="applyFilters()">
           </div>
           <label for="gender">by gender</label>
@@ -195,7 +195,7 @@
         </li>
       </ul>
     </section>
-    <section>
+    <!-- <section>
       <ul class="athleteList" *ngIf="data">
         <li class="athlete">
           <div class="name">Name</div>
@@ -220,7 +220,7 @@
           </div>
         </li>
       </ul>
-    </section>
+    </section> -->
   </div>
 </main>
 <router-outlet />
