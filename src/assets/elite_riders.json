@@ -1,5 +1,4 @@
-{
-  "elite_men": [
+[
     {
       "firstname": "Kye",
       "lastname": "A'HERN"
@@ -427,9 +426,7 @@
     {
       "firstname": "Oliver",
       "lastname": "ZWAR"
-    }
-  ],
-  "elite_women": [
+    }, 
     {
       "firstname": "Camille",
       "lastname": "BALANCHE"
@@ -559,4 +556,3 @@
       "lastname": "LEUVEN"
     }
   ]
-}
