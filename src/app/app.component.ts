@@ -176,12 +176,13 @@ export class AppComponent implements OnInit {
     });
     this.error();
 
-    const stats: any = {};
-    this.rounds.forEach(rn => {
-      stats[rn] = {
+    const stats: any = {sum: 0};
+    this.rounds.forEach((rn, i) => {
+      stats[this.roundsAliases[i]] = {
         points: this.team.reduce((acc: any, i: any) => acc + +i[rn], 0),
         price: this.team.reduce((acc: any, i: any) => acc + i.valorileVechi[rn], 0)
       }
+      stats.sum += stats[this.roundsAliases[i]].points;
     });
 
     this.currentStats = stats;
