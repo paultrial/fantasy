@@ -189,7 +189,7 @@
             athlete.value | currency: 'USD':'symbol':'1.0-0'}} </div>
           <div class="points" [ngStyle]="{color: valueTogreenBlackColor(athlete.progressionScore.weightedPointDelta)}">
             {{ athlete.totalpoints }}</div>
-          <div class="pricePerPoint">{{ athlete.pricePerPoint }}</div>
+          <div class="pricePerPoint">{{ athlete.pricePerPoint | currency: 'USD':'symbol':'1.0-0' }}</div>
           <div class="teamAction" *ngIf="!athlete.selected" (click)="actionAthlete(athlete)">+</div>
           <div class="teamAction" *ngIf="athlete.selected" (click)="actionAthlete(athlete)">-</div>
         </li>
