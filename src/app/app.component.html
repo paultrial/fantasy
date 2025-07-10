@@ -135,7 +135,7 @@
 
         <ul class="athleteList" title="{{currentStats | json}}">
           <li class="athlete" *ngFor="let athlete of team">
-            <div class="name">{{ athlete.firstname }} {{ athlete.lastname }}</div>
+            <div class="name"><span *ngIf="athlete.inQuali">!!!</span> {{ athlete.firstname }} {{ athlete.lastname }}</div>
             <div class="data">
               <div class="price">{{ athlete.value | currency: 'USD':'symbol':'1.0-0'}} </div>
               <div class="points">{{ athlete.totalpoints }}</div>
@@ -156,7 +156,7 @@
             'USD':'symbol':'1.0-0'}} leftovers: {{money-team.sum | currency: 'USD':'symbol':'1.0-0'}}</div>
 
           <li class="athlete" title="{{team.stats | json}}" *ngFor="let athlete of team.data">
-            <div class="name">{{ athlete.firstname }} {{ athlete.lastname }}</div>
+            <div class="name"><span *ngIf="athlete.inQuali">!!!</span> {{ athlete.firstname }} {{ athlete.lastname }}</div>
             <div class="data">
               <div class="price">{{ athlete.value | currency: 'USD':'symbol':'1.0-0'}} </div>
               <div class="points">{{ athlete.totalpoints }}</div>
@@ -184,7 +184,7 @@
         <li class="athlete" *ngFor="let athlete of filteredAthletes"
           title="{{athlete.roundsPoints | json}} {{athlete.progressionScore | json}} {{athlete.roundValues}}"
           [ngClass]="{overBudget: athlete.overBudget, selected: athlete.selected}">
-          <div class="name"> {{ athlete.firstname }} {{ athlete.lastname }}</div>
+          <div class="name"><span *ngIf="athlete.inQuali">!!!</span> {{ athlete.firstname }} {{ athlete.lastname }}</div>
           <div class="price" [ngStyle]="{color: valueToRedBlackColor(athlete.progressionScore.weightedPriceDelta)}">{{
             athlete.value | currency: 'USD':'symbol':'1.0-0'}} </div>
           <div class="points" [ngStyle]="{color: valueTogreenBlackColor(athlete.progressionScore.weightedPointDelta)}">

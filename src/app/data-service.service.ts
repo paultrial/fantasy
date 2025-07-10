@@ -13,4 +13,8 @@ export class DataService {
   getData(): Observable<any> {
     return this.http.get(this.jsonUrl);
   }
+
+  getqualiStartList(): Observable<any> {
+    return this.http.get('assets/elite_riders.json');
+  }
 }
