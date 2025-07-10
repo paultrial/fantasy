@@ -17,7 +17,7 @@
                 }, {
                     "columns": ["12:34:00", "HEMSTREET Gracey", "NORCO RACE DIVISION", "CAN", "2004"]
                 }, {
-                    "columns": ["12:34:30", "HÖLL Valentina", "YT MOB", "AUT", "2001"]
+                    "columns": ["12:34:30", "HÖLL Vali", "YT MOB", "AUT", "2001"]
                 }, {
                     "columns": ["12:35:00", "NICOLE Myriam", "COMMENCAL/MUC-OFF BY RIDING ADDICTION", "FRA", "1990"]
                 }, {
@@ -25,7 +25,7 @@
                 }, {
                     "columns": ["12:36:00", "HASTINGS Jenna", "PIVOT FACTORY RACING", "NZL", "2004"]
                 }, {
-                    "columns": ["12:36:30", "FERGUSON Louise-Anna", "AXESS INTENSE FACTORY RACING", "GBR", "1996"]
+                    "columns": ["12:36:30", "FERGUSON Louise", "AXESS INTENSE FACTORY RACING", "GBR", "1996"]
                 }, {
                     "columns": ["12:37:00", "BOULADOU Lisa", "GOODMAN SANTACRUZ", "FRA", "2005"]
                 }, {
@@ -39,7 +39,7 @@
                 }, {
                     "columns": ["12:39:30", "EMPEY Elise", "CONTINENTAL ATHERTON", "AUS", "2004"]
                 }, {
-                    "columns": ["12:40:00", "VAN LEUVEN Erice", "NORCO RACE DIVISION", "NZL", "2006"]
+                    "columns": ["12:40:00", "VAN_LEUVEN Erice", "NORCO RACE DIVISION", "NZL", "2006"]
                 }, {
                     "columns": ["12:40:30", "ROA SANCHEZ Valentina", "MS-RACING", "COL", "2005"]
                 }, {
@@ -83,7 +83,7 @@
                 }, {
                     "columns": ["13:05:30", "BROSNAN Troy", "CANYON CLLCTV FACTORY TEAM", "AUS", "1993"]
                 }, {
-                    "columns": ["13:06:00", "O CALLAGHAN Oisin", "YT MOB", "IRL", "2003"]
+                    "columns": ["13:06:00", "OCallaghan Oisin", "YT MOB", "IRL", "2003"]
                 }, {
                     "columns": ["13:06:30", "DAPRELA Thibaut", "ROGUE RACING - SR SUNTOUR", "FRA", "2001"]
                 }, {
@@ -123,11 +123,11 @@
                 }, {
                     "columns": ["13:15:30", "CONNELLY Jackson", "THE ALLIANCE", "AUS", "2004"]
                 }, {
-                    "columns": ["13:16:00", "RUDE JR Richard", "YETI / FOX FACTORY RACE TEAM", "USA", "1995"]
+                    "columns": ["13:16:00", "RUDE Richie", "YETI / FOX FACTORY RACE TEAM", "USA", "1995"]
                 }, {
                     "columns": ["13:16:30", "KERR Bernard", "PIVOT FACTORY RACING", "GBR", "1991"]
                 }, {
-                    "columns": ["13:17:00", "SUAREZ ALONSO Angel", "FRAMEWORKS RACING / 5DEV", "ESP", "1995"]
+                    "columns": ["13:17:00", "SUAREZ Angel", "FRAMEWORKS RACING / 5DEV", "ESP", "1995"]
                 }, {
                     "columns": ["13:17:30", "ESTAQUE Thomas", "GOODMAN SANTACRUZ", "FRA", "1996"]
                 }, {
@@ -147,9 +147,9 @@
                 }, {
                     "columns": ["13:21:30", "MACDERMID James", "THE ALLIANCE", "NZL", "2003"]
                 }, {
-                    "columns": ["13:22:00", "HOLGUIN VILLA Sebastian", "MS-RACING", "COL", "2004"]
+                    "columns": ["13:22:00", "HOLGUIN Sebastian", "MS-RACING", "COL", "2004"]
                 }, {
-                    "columns": ["13:22:30", "CRAIK George Ethan", "SCOTT DOWNHILL FACTORY", "GBR", "2003"]
+                    "columns": ["13:22:30", "CRAIK Ethan", "SCOTT DOWNHILL FACTORY", "GBR", "2003"]
                 }, {
                     "columns": ["13:23:00", "GALE Sam", "", "NZL", "2001"]
                 }, {
@@ -173,7 +173,7 @@
                 }, {
                     "columns": ["13:28:00", "MEDCALF Evan", "", "USA", "2005"]
                 }, {
-                    "columns": ["13:28:30", "MUÑOZ Fernando Juan", "AXESS INTENSE FACTORY RACING", "COL", "2003"]
+                    "columns": ["13:28:30", "MUÑOZ Fernando", "AXESS INTENSE FACTORY RACING", "COL", "2003"]
                 }, {
                     "columns": ["13:29:00", "KIRK Rory", "", "RSA", "2003"]
                 }, {
