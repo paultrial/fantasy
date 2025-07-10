@@ -183,6 +183,8 @@ export class AppComponent implements OnInit {
 
       return genderMatch && roundsMatch && totalPointsfilterMatch && injuryFilterMatch && weightedPointDeltaFilterMatch && weightedPriceDeltaFilterMatch;
     });
+
+    console.log(this.filteredAthletes.map(e => e.firstname + " " + e.lastname));
     this.sortBy();
   }
 
@@ -382,6 +384,8 @@ export class AppComponent implements OnInit {
     this.maxweightedPointDelta = Math.max(...this.progressionScores.map((e: any) => +e.weightedPointDelta) as any);
     this.minweightedPriceDelta = Math.min(...this.progressionScores.map((e: any) => +e.weightedPriceDelta) as any);
     this.maxweightedPriceDelta = Math.max(...this.progressionScores.map((e: any) => +e.weightedPriceDelta) as any);
+
+    this.getInstagramData();
   }
   
   isAthleteInList(athleteNames: string[], firstName: string, lastName: string): boolean {
@@ -396,6 +400,20 @@ export class AppComponent implements OnInit {
       .filter(index => index !== -1);
 
     return matchingIndexes.length > 0;
+  }
+
+  getInstagramData() {
+    this.dataService.getinstagramData().subscribe((res) => {
+      const instas = res.downhill_athletes;
+      this.data.forEach((athlete: any) => {
+        const insta = instas.find((e: any) => e.name === athlete.firstname + " " + athlete.lastname);
+        if (insta) {
+          athlete.instagram = insta.instagram_handle;
+        }
+      });
+    }, error => {
+      console.error('Error fetching Instagram data:', error);
+    });
   }
 
 }

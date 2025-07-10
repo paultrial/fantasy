@@ -17,4 +17,7 @@ export class DataService {
   getqualiStartList(): Observable<any> {
     return this.http.get('assets/elite_riders.json');
   }
+  getinstagramData(): Observable<any> {
+    return this.http.get('assets/instagram.json');
+  }
 }

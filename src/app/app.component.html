@@ -99,18 +99,18 @@
 
           <div class="filter-row totalPoints">
             <label> by total weightedPointDelta</label>
-            <input type="number" min="{{minweightedPointDelta}}" step="0.1" placeholder="{{minweightedPointDelta}}" [(ngModel)]="weightedPointDeltaFilter.min"
-              (input)="applyFilters()" />
-            <input type="number" max="{{maxweightedPointDelta}}" step="0.1" placeholder="{{maxweightedPointDelta}}" [(ngModel)]="weightedPointDeltaFilter.max"
-              (input)="applyFilters()" />
+            <input type="number" min="{{minweightedPointDelta}}" step="0.1" placeholder="{{minweightedPointDelta}}"
+              [(ngModel)]="weightedPointDeltaFilter.min" (input)="applyFilters()" />
+            <input type="number" max="{{maxweightedPointDelta}}" step="0.1" placeholder="{{maxweightedPointDelta}}"
+              [(ngModel)]="weightedPointDeltaFilter.max" (input)="applyFilters()" />
           </div>
 
           <div class="filter-row totalPoints">
             <label> by total weightedPriceDelta</label>
-            <input type="number"  step="1000" min="{{minweightedPriceDelta}}" placeholder="{{minweightedPriceDelta}}" [(ngModel)]="weightedPriceDeltaFilter.min"
-              (input)="applyFilters()" />
-            <input type="number"  step="1000" max="{{maxweightedPriceDelta}}" placeholder="{{maxweightedPriceDelta}}" [(ngModel)]="weightedPriceDeltaFilter.max"
-              (input)="applyFilters()" />
+            <input type="number" step="1000" min="{{minweightedPriceDelta}}" placeholder="{{minweightedPriceDelta}}"
+              [(ngModel)]="weightedPriceDeltaFilter.min" (input)="applyFilters()" />
+            <input type="number" step="1000" max="{{maxweightedPriceDelta}}" placeholder="{{maxweightedPriceDelta}}"
+              [(ngModel)]="weightedPriceDeltaFilter.max" (input)="applyFilters()" />
           </div>
 
           <div *ngFor="let round of rounds, index as i" class="filter-row">
@@ -135,7 +135,8 @@
 
         <ul class="athleteList" title="{{currentStats | json}}">
           <li class="athlete" *ngFor="let athlete of team">
-            <div class="name"><span *ngIf="athlete.inQuali">!!!</span> {{ athlete.firstname }} {{ athlete.lastname }}</div>
+            <div class="name"><span *ngIf="athlete.inQuali">!!!</span> {{ athlete.firstname }} {{ athlete.lastname }}
+            </div>
             <div class="data">
               <div class="price">{{ athlete.value | currency: 'USD':'symbol':'1.0-0'}} </div>
               <div class="points">{{ athlete.totalpoints }}</div>
@@ -156,7 +157,8 @@
             'USD':'symbol':'1.0-0'}} leftovers: {{money-team.sum | currency: 'USD':'symbol':'1.0-0'}}</div>
 
           <li class="athlete" title="{{team.stats | json}}" *ngFor="let athlete of team.data">
-            <div class="name"><span *ngIf="athlete.inQuali">!!!</span> {{ athlete.firstname }} {{ athlete.lastname }}</div>
+            <div class="name"><span *ngIf="athlete.inQuali">!!!</span> {{ athlete.firstname }} {{ athlete.lastname }}
+            </div>
             <div class="data">
               <div class="price">{{ athlete.value | currency: 'USD':'symbol':'1.0-0'}} </div>
               <div class="points">{{ athlete.totalpoints }}</div>
@@ -184,7 +186,9 @@
         <li class="athlete" *ngFor="let athlete of filteredAthletes"
           title="{{athlete.roundsPoints | json}} {{athlete.progressionScore | json}} {{athlete.roundValues}}"
           [ngClass]="{overBudget: athlete.overBudget, selected: athlete.selected}">
-          <div class="name"><span *ngIf="athlete.inQuali">!!!</span> {{ athlete.firstname }} {{ athlete.lastname }}</div>
+          <div class="name"><span *ngIf="athlete.inQuali">!!!</span> {{ athlete.firstname }} {{ athlete.lastname }} <div
+              class="insta" *ngIf="athlete.instagram"><a href="https://instagram.com/{{athlete.instagram}}" target="_blank"></a></div>
+          </div>
           <div class="price" [ngStyle]="{color: valueToRedBlackColor(athlete.progressionScore.weightedPriceDelta)}">{{
             athlete.value | currency: 'USD':'symbol':'1.0-0'}} </div>
           <div class="points" [ngStyle]="{color: valueTogreenBlackColor(athlete.progressionScore.weightedPointDelta)}">
