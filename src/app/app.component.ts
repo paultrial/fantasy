@@ -123,12 +123,13 @@ export class AppComponent implements OnInit {
         this.sum = this.team.reduce((acc, a) => acc + +a.value, 0);
         this.budget = this.money - this.sum;
 
-        const stats: any = {};
-        this.rounds.forEach(rn => {
-          stats[rn] = {
+        const stats: any = { sum: 0};
+        this.rounds.forEach((rn, i) => {
+          stats[this.roundsAliases[i]] = {
             points: this.team.reduce((acc: any, i: any) => acc + +i[rn], 0),
             price: this.team.reduce((acc: any, i: any) => acc + i.valorileVechi[rn], 0)
           }
+          stats.sum += stats[this.roundsAliases[i]].points;
         });
 
         this.nrWomenPerTeam = this.team.filter(e => e.gender === "Female").length;
@@ -337,12 +338,13 @@ export class AppComponent implements OnInit {
     });
 
     response.forEach(ht => {
-      const stats: any = {};
+      const stats: any = {sum:0};
       this.rounds.forEach((rn, i) => {
         stats[this.roundsAliases[i]] = {
           points: ht.data.reduce((acc: any, i: any) => acc + +i[rn], 0),
           price: ht.data.reduce((acc: any, i: any) => acc + i.valorileVechi[rn], 0)
         }
+        stats.sum += stats[this.roundsAliases[i]].points;
       });
       ht.stats = stats;
     });
@@ -356,7 +358,6 @@ export class AppComponent implements OnInit {
     // alert("nu prea face ceva butonul asta")
     this.historyTeams = [];
   }
-
 
   valueToRedBlackColor(value: number): string {
     const clamped = Math.max(this.minweightedPriceDelta, Math.min(value, this.maxweightedPriceDelta));
