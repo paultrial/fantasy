@@ -86,7 +86,7 @@ export class AppComponent implements OnInit {
     })
   }
 
-  
+
   isAthleteInList(athleteNames: string[], firstName: string, lastName: string): boolean {
     const an = athleteNames.map(name => {
       const firstname = name.split(" ")[1].toLowerCase();
@@ -97,7 +97,7 @@ export class AppComponent implements OnInit {
     const matchingIndexes = an
       .map((athlete, index) => (athlete.firstname.toLowerCase() === firstName.toLowerCase() && athlete.lastname.toLowerCase() === lastName.toLowerCase()) ? index : -1)
       .filter(index => index !== -1);
-    
+
     return matchingIndexes.length > 0;
   }
 
@@ -131,46 +131,49 @@ export class AppComponent implements OnInit {
           if (athlete.inQuali) {
             debugger
           }
-
           return athlete;
+
         }).sort((a, b) => +b.value - +a.value);
       })
 
-      const localStorageTeam = JSON.parse(window.localStorage.getItem("team") as string);
+      setTimeout(() => {
+        const localStorageTeam = JSON.parse(window.localStorage.getItem("team") as string);
 
-      if (!!localStorageTeam) {
-        localStorageTeam.forEach((athlete: any) => {
-          const id = this.data.map((e: any) => e.id).indexOf(athlete.id)
-          this.data[id].selected = true;
-        });
-        this.team = this.data.filter((e: any) => e.selected);
+        if (!!localStorageTeam) {
+          localStorageTeam.forEach((athlete: any) => {
+            const id = this.data.map((e: any) => e.id).indexOf(athlete.id)
+            this.data[id].selected = true;
+          });
+          this.team = this.data.filter((e: any) => e.selected);
 
-        this.sum = this.team.reduce((acc, a) => acc + +a.value, 0);
-        this.budget = this.money - this.sum;
+          this.sum = this.team.reduce((acc, a) => acc + +a.value, 0);
+          this.budget = this.money - this.sum;
 
-        const stats: any = { sum: 0 };
-        this.rounds.forEach((rn, i) => {
-          stats[this.roundsAliases[i]] = {
-            points: this.team.reduce((acc: any, i: any) => acc + +i[rn], 0),
-            price: this.team.reduce((acc: any, i: any) => acc + i.valorileVechi[rn], 0)
-          }
-          stats.sum += stats[this.roundsAliases[i]].points;
-        });
+          const stats: any = { sum: 0 };
+          this.rounds.forEach((rn, i) => {
+            stats[this.roundsAliases[i]] = {
+              points: this.team.reduce((acc: any, i: any) => acc + +i[rn], 0),
+              price: this.team.reduce((acc: any, i: any) => acc + i.valorileVechi[rn], 0)
+            }
+            stats.sum += stats[this.roundsAliases[i]].points;
+          });
 
-        this.nrWomenPerTeam = this.team.filter(e => e.gender === "Female").length;
-        this.nrMenPerTeam = this.team.filter(e => e.gender === "Male").length;
+          this.nrWomenPerTeam = this.team.filter(e => e.gender === "Female").length;
+          this.nrMenPerTeam = this.team.filter(e => e.gender === "Male").length;
 
-        this.currentStats = stats;
-      }
+          this.currentStats = stats;
+        }
 
-      this.historyTeams = this.getLSTeamHistory();
+        this.historyTeams = this.getLSTeamHistory();
 
-      this.progressionScores = this.data.map((a: any) => a.progressionScore).sort((a: any, b: any) => { a.weightedPointDelta - b.weightedPointDelta });
+        this.progressionScores = this.data.map((a: any) => a.progressionScore).sort((a: any, b: any) => { a.weightedPointDelta - b.weightedPointDelta });
 
-      this.minweightedPointDelta = Math.min(...this.progressionScores.map((e: any) => +e.weightedPointDelta) as any);
-      this.maxweightedPointDelta = Math.max(...this.progressionScores.map((e: any) => +e.weightedPointDelta) as any);
-      this.minweightedPriceDelta = Math.min(...this.progressionScores.map((e: any) => +e.weightedPriceDelta) as any);
-      this.maxweightedPriceDelta = Math.max(...this.progressionScores.map((e: any) => +e.weightedPriceDelta) as any);
+        this.minweightedPointDelta = Math.min(...this.progressionScores.map((e: any) => +e.weightedPointDelta) as any);
+        this.maxweightedPointDelta = Math.max(...this.progressionScores.map((e: any) => +e.weightedPointDelta) as any);
+        this.minweightedPriceDelta = Math.min(...this.progressionScores.map((e: any) => +e.weightedPriceDelta) as any);
+        this.maxweightedPriceDelta = Math.max(...this.progressionScores.map((e: any) => +e.weightedPriceDelta) as any);
+      }, 1000);
+
     });
   }
 
