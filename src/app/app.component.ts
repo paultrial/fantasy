@@ -184,7 +184,6 @@ export class AppComponent implements OnInit {
       return genderMatch && roundsMatch && totalPointsfilterMatch && injuryFilterMatch && weightedPointDeltaFilterMatch && weightedPriceDeltaFilterMatch;
     });
 
-    console.log(this.filteredAthletes.map(e => e.firstname + " " + e.lastname));
     this.sortBy();
   }
 
@@ -291,7 +290,6 @@ export class AppComponent implements OnInit {
   deleteOneFromHistory(number: number) {
     const key = `team/${number}`;
     localStorage.removeItem(key);
-    console.log(this.historyTeams);
     const index = this.historyTeams.map(e => e.number).indexOf(number);
     this.historyTeams.splice(index, 1)
   }
