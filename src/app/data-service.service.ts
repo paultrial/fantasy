@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import Fuse from 'fuse.js';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,59 @@ export class DataService {
 
 
   // shit
+
+  abbreviations = {
+    'j.': 'john',
+    'jos.': 'joseph',
+    'sam.': 'samuel',
+    'Vali': 'Valentina',
+    // Add more abbreviations as needed
+  };
+
+  /*
+  normalizeName(name) {
+    let normalized = name.toLowerCase();
+    normalized = normalized.replace(/[-.,]/g, ''); // Remove hyphens, periods, and commas
+    normalized = normalized.replace(/\s+/g, ' ').trim(); // Replace multiple spaces with a single space
+    const parts = normalized.split(' ');
+    const expandedParts = parts.map(part => abbreviations[part] || part);
+    return expandedParts.join(' ');
+  }
+  */
+
+  
+    
+  ompareNameLists(list1: any, list2: any) {
+    const normalizedList2 = list2.map((name: string) => ({ original: name, normalized: this.normalizeName(name) }));
+
+    const fuse = new Fuse(normalizedList2, {
+      keys: ['normalized'],
+      includeScore: true,
+      threshold: 0.6, // Adjust this threshold to control the fuzziness (0.0 is a perfect match, 1.0 matches anything)
+    });
+
+    const matches = [];
+    for (const name1 of list1) {
+      const normalizedName1 = this.normalizeName(name1);
+      const result:any = fuse.search(normalizedName1);
+
+      if (result.length > 0) {
+        matches.push({
+          nameFromList1: name1,
+          bestMatchFromList2: result[0].item.original,
+          score: result[0].score,
+        });
+      } else {
+        matches.push({
+          nameFromList1: name1,
+          bestMatchFromList2: null,
+          score: null,
+        });
+      }
+    }
+    return matches;
+  }
+ 
 
   normalizeName(name: string) {
     return name
