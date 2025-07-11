@@ -191,10 +191,10 @@
           title="{{athlete.roundsPoints | json}} {{athlete.progressionScore | json}} {{athlete.roundValues}}"
           [ngClass]="{overBudget: athlete.overBudget, selected: athlete.selected}">
           <div class="name" [ngClass]="{ notinQuali: athlete.inQuali }">
-            <span class="flag"><img src="{{'assets/flags/' + athlete.country + '.gif'}}" alt=""></span>
-            <span class="name">{{ athlete.firstname }} {{athlete.lastname }}</span>
+            <div class="flag"><img src="{{'assets/flags/' + athlete.country + '.gif'}}" alt=""></div>
+            <div class="nume">{{ athlete.firstname }} {{athlete.lastname }}</div>
             <div class="insta" *ngIf="athlete.instagram"><a href="https://instagram.com/{{athlete.instagram}}"target="_blank"></a></div>
-            <span *ngIf="athlete.injury" class="injury"><img src="assets/injury.png" alt=""></span>
+            <div *ngIf="athlete.injury" class="injury"></div>
           </div>
           <div class="price" [ngStyle]="{color: valueToRedBlackColor(athlete.progressionScore.weightedPriceDelta)}">{{
             athlete.value | currency: 'USD':'symbol':'1.0-0'}} </div>
