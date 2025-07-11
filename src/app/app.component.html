@@ -145,10 +145,9 @@
               <div class="teamAction" *ngIf="athlete.selected" (click)="actionAthlete(athlete)">-</div>
             </div>
           </li>
-          <li class="athlete" *ngFor="let item of [].constructor(maxNrMenPerTeam - nrMenPerTeam)">Pick Male WC Racer
+          <li class="athlete" *ngFor="let item of [].constructor(maxNrMenPerTeam - nrMenPerTeam >= 0 ? maxNrMenPerTeam - nrMenPerTeam : 0)">Pick Male WC Racer
           </li>
-          <li class="athlete" *ngFor="let item of [].constructor(maxNrWomenPerTeam - nrWomenPerTeam)">Pick Female WC
-            Racer</li>
+          <li class="athlete" *ngFor="let item of [].constructor(maxNrWomenPerTeam - nrWomenPerTeam >= 0 ? maxNrWomenPerTeam - nrWomenPerTeam : 0)">Pick Female WC Racer</li>
         </ul>
         <button *ngIf="team.length > 0" (click)="clearTeam()">Clear team</button>
         <button *ngIf="team.length > 0" (click)="saveForLater()">Save For Later</button>

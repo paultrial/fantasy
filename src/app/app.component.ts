@@ -110,9 +110,8 @@ export class AppComponent implements OnInit {
           athlete.progressionScore = this.computeProgressionScore(athlete);
           athlete.pricePerPoint = athlete.totalpoints > 0 ? (athlete.value / +athlete.totalpoints).toFixed(2) : 0;
 
-          const qualiNames = qualiRes.map((e: any) => e.columns[1].toLowerCase());
+          const qualiNames = qualiRes.map((e: any) => e.columns[1].toLowerCase());          
           athlete.inQuali = !this.isAthleteInList(qualiNames, athlete.firstname, athlete.lastname);
-
           return athlete;
 
         }).sort((a, b) => +b.value - +a.value);
@@ -166,8 +165,7 @@ export class AppComponent implements OnInit {
   applyFilters(): void {
     this.usedFilters = true;
     this.filteredAthletes = this.data.filter((athlete: any) => {
-      const genderMatch =
-        !this.filterGender || athlete.gender === this.filterGender;
+      const genderMatch = !this.filterGender || athlete.gender === this.filterGender;
 
       const roundsMatch = this.rounds.every(round => {
         const filter = this.roundFilters[round];
