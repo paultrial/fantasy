@@ -231,6 +231,8 @@ export class AppComponent implements OnInit {
   }
 
   clearTeam() {
+    this.nrWomenPerTeam = 0;
+    this.nrMenPerTeam = 0;
     this.team = [];
     this.currentStats = {};
     this.budget = 1500000;

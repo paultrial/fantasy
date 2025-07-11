@@ -127,7 +127,20 @@ ul {
         justify-content: space-between;
 
         .name {
-            margin: 0 5px 0 0
+            margin: 0 5px 0 0;
+
+            &.notinQuali{
+                color: red;
+            }
+
+            .injury{
+                img{
+                    width: 13px;
+                    height: 13px;
+                    vertical-align: middle;
+                    margin-left: 5px;
+                }
+            }
         }
 
         .price {
@@ -171,6 +184,9 @@ ul {
     border-radius: 12px;
     background-color: #f9f9f9;
     font-family: Arial, sans-serif;
+    h4 {
+        margin: 0 0 0 0;
+    }
 }
 
 .filters {

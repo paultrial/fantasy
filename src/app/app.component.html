@@ -145,6 +145,10 @@
               <div class="teamAction" *ngIf="athlete.selected" (click)="actionAthlete(athlete)">-</div>
             </div>
           </li>
+          <li class="athlete" *ngFor="let item of [].constructor(maxNrMenPerTeam - nrMenPerTeam)">Pick Male WC Racer
+          </li>
+          <li class="athlete" *ngFor="let item of [].constructor(maxNrWomenPerTeam - nrWomenPerTeam)">Pick Female WC
+            Racer</li>
         </ul>
         <button *ngIf="team.length > 0" (click)="clearTeam()">Clear team</button>
         <button *ngIf="team.length > 0" (click)="saveForLater()">Save For Later</button>
@@ -186,8 +190,11 @@
         <li class="athlete" *ngFor="let athlete of filteredAthletes"
           title="{{athlete.roundsPoints | json}} {{athlete.progressionScore | json}} {{athlete.roundValues}}"
           [ngClass]="{overBudget: athlete.overBudget, selected: athlete.selected}">
-          <div class="name"><span *ngIf="athlete.inQuali">!!!</span> {{ athlete.firstname }} {{ athlete.lastname }} <div
-              class="insta" *ngIf="athlete.instagram"><a href="https://instagram.com/{{athlete.instagram}}" target="_blank"></a></div>
+          <div class="name" [ngClass]="{ notinQuali: athlete.inQuali }">
+            <span class="flag"><img src="{{'assets/flags/' + athlete.country + '.gif'}}" alt=""></span>
+            <span class="name">{{ athlete.firstname }} {{athlete.lastname }}</span>
+            <div class="insta" *ngIf="athlete.instagram"><a href="https://instagram.com/{{athlete.instagram}}"target="_blank"></a></div>
+            <span *ngIf="athlete.injury" class="injury"><img src="assets/injury.png" alt=""></span>
           </div>
           <div class="price" [ngStyle]="{color: valueToRedBlackColor(athlete.progressionScore.weightedPriceDelta)}">{{
             athlete.value | currency: 'USD':'symbol':'1.0-0'}} </div>
