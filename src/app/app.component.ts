@@ -60,7 +60,7 @@ export class AppComponent implements OnInit {
   prevTeam: any = {};
 
   roundFilters: { [key: string]: { min?: number; max?: number } } = {};
-  rounds = Array.from({ length: 5 }, (_, i) => `round${i + 1}`);
+  rounds = Array.from({ length: 6 }, (_, i) => `round${i + 1}`);
   roundsAliases = [
     "Bielsko-Biala World Cup #1",
     "Loudenvielle World Cup #2",
@@ -88,7 +88,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataService.getData().subscribe((res) => {
-      this.dataService.getqualiStartList().subscribe((qualiRes) => {
+      // this.dataService.getqualiStartList().subscribe((qualiRes) => {
         this.data = Object.keys(res).map(i => {
           const athlete = res[i];
           athlete.value = +athlete.value;
@@ -110,14 +110,14 @@ export class AppComponent implements OnInit {
           athlete.progressionScore = this.computeProgressionScore(athlete);
           athlete.pricePerPoint = athlete.totalpoints > 0 ? (athlete.value / +athlete.totalpoints).toFixed(2) : 0;
 
-          const qualiNames = qualiRes.map((e: any) => e.columns[1].toLowerCase());          
-          athlete.inQuali = !this.isAthleteInList(qualiNames, athlete.firstname, athlete.lastname);
+          // const qualiNames = qualiRes.map((e: any) => e.columns[1].toLowerCase());
+          // athlete.inQuali = !this.isAthleteInList(qualiNames, athlete.firstname, athlete.lastname);
           return athlete;
 
         }).sort((a, b) => +b.value - +a.value);
         this.lst();
       });
-    });
+    // });
   }
 
   sortBy() {
