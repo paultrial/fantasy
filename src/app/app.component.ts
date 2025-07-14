@@ -119,21 +119,21 @@ export class AppComponent implements OnInit {
 
       });
       this.lst();
-      this.sortBy();
+      this.sort();
     });
     // });
   }
 
-  sortSort(key: string) {    
+  sortBy(key: string) {    
     if (this.sortKey.key !== key) {
       this.sortKey.key = key;
       this.sortKey.direction = "rw";
     }
     this.sortKey.direction = this.sortKey.direction === "fw" ? "rw" : "fw";
-    this.sortBy();
+    this.sort();
   }
 
-  sortBy() {    
+  sort() {    
     this.filteredAthletes.sort((a: any, b: any) => {
       const x = this.sortKey.direction == "fw" ? a[this.sortKey.key] - b[this.sortKey.key] : b[this.sortKey.key] - a[this.sortKey.key];
       return x;
@@ -191,7 +191,7 @@ export class AppComponent implements OnInit {
       return genderMatch && roundsMatch && totalPointsfilterMatch && injuryFilterMatch && weightedPointDeltaFilterMatch && weightedPriceDeltaFilterMatch && nameMatch;
     });
 
-    this.sortBy();
+    this.sort();
   }
 
 
