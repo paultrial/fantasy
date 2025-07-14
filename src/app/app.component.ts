@@ -166,16 +166,12 @@ export class AppComponent implements OnInit {
   applyFilters(): void {
     this.usedFilters = true;
     this.filteredAthletes = this.data.filter((athlete: any) => {
-
       const nameMatch = !this.nameFilter || (
         athlete.firstname?.toLowerCase().includes(this.nameFilter.toLowerCase()) ||
         athlete.lastname?.toLowerCase().includes(this.nameFilter.toLowerCase())
       );
 
-
-
       const genderMatch = !this.filterGender || athlete.gender === this.filterGender;
-
       const roundsMatch = this.rounds.every(round => {
         const filter = this.roundFilters[round];
         const value = (athlete as any)[round] || 0;
@@ -185,9 +181,7 @@ export class AppComponent implements OnInit {
       const totalPointsfilterMatch = (!this.totalPointsfilter?.min || athlete.totalpoints >= this.totalPointsfilter.min) && (!this.totalPointsfilter?.max || athlete.totalpoints <= this.totalPointsfilter.max);
       const weightedPointDeltaFilterMatch = (!this.weightedPointDeltaFilter?.min || athlete.progressionScore.weightedPointDelta >= this.weightedPointDeltaFilter.min) && (!this.weightedPointDeltaFilter?.max || athlete.progressionScore.weightedPointDelta <= this.weightedPointDeltaFilter.max);
       const weightedPriceDeltaFilterMatch = (!this.weightedPriceDeltaFilter?.min || athlete.progressionScore.weightedPriceDelta >= this.weightedPriceDeltaFilter.min) && (!this.weightedPriceDeltaFilter?.max || athlete.progressionScore.weightedPriceDelta <= this.weightedPriceDeltaFilter.max);
-
       const injuryFilterMatch = this.injuryfilter !== athlete.injury;
-
       return genderMatch && roundsMatch && totalPointsfilterMatch && injuryFilterMatch && weightedPointDeltaFilterMatch && weightedPriceDeltaFilterMatch && nameMatch;
     });
 
@@ -223,7 +217,6 @@ export class AppComponent implements OnInit {
   };
 
   error() {
-
     if (this.team.filter(e => e.gender == "Male").length > this.maxNrMenPerTeam) {
       this.errorMessage = "Too many men on the team";
     } else if (this.team.filter(e => e.gender == "Female").length > this.maxNrWomenPerTeam) {
