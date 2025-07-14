@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
   nameFilter = '';
 
   sortKey = {
-    key: '',
+    key: 'value',
     direction: 'rw'
   }
   errorMessage: string = '';
@@ -119,31 +119,25 @@ export class AppComponent implements OnInit {
 
       });
       this.lst();
+      this.sortBy();
     });
     // });
   }
 
-  sortBy(key?: string | undefined) {
-    if (!key) {
-      key = this.sortKey.key;
-    } else {
+  sortSort(key: string) {    
+    if (this.sortKey.key !== key) {
       this.sortKey.key = key;
+      this.sortKey.direction = "rw";
     }
+    this.sortKey.direction = this.sortKey.direction === "fw" ? "rw" : "fw";
+    this.sortBy();
+  }
 
+  sortBy() {    
     this.filteredAthletes.sort((a: any, b: any) => {
       const x = this.sortKey.direction == "fw" ? a[this.sortKey.key] - b[this.sortKey.key] : b[this.sortKey.key] - a[this.sortKey.key];
       return x;
-    });
-
-    if (this.sortKey.direction === "fw") {
-      this.sortKey.direction = "rw";
-      return;
-    }
-
-    if (this.sortKey.direction === "rw") {
-      this.sortKey.direction = "fw";
-      return;
-    }
+    });   
 
   }
 
@@ -197,11 +191,9 @@ export class AppComponent implements OnInit {
       return genderMatch && roundsMatch && totalPointsfilterMatch && injuryFilterMatch && weightedPointDeltaFilterMatch && weightedPriceDeltaFilterMatch && nameMatch;
     });
 
-    if (this.sortKey.key) {
-      this.sortBy();
-    }
-
+    this.sortBy();
   }
+
 
   resetFilters(): void {
     this.totalPointsfilter = {

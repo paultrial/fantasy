@@ -182,15 +182,15 @@
         <li class="header">
           <div class="name">Name</div>
           <div class="data">
-            <div (click)="sortBy('value')" class="clickable price">Price 
+            <div (click)="sortSort('value')" class="clickable price">Price 
               <mat-icon *ngIf="sortKey.key == 'value' && sortKey.direction == 'rw' " fontIcon="arrow_drop_up"></mat-icon>
               <mat-icon *ngIf="sortKey.key == 'value' && sortKey.direction == 'fw' " fontIcon="arrow_drop_down"></mat-icon>
             </div>
-            <div (click)="sortBy('totalpoints')" class="clickable points">Points 
+            <div (click)="sortSort('totalpoints')" class="clickable points">Points 
               <mat-icon *ngIf="sortKey.key == 'totalpoints' && sortKey.direction == 'rw'" fontIcon="arrow_drop_up"></mat-icon>
               <mat-icon *ngIf="sortKey.key == 'totalpoints' && sortKey.direction == 'fw'" fontIcon="arrow_drop_down"></mat-icon>
             </div>
-            <div (click)="sortBy('pricePerPoint')" class="clickable pricePerPoint">Price Per Point 
+            <div (click)="sortSort('pricePerPoint')" class="clickable pricePerPoint">Price Per Point 
               <mat-icon *ngIf="sortKey.key == 'pricePerPoint' && sortKey.direction == 'rw'" fontIcon="arrow_drop_up"></mat-icon>
               <mat-icon *ngIf="sortKey.key == 'pricePerPoint' && sortKey.direction == 'fw'" fontIcon="arrow_drop_down"></mat-icon>
             </div>
