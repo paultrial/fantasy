@@ -219,6 +219,7 @@ export class AppComponent implements OnInit {
     }
 
     this.injuryfilter = undefined;
+    this.nameFilter = '';
   };
 
   error() {
