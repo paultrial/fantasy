@@ -38,6 +38,7 @@ export class AppComponent implements OnInit {
   maxweightedPriceDelta!: number;
 
   injuryfilter: boolean | undefined;
+  nameFilter = '';
 
   usedFilters = false;
 
@@ -89,34 +90,34 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.dataService.getData().subscribe((res) => {
       // this.dataService.getqualiStartList().subscribe((qualiRes) => {
-        this.data = Object.keys(res).map(i => {
-          const athlete = res[i];
-          athlete.value = +athlete.value;
-          athlete.injury = !!athlete.injury;
-          const values = athlete.roundValues.replace(/,/g, "").split(";");
-          const valorileVechi = {} as any;
-          values.forEach((e: any, i: number) => { valorileVechi['round' + i.toString()] = +values[i].split(":")[1] });
-          athlete["valorileVechi"] = valorileVechi;
-          athlete.selected = false;
-          athlete.totalpoints = +athlete.totalpoints;
+      this.data = Object.keys(res).map(i => {
+        const athlete = res[i];
+        athlete.value = +athlete.value;
+        athlete.injury = !!athlete.injury;
+        const values = athlete.roundValues.replace(/,/g, "").split(";");
+        const valorileVechi = {} as any;
+        values.forEach((e: any, i: number) => { valorileVechi['round' + i.toString()] = +values[i].split(":")[1] });
+        athlete["valorileVechi"] = valorileVechi;
+        athlete.selected = false;
+        athlete.totalpoints = +athlete.totalpoints;
 
-          athlete.roundsPoints = this.rounds.map((r, i) => {
-            const ob: any = {};
-            ob[this.roundsAliases[i]] = athlete[r];
-            return ob;
-          })
+        athlete.roundsPoints = this.rounds.map((r, i) => {
+          const ob: any = {};
+          ob[this.roundsAliases[i]] = athlete[r];
+          return ob;
+        })
 
-          athlete.gender = +athlete.gender == 1 ? 'Male' : 'Female';
-          athlete.progressionScore = this.computeProgressionScore(athlete);
-          athlete.pricePerPoint = athlete.totalpoints > 0 ? (athlete.value / +athlete.totalpoints).toFixed(2) : 0;
+        athlete.gender = +athlete.gender == 1 ? 'Male' : 'Female';
+        athlete.progressionScore = this.computeProgressionScore(athlete);
+        athlete.pricePerPoint = athlete.totalpoints > 0 ? (athlete.value / +athlete.totalpoints).toFixed(2) : 0;
 
-          // const qualiNames = qualiRes.map((e: any) => e.columns[1].toLowerCase());
-          // athlete.inQuali = !this.isAthleteInList(qualiNames, athlete.firstname, athlete.lastname);
-          return athlete;
+        // const qualiNames = qualiRes.map((e: any) => e.columns[1].toLowerCase());
+        // athlete.inQuali = !this.isAthleteInList(qualiNames, athlete.firstname, athlete.lastname);
+        return athlete;
 
-        }).sort((a, b) => +b.value - +a.value);
-        this.lst();
-      });
+      }).sort((a, b) => +b.value - +a.value);
+      this.lst();
+    });
     // });
   }
 
@@ -165,6 +166,14 @@ export class AppComponent implements OnInit {
   applyFilters(): void {
     this.usedFilters = true;
     this.filteredAthletes = this.data.filter((athlete: any) => {
+
+      const nameMatch = !this.nameFilter || (
+        athlete.firstname?.toLowerCase().includes(this.nameFilter.toLowerCase()) ||
+        athlete.lastname?.toLowerCase().includes(this.nameFilter.toLowerCase())
+      );
+
+
+
       const genderMatch = !this.filterGender || athlete.gender === this.filterGender;
 
       const roundsMatch = this.rounds.every(round => {
@@ -179,7 +188,7 @@ export class AppComponent implements OnInit {
 
       const injuryFilterMatch = this.injuryfilter !== athlete.injury;
 
-      return genderMatch && roundsMatch && totalPointsfilterMatch && injuryFilterMatch && weightedPointDeltaFilterMatch && weightedPriceDeltaFilterMatch;
+      return genderMatch && roundsMatch && totalPointsfilterMatch && injuryFilterMatch && weightedPointDeltaFilterMatch && weightedPriceDeltaFilterMatch && nameMatch;
     });
 
     this.sortBy();
@@ -385,7 +394,7 @@ export class AppComponent implements OnInit {
 
     this.getInstagramData();
   }
-  
+
   isAthleteInList(athleteNames: string[], firstName: string, lastName: string): boolean {
     const an = athleteNames.map(name => {
       const firstname = name.split(" ")[1].toLowerCase();
