@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 import { RouterOutlet } from '@angular/router';
 import { DataService } from './data-service.service';
 import { NgIf, NgFor, NgClass, KeyValuePipe, JsonPipe, CurrencyPipe, NgStyle } from '@angular/common';
@@ -7,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NgIf, NgFor, NgClass, FormsModule, KeyValuePipe, JsonPipe, CurrencyPipe, NgStyle],
+  imports: [MatIconModule, RouterOutlet, NgIf, NgFor, NgClass, FormsModule, KeyValuePipe, JsonPipe, CurrencyPipe, NgStyle],
   templateUrl: './app.component.html',
   styleUrl: './app.component.less'
 })
@@ -40,9 +41,10 @@ export class AppComponent implements OnInit {
   injuryfilter: boolean | undefined;
   nameFilter = '';
 
-  usedFilters = false;
-
-  sortKey = ""
+  sortKey = {
+    key: '',
+    direction: 'rw'
+  }
   errorMessage: string = '';
 
   currentStats = {};
@@ -115,23 +117,30 @@ export class AppComponent implements OnInit {
         // athlete.inQuali = !this.isAthleteInList(qualiNames, athlete.firstname, athlete.lastname);
         return athlete;
 
-      }).sort((a, b) => +b.value - +a.value);
+      });
       this.lst();
     });
     // });
   }
 
-  sortBy() {
-    const key = this.sortKey.split('/')[0]
-    const direction = this.sortKey.split('/')[1]
+  sortBy(key: string) {
+    this.sortKey.key = key;
+
     this.filteredAthletes.sort((a: any, b: any) => {
-      const x = direction == "fw" ? a[key] - b[key] : b[key] - a[key];
+      const x = this.sortKey.direction == "fw" ? a[key] - b[key] : b[key] - a[key];
       return x;
-    })
-    this.data.sort((a: any, b: any) => {
-      const x = direction == "fw" ? a[key] - b[key] : b[key] - a[key];
-      return x;
-    })
+    });
+
+    if (this.sortKey.direction === "fw") {
+      this.sortKey.direction = "rw";
+      return;
+    }
+
+    if (this.sortKey.direction === "rw") {
+      this.sortKey.direction = "fw";
+      return;
+    }
+
   }
 
   actionAthlete(a: any): void {
@@ -164,7 +173,6 @@ export class AppComponent implements OnInit {
   };
 
   applyFilters(): void {
-    this.usedFilters = true;
     this.filteredAthletes = this.data.filter((athlete: any) => {
       const nameMatch = !this.nameFilter || (
         athlete.firstname?.toLowerCase().includes(this.nameFilter.toLowerCase()) ||
@@ -185,7 +193,7 @@ export class AppComponent implements OnInit {
       return genderMatch && roundsMatch && totalPointsfilterMatch && injuryFilterMatch && weightedPointDeltaFilterMatch && weightedPriceDeltaFilterMatch && nameMatch;
     });
 
-    this.sortBy();
+    // this.sortBy();
   }
 
   resetFilters(): void {
@@ -200,8 +208,7 @@ export class AppComponent implements OnInit {
         min: undefined,
         max: undefined
       }
-    })
-    this.usedFilters = false;
+    });
 
     this.weightedPointDeltaFilter = {
       min: undefined,
@@ -387,6 +394,7 @@ export class AppComponent implements OnInit {
     this.maxweightedPriceDelta = Math.max(...this.progressionScores.map((e: any) => +e.weightedPriceDelta) as any);
 
     this.getInstagramData();
+    this.applyFilters();
   }
 
   isAthleteInList(athleteNames: string[], firstName: string, lastName: string): boolean {

@@ -70,16 +70,6 @@
       <h1>{{ title }}</h1>
       <section>
         <div class="filters">
-          <label for="sort">Sort</label>
-          <select name="sort" id="sort" [(ngModel)]="sortKey" (change)="sortBy()">
-            <option value="value/fw">Price ascending</option>
-            <option value="value/rw">Price descending</option>
-            <option value="totalpoints/fw">Total Points ascending</option>
-            <option value="totalpoints/rw">Total Points descending</option>
-            <option value="pricePerPoint/fw">Price per point ascending</option>
-            <option value="pricePerPoint/rw">Price per point descending</option>
-          </select>
-          <br>
           <h3>Filters</h3>
           <div class="filter-row checkbox">
             <label for="injuryFilter">with no injury</label>
@@ -187,13 +177,21 @@
   <div class="divider" role="separator" aria-label="Divider"></div>
   <div class="right-side">
     <section>
-      <h2 *ngIf="!usedFilters">Use some filters, see what you get</h2>
       <ul *ngIf="filteredAthletes.length > 0" class="athleteList">
         <li class="athlete">
           <div class="name">Name</div>
-          <div class="price">Price</div>
-          <div class="points">Points</div>
-          <div class="pricePerPoint">Price Per Point</div>
+          <div (click)="sortBy('value')" class="clickable price">Price 
+            <mat-icon *ngIf="sortKey.key == 'value' && sortKey.direction == 'rw' " fontIcon="arrow_drop_up"></mat-icon>
+            <mat-icon *ngIf="sortKey.key == 'value' && sortKey.direction == 'fw' " fontIcon="arrow_drop_down"></mat-icon>
+          </div>
+          <div (click)="sortBy('totalpoints')" class="clickable points">Points 
+            <mat-icon *ngIf="sortKey.key == 'totalpoints' && sortKey.direction == 'rw'" fontIcon="arrow_drop_up"></mat-icon>
+            <mat-icon *ngIf="sortKey.key == 'totalpoints' && sortKey.direction == 'fw'" fontIcon="arrow_drop_down"></mat-icon>
+          </div>
+          <div (click)="sortBy('pricePerPoint')" class="clickable pricePerPoint">Price Per Point 
+            <mat-icon *ngIf="sortKey.key == 'pricePerPoint' && sortKey.direction == 'rw'" fontIcon="arrow_drop_up"></mat-icon>
+            <mat-icon *ngIf="sortKey.key == 'pricePerPoint' && sortKey.direction == 'fw'" fontIcon="arrow_drop_down"></mat-icon>
+          </div>
           <div class="action">+/-</div>
         </li>
         <li class="athlete" *ngFor="let athlete of filteredAthletes"
