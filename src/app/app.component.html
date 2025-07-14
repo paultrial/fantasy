@@ -89,7 +89,7 @@
           </select>
           <div class="filter-row totalPoints">
             <label> by total Points</label>
-            <input type="number" placeholder="Min" [(ngModel)]="totalPointsfilter.min" (input)="applyFilters()" />
+            <input type="number" min="0" placeholder="Min" [(ngModel)]="totalPointsfilter.min" (input)="applyFilters()" />
             <input type="number" placeholder="Max" [(ngModel)]="totalPointsfilter.max" (input)="applyFilters()" />
           </div>
           
