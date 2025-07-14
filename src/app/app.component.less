@@ -39,7 +39,7 @@ h1 {
     }
 }
 
-.clickable{
+.clickable {
     cursor: pointer;
     user-select: none;
 
@@ -81,6 +81,176 @@ h4.nrathletePerTeam {
     background-image: url('/assets/bg.jpg');
     background-repeat: no-repeat;
     background-color: black;
+
+
+    .history,
+    .currentTeam {
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 12px;
+        background-color: #f9f9f9;
+        font-family: Arial, sans-serif;
+
+        color: black;
+
+        h4 {
+            margin: 0 0 0 0;
+        }
+    }
+
+    .filters {
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 12px;
+        background-color: #f9f9f9;
+        font-family: Arial, sans-serif;
+
+        label {
+            margin-top: 0;
+            font-weight: bold;
+            font-size: 14px;
+            width: 100%;
+            display: block;
+            clear: both;
+        }
+
+        .filter-row {
+            margin-bottom: 0.5rem;
+            width: 100%;
+
+            &.checkbox {
+                border-bottom: 1px solid gray;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+
+                label {
+                    display: block;
+                    clear: none;
+                }
+
+                input {
+                    display: block;
+                    clear: none;
+                }
+            }
+
+            &.totalPoints {
+                input {
+                    width: 50% !important;
+                }
+            }
+        }
+
+        select,
+        input[type="number"],
+        input[type="text"] {
+            padding: 0.4rem;
+            margin-bottom: 0.5rem;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .reset-button {
+            margin-top: 1rem;
+            padding: 0.6rem 1rem;
+            font-size: 14px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: #0056b3;
+            }
+        }
+    }
+
+    h3 {
+        margin: 0
+    }
+
+    .athleteList {
+
+        .athlete {
+
+            border-bottom: 1px solid #ccc;
+
+            &:hover {
+                background-color: #ccc;
+            }
+
+
+            display: flex;
+            justify-content: space-between;
+
+            .name {
+                margin: 0 5px 0 0;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+
+                .nume {
+                    margin-left: 5px;
+                }
+
+                &.notinQuali {
+                    color: red;
+                }
+
+                .injury {
+                    background-image: url('/assets/injury.png');
+                    width: 13px;
+                    height: 13px;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    margin-left: 5px;
+                }
+            }
+
+            .data {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+                text-align: center;
+
+                .price {
+                    width: 78px;
+                    margin: 0 5px 0 0;
+                    color: black;
+                }
+
+                .points {
+                    width: 53px;
+                    margin: 0 5px 0 0;
+                    color: black;
+                }
+
+                .pricePerPoint {
+                    width: 105px;
+                }
+
+            }
+
+            &.overBudget {
+                background-color: burlywood;
+                color: black
+            }
+
+            &.selected {
+                background-color: black;
+                color: white
+            }
+        }
+    }
 }
 
 .right-side {
@@ -95,6 +265,132 @@ h4.nrathletePerTeam {
         }
 
         width: 100%;
+
+        .athleteList {
+            .header {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+
+                color: black;
+
+                .data {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-end;
+                    text-align: center;
+
+                    .price {
+                        width: 78px;
+                        margin: 0 5px 0 0;
+                    }
+
+                    .points {
+                        width: 53px;
+                        margin: 0 5px 0 0;
+                    }
+
+                    .pricePerPoint {
+                        width: 105px;
+                    }
+
+                }
+            }
+
+            .athlete {
+
+                border-bottom: 1px solid #ccc;
+
+                &:hover {
+                    background-color: #ccc;
+                }
+
+                &.injury {
+                    border-bottom: 1px solid red;
+                }
+
+                .insta {
+                    display: inline-block;
+                    height: 13px;
+                    width: 13px;
+                    background-image: url('/assets/insta.svg');
+                    background-size: 100%;
+                    background-position: center;
+                    margin-left: 5px;
+
+                    a {
+                        display: block;
+                        width: 100%;
+                        height: 100%;
+                        text-decoration: none;
+                        color: transparent;
+                        background-color: transparent;
+                    }
+                }
+
+                display: flex;
+                justify-content: space-between;
+
+                .name {
+                    margin: 0 5px 0 0;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+
+                    .nume {
+                        margin-left: 5px;
+                    }
+
+                    &.notinQuali {
+                        color: red;
+                    }
+
+                    .injury {
+                        background-image: url('/assets/injury.png');
+                        width: 13px;
+                        height: 13px;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        margin-left: 5px;
+                    }
+                }
+
+                .data {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-end;
+                    text-align: center;
+
+                    .price {
+                        width: 78px;
+                        margin: 0 5px 0 0;
+                        color: white
+                    }
+
+                    .points {
+                        width: 53px;
+                        margin: 0 5px 0 0;
+                        color: white
+                    }
+
+                    .pricePerPoint {
+                        width: 105px;
+                    }
+
+
+                }
+
+                &.overBudget {
+                    background-color: burlywood;
+                    color: black
+                }
+
+                &.selected {
+                    background-color: black;
+                    color: white
+                }
+            }
+        }
     }
 }
 
@@ -103,28 +399,30 @@ ul {
 }
 
 .athleteList {
-    .header{
+    .header {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        
-        color: black;        
-        .data{
+
+        color: black;
+
+        .data {
             display: flex;
             flex-direction: row;
-            justify-content: flex-end;            
+            justify-content: flex-end;
             text-align: center;
+
             .price {
                 width: 78px;
                 margin: 0 5px 0 0;
             }
-            
+
             .points {
                 width: 53px;
-                margin: 0 5px 0 0;                
+                margin: 0 5px 0 0;
             }
 
-            .pricePerPoint{
+            .pricePerPoint {
                 width: 105px;
             }
 
@@ -171,7 +469,7 @@ ul {
             flex-direction: row;
             align-items: center;
 
-            .nume{
+            .nume {
                 margin-left: 5px;
             }
 
@@ -189,30 +487,31 @@ ul {
             }
         }
 
-        .data{
+        .data {
             display: flex;
             flex-direction: row;
             justify-content: flex-end;
             text-align: center;
+
             .price {
                 width: 78px;
                 margin: 0 5px 0 0;
                 color: white
             }
-            
+
             .points {
                 width: 53px;
-                margin: 0 5px 0 0;                
+                margin: 0 5px 0 0;
                 color: white
             }
 
-            .pricePerPoint{
+            .pricePerPoint {
                 width: 105px;
             }
 
 
         }
-        
+
         &.overBudget {
             background-color: burlywood;
             color: black
@@ -220,101 +519,7 @@ ul {
 
         &.selected {
             background-color: black;
-            background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(255, 255, 255, 1) 20%, rgba(255, 255, 255, 1) 65%, rgba(0, 0, 0, 1) 100%);
-
             color: white
         }
     }
-}
-
-.history,
-.currentTeam {
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 12px;
-    background-color: #f9f9f9;
-    font-family: Arial, sans-serif;
-
-    h4 {
-        margin: 0 0 0 0;
-    }
-}
-
-.filters {
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 12px;
-    background-color: #f9f9f9;
-    font-family: Arial, sans-serif;
-
-    label {
-        margin-top: 0;
-        font-weight: bold;
-        font-size: 14px;
-        width: 100%;
-        display: block;
-        clear: both;
-    }
-
-    .filter-row {
-        margin-bottom: 0.5rem;
-        width: 100%;
-
-        &.checkbox {
-            border-bottom: 1px solid gray;
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-start;
-
-            label {
-                display: block;
-                clear: none;
-            }
-
-            input {
-                display: block;
-                clear: none;
-            }
-        }
-
-        &.totalPoints {
-            input {
-                width: 50% !important;
-            }
-        }
-    }
-
-    select,
-    input[type="number"], input[type="text"] {
-        padding: 0.4rem;
-        margin-bottom: 0.5rem;
-        font-size: 14px;
-        border: 1px solid #ccc;
-        border-radius: 6px;
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    .reset-button {
-        margin-top: 1rem;
-        padding: 0.6rem 1rem;
-        font-size: 14px;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-
-        &:hover {
-            background-color: #0056b3;
-        }
-    }
-}
-
-h3 {
-    margin: 0
 }
