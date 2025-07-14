@@ -123,11 +123,15 @@ export class AppComponent implements OnInit {
     // });
   }
 
-  sortBy(key: string) {
-    this.sortKey.key = key;
+  sortBy(key?: string | undefined) {
+    if (!key) {
+      key = this.sortKey.key;
+    } else {
+      this.sortKey.key = key;
+    }
 
     this.filteredAthletes.sort((a: any, b: any) => {
-      const x = this.sortKey.direction == "fw" ? a[key] - b[key] : b[key] - a[key];
+      const x = this.sortKey.direction == "fw" ? a[this.sortKey.key] - b[this.sortKey.key] : b[this.sortKey.key] - a[this.sortKey.key];
       return x;
     });
 
@@ -193,7 +197,10 @@ export class AppComponent implements OnInit {
       return genderMatch && roundsMatch && totalPointsfilterMatch && injuryFilterMatch && weightedPointDeltaFilterMatch && weightedPriceDeltaFilterMatch && nameMatch;
     });
 
-    // this.sortBy();
+    if (this.sortKey.key) {
+      this.sortBy();
+    }
+
   }
 
   resetFilters(): void {
@@ -302,6 +309,21 @@ export class AppComponent implements OnInit {
     localStorage.removeItem(key);
     const index = this.historyTeams.map(e => e.number).indexOf(number);
     this.historyTeams.splice(index, 1)
+  }
+
+  loadFromHistory(number: number) {
+    const key = `team/${number}`;
+    const team = JSON.parse(localStorage.getItem(key) as string);
+
+    if (this.team.length > 0) {
+      this.saveForLater();
+    }
+    
+    this.team = team;
+    this.sum = this.team.reduce((acc, a) => acc + +a.value, 0);
+    this.budget = this.money - this.sum;
+
+    // this.deleteOneFromHistory(number);
   }
 
   getLSTeamHistory() {

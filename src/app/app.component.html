@@ -92,7 +92,7 @@
             <input type="number" placeholder="Min" [(ngModel)]="totalPointsfilter.min" (input)="applyFilters()" />
             <input type="number" placeholder="Max" [(ngModel)]="totalPointsfilter.max" (input)="applyFilters()" />
           </div>
-
+          
           <div class="filter-row totalPoints">
             <label> by total weightedPointDelta</label>
             <input type="number" min="{{minweightedPointDelta}}" step="0.1" placeholder="{{minweightedPointDelta}}"
@@ -169,6 +169,7 @@
             </div>
           </li>
           <button (click)="deleteOneFromHistory(team.number)">delete this from history</button>
+          <button (click)="loadFromHistory(team.number)">load from history</button>
         </ul>
       </section>
       <button *ngIf="localStorageTeam" (click)="clearHistory()">Clear History</button>
@@ -178,21 +179,23 @@
   <div class="right-side">
     <section>
       <ul *ngIf="filteredAthletes.length > 0" class="athleteList">
-        <li class="athlete">
+        <li class="header">
           <div class="name">Name</div>
-          <div (click)="sortBy('value')" class="clickable price">Price 
-            <mat-icon *ngIf="sortKey.key == 'value' && sortKey.direction == 'rw' " fontIcon="arrow_drop_up"></mat-icon>
-            <mat-icon *ngIf="sortKey.key == 'value' && sortKey.direction == 'fw' " fontIcon="arrow_drop_down"></mat-icon>
+          <div class="data">
+            <div (click)="sortBy('value')" class="clickable price">Price 
+              <mat-icon *ngIf="sortKey.key == 'value' && sortKey.direction == 'rw' " fontIcon="arrow_drop_up"></mat-icon>
+              <mat-icon *ngIf="sortKey.key == 'value' && sortKey.direction == 'fw' " fontIcon="arrow_drop_down"></mat-icon>
+            </div>
+            <div (click)="sortBy('totalpoints')" class="clickable points">Points 
+              <mat-icon *ngIf="sortKey.key == 'totalpoints' && sortKey.direction == 'rw'" fontIcon="arrow_drop_up"></mat-icon>
+              <mat-icon *ngIf="sortKey.key == 'totalpoints' && sortKey.direction == 'fw'" fontIcon="arrow_drop_down"></mat-icon>
+            </div>
+            <div (click)="sortBy('pricePerPoint')" class="clickable pricePerPoint">Price Per Point 
+              <mat-icon *ngIf="sortKey.key == 'pricePerPoint' && sortKey.direction == 'rw'" fontIcon="arrow_drop_up"></mat-icon>
+              <mat-icon *ngIf="sortKey.key == 'pricePerPoint' && sortKey.direction == 'fw'" fontIcon="arrow_drop_down"></mat-icon>
+            </div>
+            <div class="action teamAction">+/-</div>
           </div>
-          <div (click)="sortBy('totalpoints')" class="clickable points">Points 
-            <mat-icon *ngIf="sortKey.key == 'totalpoints' && sortKey.direction == 'rw'" fontIcon="arrow_drop_up"></mat-icon>
-            <mat-icon *ngIf="sortKey.key == 'totalpoints' && sortKey.direction == 'fw'" fontIcon="arrow_drop_down"></mat-icon>
-          </div>
-          <div (click)="sortBy('pricePerPoint')" class="clickable pricePerPoint">Price Per Point 
-            <mat-icon *ngIf="sortKey.key == 'pricePerPoint' && sortKey.direction == 'rw'" fontIcon="arrow_drop_up"></mat-icon>
-            <mat-icon *ngIf="sortKey.key == 'pricePerPoint' && sortKey.direction == 'fw'" fontIcon="arrow_drop_down"></mat-icon>
-          </div>
-          <div class="action">+/-</div>
         </li>
         <li class="athlete" *ngFor="let athlete of filteredAthletes"
           title="{{athlete.roundsPoints | json}} {{athlete.progressionScore | json}} {{athlete.roundValues}}"
@@ -204,13 +207,13 @@
                 target="_blank"></a></div>
             <div *ngIf="athlete.injury" class="injury"></div>
           </div>
-          <div class="price" [ngStyle]="{color: valueToRedBlackColor(athlete.progressionScore.weightedPriceDelta)}">{{
-            athlete.value | currency: 'USD':'symbol':'1.0-0'}} </div>
-          <div class="points" [ngStyle]="{color: valueTogreenBlackColor(athlete.progressionScore.weightedPointDelta)}">
-            {{ athlete.totalpoints }}</div>
-          <div class="pricePerPoint">{{ athlete.pricePerPoint | currency: 'USD':'symbol':'1.0-0' }}</div>
-          <div class="teamAction" *ngIf="!athlete.selected" (click)="actionAthlete(athlete)">+</div>
-          <div class="teamAction" *ngIf="athlete.selected" (click)="actionAthlete(athlete)">-</div>
+          <div class="data">
+            <div class="price" [ngStyle]="{backgroundColor: valueToRedBlackColor(athlete.progressionScore.weightedPriceDelta)}">{{athlete.value | currency: 'USD':'symbol':'1.0-0'}}</div>
+            <div class="points" [ngStyle]="{backgroundColor: valueTogreenBlackColor(athlete.progressionScore.weightedPointDelta)}">{{ athlete.totalpoints }}</div>
+            <div class="pricePerPoint">{{ athlete.pricePerPoint | currency: 'USD':'symbol':'1.0-0' }}</div>
+            <div class="teamAction" *ngIf="!athlete.selected" (click)="actionAthlete(athlete)">+</div>
+            <div class="teamAction" *ngIf="athlete.selected" (click)="actionAthlete(athlete)">-</div>
+          </div>
         </li>
       </ul>
     </section>

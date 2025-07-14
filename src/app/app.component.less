@@ -103,9 +103,36 @@ ul {
 }
 
 .athleteList {
-    // list-style: none;
+    .header{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        
+        color: black;        
+        .data{
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;            
+            text-align: center;
+            .price {
+                width: 78px;
+                margin: 0 5px 0 0;
+            }
+            
+            .points {
+                width: 53px;
+                margin: 0 5px 0 0;                
+            }
+
+            .pricePerPoint{
+                width: 105px;
+            }
+
+        }
+    }
 
     .athlete {
+
         border-bottom: 1px solid #ccc;
 
         &:hover {
@@ -162,25 +189,30 @@ ul {
             }
         }
 
-        .price {
-            margin: 0 5px 0 0;
-        }
-
-        .points {
-            margin: 0 5px 0 0;
-        }
-
-        .name {
-            width: 30%;
-        }
-
-        .data {
-            width: 70%;
+        .data{
             display: flex;
-            justify-content: space-between;
+            flex-direction: row;
+            justify-content: flex-end;
+            text-align: center;
+            .price {
+                width: 78px;
+                margin: 0 5px 0 0;
+                color: white
+            }
+            
+            .points {
+                width: 53px;
+                margin: 0 5px 0 0;                
+                color: white
+            }
+
+            .pricePerPoint{
+                width: 105px;
+            }
+
 
         }
-
+        
         &.overBudget {
             background-color: burlywood;
             color: black
