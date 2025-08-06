@@ -184,18 +184,18 @@
           <div class="data">
             <div (click)="sortBy('value')" class="clickable price">
               <span>Price</span>
-              <mat-icon aria-hidden="true" *ngIf="sortKey.key == 'value' && sortKey.direction == 'rw' " fontIcon="arrow_drop_down"></mat-icon>
-              <mat-icon aria-hidden="true" *ngIf="sortKey.key == 'value' && sortKey.direction == 'fw' " fontIcon="arrow_drop_up"></mat-icon>
+              <div class="icon arrow_drop_up" *ngIf="sortKey.key == 'value' && sortKey.direction == 'rw' "></div>
+              <div class="icon arrow_drop_down" *ngIf="sortKey.key == 'value' && sortKey.direction == 'fw' "></div>
             </div>
             <div (click)="sortBy('totalpoints')" class="clickable points">
               <span>Points</span>
-              <mat-icon aria-hidden="true" *ngIf="sortKey.key == 'totalpoints' && sortKey.direction == 'rw'" fontIcon="arrow_drop_down"></mat-icon>
-              <mat-icon aria-hidden="true" *ngIf="sortKey.key == 'totalpoints' && sortKey.direction == 'fw'" fontIcon="arrow_drop_up"></mat-icon>
+              <div class="icon arrow_drop_up" *ngIf="sortKey.key == 'totalpoints' && sortKey.direction == 'rw'"></div>
+              <div class="icon arrow_drop_down" *ngIf="sortKey.key == 'totalpoints' && sortKey.direction == 'fw'"></div>
             </div>
             <div (click)="sortBy('pricePerPoint')" class="clickable pricePerPoint">
               <span>Price Per Point</span>
-              <mat-icon aria-hidden="true" *ngIf="sortKey.key == 'pricePerPoint' && sortKey.direction == 'rw'" fontIcon="arrow_drop_down"></mat-icon>
-              <mat-icon aria-hidden="true" *ngIf="sortKey.key == 'pricePerPoint' && sortKey.direction == 'fw'" fontIcon="arrow_drop_up"></mat-icon>
+              <div class="icon arrow_drop_up" *ngIf="sortKey.key == 'pricePerPoint' && sortKey.direction == 'rw'"></div>
+              <div class="icon arrow_drop_down" *ngIf="sortKey.key == 'pricePerPoint' && sortKey.direction == 'fw'"></div>
             </div>
             <div class="action teamAction">+/-</div>
           </div>

@@ -42,10 +42,27 @@ h1 {
 .clickable {
     cursor: pointer;
     user-select: none;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     &:hover {
         background-color: #ccc;
     }
+    .icon{
+        width: 10px;
+        height: 10px;
+        background-repeat: no-repeat;
+        &.icon.arrow_drop_down{
+            background-image: url('/assets/ascending.svg');
+        }
+
+        &.icon.arrow_drop_up{
+            background-image: url('/assets/descending.svg');
+        }
+    }
+    
 }
 
 h4.nrathletePerTeam {
