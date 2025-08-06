@@ -121,7 +121,7 @@
           </div>
 
           <div *ngFor="let round of rounds, index as i" class="filter-row">
-            <label>by # points / {{roundsAliases[i]}}</label>
+            <label>by # points &#64; {{roundsAliases[i]}}</label>
             <input type="number" placeholder="Min" [(ngModel)]="roundFilters[round].min" (input)="applyFilters()" />
           </div>
 

@@ -67,17 +67,17 @@ export class AppComponent implements OnInit {
   roundFilters: { [key: string]: { min?: number; max?: number } } = {};
   rounds = Array.from({ length: 6 }, (_, i) => `round${i + 1}`);
   roundsAliases = [
-    "Bielsko-Biala World Cup #1",
-    "Loudenvielle World Cup #2",
-    "Leogang World Cup #3",
-    "Val di Sole World Cup #4",
-    "La Thuile World Cup #5",
-    "Andorra World Cup #6",
-    "Les Gets World Cup #7",
+    "Bielsko-Biala WC #1",
+    "Loudenvielle WC #2",
+    "Leogang WC #3",
+    "Val di Sole WC #4",
+    "La Thuile WC #5",
+    "Andorra WC #6",
+    "Les Gets WC #7",
     "2025 World Championships Champery",
-    "Lenzerheide World Cup #8",
-    "Lake Placid World Cup #9",
-    "Mont-Sainte-Anne World Cup #1",
+    "Lenzerheide WC #8",
+    "Lake Placid WC #9",
+    "Mont-Sainte-Anne WC #1",
   ];
 
   constructor(private dataService: DataService) {
@@ -231,6 +231,7 @@ export class AppComponent implements OnInit {
 
     this.injuryfilter = undefined;
     this.nameFilter = '';
+    this.countryFilter = '';
   };
 
   error() {
