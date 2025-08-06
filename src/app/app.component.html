@@ -90,22 +90,21 @@
           </select>
           
           <div class="filter-row totalPoints">
-            <label> by total Points</label>
+            <label>by total Points</label>
             <input type="number" min="0" placeholder="Min" [(ngModel)]="totalPointsfilter.min" (input)="applyFilters()" />
             <input type="number" placeholder="Max" [(ngModel)]="totalPointsfilter.max" (input)="applyFilters()" />
           </div>
           
           <div class="filter-row byCountry">
-            <label> by country</label>
+            <label>by country</label>
             <select [(ngModel)]="countryFilter" (change)="applyFilters()">
               <option value="">All Countries</option>
               <option *ngFor="let c of countrylist" [value]="c.contryCode">{{c.countryName}} // #ath: {{c.athletes}} // #points: {{c.points}}</option>
             </select>
-
           </div>
-          
+                    
           <div class="filter-row totalPoints">
-            <label> by total weightedPointDelta</label>
+            <label>by total weightedPointDelta</label>
             <input type="number" min="{{minweightedPointDelta}}" step="0.1" placeholder="{{minweightedPointDelta}}"
               [(ngModel)]="weightedPointDeltaFilter.min" (input)="applyFilters()" />
             <input type="number" max="{{maxweightedPointDelta}}" step="0.1" placeholder="{{maxweightedPointDelta}}"
@@ -113,7 +112,7 @@
           </div>
 
           <div class="filter-row totalPoints">
-            <label> by total weightedPriceDelta</label>
+            <label>by total weightedPriceDelta</label>
             <input type="number" step="1000" min="{{minweightedPriceDelta}}" placeholder="{{minweightedPriceDelta}}"
               [(ngModel)]="weightedPriceDeltaFilter.min" (input)="applyFilters()" />
             <input type="number" step="1000" max="{{maxweightedPriceDelta}}" placeholder="{{maxweightedPriceDelta}}"
