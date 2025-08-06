@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
   title = 'P.B. Fantasy DH';
   data: any;
   team: any[] = [];
+  countrylist: any[] = [];
   progressionScores: number[] = [];
   sum: number = 0;
   totalPointsfilter = {
@@ -58,6 +59,7 @@ export class AppComponent implements OnInit {
   budget: number = 1500000;
   weights = <any>[];
   filterGender = '';
+  countryFilter = '';
   filteredAthletes: any[] = [];
   historyTeams: any[] = [];
   prevTeam: any = {};
@@ -120,11 +122,12 @@ export class AppComponent implements OnInit {
       });
       this.lst();
       this.sort();
+      this.countrylist = this.createCountryList();
     });
     // });
   }
 
-  sortBy(key: string) {    
+  sortBy(key: string) {
     if (this.sortKey.key !== key) {
       this.sortKey.key = key;
       this.sortKey.direction = "rw";
@@ -133,13 +136,13 @@ export class AppComponent implements OnInit {
     this.sort();
   }
 
-  sort() {    
+  sort() {
     this.filteredAthletes.sort((a: any, b: any) => {
       const x = this.sortKey.direction == "fw" ? a[this.sortKey.key] - b[this.sortKey.key] : b[this.sortKey.key] - a[this.sortKey.key];
       return x;
-    });   
+    });
 
-  }
+  };
 
   actionAthlete(a: any): void {
     this.data.forEach((athlete: any) => {
@@ -188,12 +191,20 @@ export class AppComponent implements OnInit {
       const weightedPointDeltaFilterMatch = (!this.weightedPointDeltaFilter?.min || athlete.progressionScore.weightedPointDelta >= this.weightedPointDeltaFilter.min) && (!this.weightedPointDeltaFilter?.max || athlete.progressionScore.weightedPointDelta <= this.weightedPointDeltaFilter.max);
       const weightedPriceDeltaFilterMatch = (!this.weightedPriceDeltaFilter?.min || athlete.progressionScore.weightedPriceDelta >= this.weightedPriceDeltaFilter.min) && (!this.weightedPriceDeltaFilter?.max || athlete.progressionScore.weightedPriceDelta <= this.weightedPriceDeltaFilter.max);
       const injuryFilterMatch = this.injuryfilter !== athlete.injury;
-      return genderMatch && roundsMatch && totalPointsfilterMatch && injuryFilterMatch && weightedPointDeltaFilterMatch && weightedPriceDeltaFilterMatch && nameMatch;
+
+      const countryMatch = !this.countryFilter || athlete.country === this.countryFilter;
+      return genderMatch &&
+        roundsMatch &&
+        totalPointsfilterMatch &&
+        injuryFilterMatch &&
+        weightedPointDeltaFilterMatch &&
+        weightedPriceDeltaFilterMatch &&
+        nameMatch &&
+        countryMatch;
     });
 
     this.sort();
   }
-
 
   resetFilters(): void {
     this.totalPointsfilter = {
@@ -235,7 +246,7 @@ export class AppComponent implements OnInit {
     } else {
       this.errorMessage = ""
     }
-  }
+  };
 
   clearTeam() {
     this.nrWomenPerTeam = 0;
@@ -255,7 +266,7 @@ export class AppComponent implements OnInit {
       e.selected = false;
       e.overBudget = e.value > this.budget;
     });
-  }
+  };
 
   computeProgressionScore = (athlete: any) => {
     const allrounds = []
@@ -281,7 +292,7 @@ export class AppComponent implements OnInit {
       weightedPriceDelta,
       weightedPointDelta
     };
-  }
+  };
 
   saveForLater() {
     const items = { ...localStorage };
@@ -294,14 +305,14 @@ export class AppComponent implements OnInit {
       window.localStorage.setItem('team', JSON.stringify(this.team));
     }
     this.historyTeams = this.getLSTeamHistory();
-  }
+  };
 
   deleteOneFromHistory(number: number) {
     const key = `team/${number}`;
     localStorage.removeItem(key);
     const index = this.historyTeams.map(e => e.number).indexOf(number);
     this.historyTeams.splice(index, 1)
-  }
+  };
 
   loadFromHistory(number: number) {
     const key = `team/${number}`;
@@ -310,13 +321,13 @@ export class AppComponent implements OnInit {
     if (this.team.length > 0) {
       this.saveForLater();
     }
-    
+
     this.team = team;
     this.sum = this.team.reduce((acc, a) => acc + +a.value, 0);
     this.budget = this.money - this.sum;
 
     // this.deleteOneFromHistory(number);
-  }
+  };
 
   getLSTeamHistory() {
     const response: any[] = [];
@@ -347,28 +358,28 @@ export class AppComponent implements OnInit {
     });
 
     return response;
-  }
+  };
 
   clearHistory() {
     const items = { ...localStorage };
     const keys = Object.keys(items).filter(e => { return e.indexOf("team/") > -1 });
     // alert("nu prea face ceva butonul asta")
     this.historyTeams = [];
-  }
+  };
 
   valueToRedBlackColor(value: number): string {
     const clamped = Math.max(this.minweightedPriceDelta, Math.min(value, this.maxweightedPriceDelta));
     const normalized = (clamped - this.minweightedPriceDelta) / (this.maxweightedPriceDelta - this.minweightedPriceDelta);
     const red = Math.round(255 * (1 - normalized));
     return `rgb(${red}, 0, 0)`;
-  }
+  };
 
   valueTogreenBlackColor(value: number): string {
     const clamped = Math.max(this.minweightedPointDelta, Math.min(value, this.maxweightedPointDelta));
     const normalized = (clamped - this.minweightedPointDelta) / (this.maxweightedPointDelta - this.minweightedPointDelta);
     const green = Math.round(255 * normalized);
     return `rgb(0, ${green}, 0)`;
-  }
+  };
 
   lst() {
     const localStorageTeam = JSON.parse(window.localStorage.getItem("team") as string);
@@ -409,7 +420,7 @@ export class AppComponent implements OnInit {
 
     this.getInstagramData();
     this.applyFilters();
-  }
+  };
 
   isAthleteInList(athleteNames: string[], firstName: string, lastName: string): boolean {
     const an = athleteNames.map(name => {
@@ -423,7 +434,7 @@ export class AppComponent implements OnInit {
       .filter(index => index !== -1);
 
     return matchingIndexes.length > 0;
-  }
+  };
 
   getInstagramData() {
     this.dataService.getinstagramData().subscribe((res) => {
@@ -437,6 +448,23 @@ export class AppComponent implements OnInit {
     }, error => {
       console.error('Error fetching Instagram data:', error);
     });
-  }
+  };
+
+  createCountryList() {
+    const countries = this.data.map((e: any) => e.country).filter((e: any, i: number, a: any) => a.indexOf(e) === i).sort();
+    const cunt = this.data.map((e: any) => {return { contryCode: e.country, countryName: e.countryname }});
+    const c = countries.map((e: any) => {
+      return { contryCode: e,
+        countryName: cunt.filter((s: any) => s.contryCode === e)[0].countryName,
+        athletes: 0,
+        points: 0 }
+    });
+    this.data.forEach((a: any) => {
+      const index = c.map((e: any) => e.contryCode).indexOf(a.country);
+      c[index].athletes += 1;
+      c[index].points += a.totalpoints;
+    });
+    return c.sort((a: any, b: any) => b.points - a.points);
+  };
 
 }

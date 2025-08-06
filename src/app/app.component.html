@@ -71,14 +71,15 @@
       <section>
         <div class="filters">
           <h3>Filters</h3>
+          
           <div class="filter-row checkbox">
-            <label for="injuryFilter">with no injury</label>
+            <label for="injuryFilter">not injured</label>
             <input type="checkbox" id="injuryFilter" [(ngModel)]="injuryfilter" (change)="applyFilters()">
           </div>
-          <div class="filter-row">
 
-            <label for="nameFilter">Filter by name</label><input id="nameFilter" type="text" [(ngModel)]="nameFilter" (input)="applyFilters()"
-              placeholder="Filter by name" />
+          <div class="filter-row">
+            <label for="nameFilter">Filter by name</label>
+            <input id="nameFilter" type="text" [(ngModel)]="nameFilter" (input)="applyFilters()" placeholder="Filter by name" />
           </div>
 
           <label for="gender">by gender</label>
@@ -87,10 +88,20 @@
             <option value="Male">Male</option>
             <option value="Female">Female</option>
           </select>
+          
           <div class="filter-row totalPoints">
             <label> by total Points</label>
             <input type="number" min="0" placeholder="Min" [(ngModel)]="totalPointsfilter.min" (input)="applyFilters()" />
             <input type="number" placeholder="Max" [(ngModel)]="totalPointsfilter.max" (input)="applyFilters()" />
+          </div>
+          
+          <div class="filter-row byCountry">
+            <label> by country</label>
+            <select [(ngModel)]="countryFilter" (change)="applyFilters()">
+              <option value="">All Countries</option>
+              <option *ngFor="let c of countrylist" [value]="c.contryCode">{{c.countryName}} // #ath: {{c.athletes}} // #points: {{c.points}}</option>
+            </select>
+
           </div>
           
           <div class="filter-row totalPoints">
