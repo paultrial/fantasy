@@ -1,0 +1,77 @@
+.filters {
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 12px;
+        background-color: #f9f9f9;
+        font-family: Arial, sans-serif;
+
+        label {
+            margin-top: 0;
+            font-weight: bold;
+            font-size: 14px;
+            width: 100%;
+            display: block;
+            clear: both;
+        }
+
+        .filter-row {
+            margin-bottom: 0.5rem;
+            width: 100%;
+
+            &.checkbox {
+                border-bottom: 1px solid gray;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+
+                label {
+                    display: block;
+                    clear: none;
+                }
+
+                input {
+                    display: block;
+                    clear: none;
+                }
+            }
+
+            &.totalPoints {
+                input {
+                    width: 50% !important;
+                }
+            }
+        }
+
+        select,
+        input[type="number"],
+        input[type="text"] {
+            padding: 0.4rem;
+            margin-bottom: 0.5rem;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .reset-button {
+            margin-top: 1rem;
+            padding: 0.6rem 1rem;
+            font-size: 14px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: #0056b3;
+            }
+        }
+    }
+
+    h3 {
+        margin: 0
+    }

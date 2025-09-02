@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import Fuse from 'fuse.js';
+import { FiltersComponent } from './filters/filters.component';
 
 @Injectable({
   providedIn: 'root'
@@ -29,11 +30,10 @@ export class DataService {
     max: undefined
   }
 
-  
-  public minweightedPointDelta: any = new BehaviorSubject(null);
-  public maxweightedPointDelta: any = new BehaviorSubject(null);
-  public minweightedPriceDelta: any = new BehaviorSubject(null);
-  public maxweightedPriceDelta: any = new BehaviorSubject(null);
+  minweightedPointDelta: any = new BehaviorSubject(null);
+  maxweightedPointDelta: any = new BehaviorSubject(null);
+  minweightedPriceDelta: any = new BehaviorSubject(null);
+  maxweightedPriceDelta: any = new BehaviorSubject(null);
 
   injuryfilter = new BehaviorSubject<boolean | undefined>(undefined);
   nameFilter = new BehaviorSubject<string>('');
@@ -55,10 +55,10 @@ export class DataService {
   historyTeams: any[] = [];
   prevTeam: any = {};
 
-  public sortKey = new BehaviorSubject<any>({
+  sortKey = new BehaviorSubject<any>({
     key: 'value',
     direction: 'rw'
-  })
+  });
 
   public roundsAliases = [
     "Bielsko-Biala WC #1",
@@ -73,6 +73,7 @@ export class DataService {
     "Lake Placid WC #9",
     "Mont-Sainte-Anne WC #1",
   ];
+
   filteredAthletes = new BehaviorSubject<any[]>(<any[]>[]);
   weights = <any>[];
   rounds = Array.from({ length: 7 }, (_, i) => `round${i + 1}`);
@@ -88,7 +89,7 @@ export class DataService {
       }
     })
     this.getData().subscribe(res => {
-      
+
       const d = Object.keys(res).map(i => {
         const athlete = res[i];
         athlete.value = +athlete.value;
@@ -147,71 +148,41 @@ export class DataService {
   }
 
 
-  applyFilters(): void {
-    const namefilter = this.nameFilter.getValue();
-    const genderfilter = this.filterGender.getValue();
-    const countryfilter = this.countryFilter.getValue();
-    const injuryfilter = this.injuryfilter.getValue();
-
-    this.filteredAthletes = this.data.filter((athlete: any) => {
-      const nameMatch = !namefilter || (
-        athlete.firstname?.toLowerCase().includes(namefilter.toLowerCase()) ||
-        athlete.lastname?.toLowerCase().includes(namefilter.toLowerCase())
+  applyFilters(input:any): void {
+    const fa = this.data.filter((athlete: any) => {
+      const nameMatch = !input.nameFilter || (
+        athlete.firstname?.toLowerCase().includes(input.nameFilter.toLowerCase()) ||
+        athlete.lastname?.toLowerCase().includes(input.nameFilter.toLowerCase())
       );
-
-      const genderMatch = !genderfilter || athlete.gender === genderfilter;
+      
+      const genderMatch = !input.filterGender || athlete.gender === input.filterGender;
       const roundsMatch = this.rounds.every(round => {
-        const filter = this.roundFilters[round];
+        const filter = input.roundFilters[round];
         const value = (athlete as any)[round] || 0;
         return (!filter?.min || value >= filter.min);
       });
-
-      const totalPointsfilterMatch = (!this.totalPointsfilter?.min || athlete.totalpoints >= this.totalPointsfilter.min) && (!this.totalPointsfilter?.max || athlete.totalpoints <= this.totalPointsfilter.max);
-      const weightedPointDeltaFilterMatch = (!this.weightedPointDeltaFilter?.min || athlete.progressionScore.weightedPointDelta >= this.weightedPointDeltaFilter.min) && (!this.weightedPointDeltaFilter?.max || athlete.progressionScore.weightedPointDelta <= this.weightedPointDeltaFilter.max);
-      const weightedPriceDeltaFilterMatch = (!this.weightedPriceDeltaFilter?.min || athlete.progressionScore.weightedPriceDelta >= this.weightedPriceDeltaFilter.min) && (!this.weightedPriceDeltaFilter?.max || athlete.progressionScore.weightedPriceDelta <= this.weightedPriceDeltaFilter.max);
-      const injuryFilterMatch = injuryfilter !== athlete.injury;
-
-      const countryMatch = !countryfilter || athlete.country === countryfilter;
+      
+      const totalPointsfilterMatch = (!input.totalPointsfilter?.min ||athlete.totalpoints >= input.totalPointsfilter.min) && (!input.totalPointsfilter?.max ||athlete.totalpoints <= input.totalPointsfilter.max);
+      const weightedPointDeltaFilterMatch = (!input.weightedPointDeltaFilter?.min ||athlete.progressionScore.weightedPointDelta >= input.weightedPointDeltaFilter.min) && (!input.weightedPointDeltaFilter?.max ||athlete.progressionScore.weightedPointDelta <= input.weightedPointDeltaFilter.max);
+      const weightedPriceDeltaFilterMatch = (!input.weightedPriceDeltaFilter?.min ||athlete.progressionScore.weightedPriceDelta >= input.weightedPriceDeltaFilter.min) && (!input.weightedPriceDeltaFilter?.max ||athlete.progressionScore.weightedPriceDelta <= input.weightedPriceDeltaFilter.max);
+      const injuryFilterMatch = input.injuryfilter !== athlete.injury;
+      
+      const countryMatch = !input.countryFilter ||athlete.country === input.countryFilter;
       return genderMatch &&
-        roundsMatch &&
-        totalPointsfilterMatch &&
-        injuryFilterMatch &&
-        weightedPointDeltaFilterMatch &&
-        weightedPriceDeltaFilterMatch &&
-        nameMatch &&
-        countryMatch;
+      roundsMatch &&
+      totalPointsfilterMatch &&
+      injuryFilterMatch &&
+      weightedPointDeltaFilterMatch &&
+      weightedPriceDeltaFilterMatch &&
+      nameMatch &&
+      countryMatch;
     });
+    this.filteredAthletes.next(fa);
 
     this.sort();
   }
 
-  resetFilters(): void {
-    this.totalPointsfilter = {
-      min: undefined,
-      max: undefined
-    }
-    this.filterGender.next('');
-    this.filteredAthletes.next([...this.data]);
-    this.rounds.forEach(r => {
-      this.roundFilters[r] = {
-        min: undefined,
-        max: undefined
-      }
-    });
-
-    this.weightedPointDeltaFilter = {
-      min: undefined,
-      max: undefined
-    }
-    this.weightedPriceDeltaFilter = {
-      min: undefined,
-      max: undefined
-    }
-
-    this.injuryfilter.next(undefined);
-    this.nameFilter.next('');
-    this.countryFilter.next('');
-  };
+  
 
   error() {
     if (this.team.filter(e => e.gender == "Male").length > this.maxNrMenPerTeam) {
@@ -418,12 +389,14 @@ export class DataService {
 
   createCountryList() {
     const countries = this.data.map((e: any) => e.country).filter((e: any, i: number, a: any) => a.indexOf(e) === i).sort();
-    const cunt = this.data.map((e: any) => {return { contryCode: e.country, countryName: e.countryname }});
+    const cunt = this.data.map((e: any) => { return { contryCode: e.country, countryName: e.countryname } });
     const c = countries.map((e: any) => {
-      return { contryCode: e,
+      return {
+        contryCode: e,
         countryName: cunt.filter((s: any) => s.contryCode === e)[0].countryName,
         athletes: 0,
-        points: 0 }
+        points: 0
+      }
     });
     this.data.forEach((a: any) => {
       const index = c.map((e: any) => e.contryCode).indexOf(a.country);
