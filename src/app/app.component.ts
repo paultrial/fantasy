@@ -2,13 +2,13 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterOutlet } from '@angular/router';
 import { DataService } from './data-service.service';
-import { NgIf, NgFor, NgClass, KeyValuePipe, JsonPipe, CurrencyPipe, NgStyle } from '@angular/common';
+import { NgIf, NgFor, NgClass, JsonPipe, CurrencyPipe, NgStyle } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [MatIconModule, RouterOutlet, NgIf, NgFor, NgClass, FormsModule, KeyValuePipe, JsonPipe, CurrencyPipe, NgStyle],
+  imports: [MatIconModule, RouterOutlet, NgIf, NgFor, NgClass, FormsModule, JsonPipe, CurrencyPipe, NgStyle],
   templateUrl: './app.component.html',
   styleUrl: './app.component.less'
 })
