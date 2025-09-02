@@ -11,7 +11,7 @@ export class DataService {
 
   data: any;
   team: any[] = [];
-  countrylist: any[] = [];
+  countrylist = new BehaviorSubject<any[]>([]);
   progressionScores: number[] = [];
   sum: number = 0;
   totalPointsfilter = {
@@ -35,8 +35,10 @@ export class DataService {
   public minweightedPriceDelta: any = new BehaviorSubject(null);
   public maxweightedPriceDelta: any = new BehaviorSubject(null);
 
-  injuryfilter: boolean | undefined;
-  nameFilter = '';
+  injuryfilter = new BehaviorSubject<boolean | undefined>(undefined);
+  nameFilter = new BehaviorSubject<string>('');
+  filterGender = new BehaviorSubject<string>('');
+  countryFilter = new BehaviorSubject<string>('');
 
   errorMessage: string = '';
 
@@ -50,8 +52,6 @@ export class DataService {
   money: number = 1500000;
   budget: number = 1500000;
 
-  filterGender = '';
-  countryFilter = '';
   historyTeams: any[] = [];
   prevTeam: any = {};
 
@@ -121,7 +121,7 @@ export class DataService {
       this.filteredAthletes.next([...this.data]);
       this.lst();
       this.sort();
-      this.countrylist = this.createCountryList();
+      this.countrylist.next(this.createCountryList());
     })
   }
 
@@ -148,13 +148,18 @@ export class DataService {
 
 
   applyFilters(): void {
+    const namefilter = this.nameFilter.getValue();
+    const genderfilter = this.filterGender.getValue();
+    const countryfilter = this.countryFilter.getValue();
+    const injuryfilter = this.injuryfilter.getValue();
+
     this.filteredAthletes = this.data.filter((athlete: any) => {
-      const nameMatch = !this.nameFilter || (
-        athlete.firstname?.toLowerCase().includes(this.nameFilter.toLowerCase()) ||
-        athlete.lastname?.toLowerCase().includes(this.nameFilter.toLowerCase())
+      const nameMatch = !namefilter || (
+        athlete.firstname?.toLowerCase().includes(namefilter.toLowerCase()) ||
+        athlete.lastname?.toLowerCase().includes(namefilter.toLowerCase())
       );
 
-      const genderMatch = !this.filterGender || athlete.gender === this.filterGender;
+      const genderMatch = !genderfilter || athlete.gender === genderfilter;
       const roundsMatch = this.rounds.every(round => {
         const filter = this.roundFilters[round];
         const value = (athlete as any)[round] || 0;
@@ -164,9 +169,9 @@ export class DataService {
       const totalPointsfilterMatch = (!this.totalPointsfilter?.min || athlete.totalpoints >= this.totalPointsfilter.min) && (!this.totalPointsfilter?.max || athlete.totalpoints <= this.totalPointsfilter.max);
       const weightedPointDeltaFilterMatch = (!this.weightedPointDeltaFilter?.min || athlete.progressionScore.weightedPointDelta >= this.weightedPointDeltaFilter.min) && (!this.weightedPointDeltaFilter?.max || athlete.progressionScore.weightedPointDelta <= this.weightedPointDeltaFilter.max);
       const weightedPriceDeltaFilterMatch = (!this.weightedPriceDeltaFilter?.min || athlete.progressionScore.weightedPriceDelta >= this.weightedPriceDeltaFilter.min) && (!this.weightedPriceDeltaFilter?.max || athlete.progressionScore.weightedPriceDelta <= this.weightedPriceDeltaFilter.max);
-      const injuryFilterMatch = this.injuryfilter !== athlete.injury;
+      const injuryFilterMatch = injuryfilter !== athlete.injury;
 
-      const countryMatch = !this.countryFilter || athlete.country === this.countryFilter;
+      const countryMatch = !countryfilter || athlete.country === countryfilter;
       return genderMatch &&
         roundsMatch &&
         totalPointsfilterMatch &&
@@ -185,7 +190,7 @@ export class DataService {
       min: undefined,
       max: undefined
     }
-    this.filterGender = '';
+    this.filterGender.next('');
     this.filteredAthletes.next([...this.data]);
     this.rounds.forEach(r => {
       this.roundFilters[r] = {
@@ -203,9 +208,9 @@ export class DataService {
       max: undefined
     }
 
-    this.injuryfilter = undefined;
-    this.nameFilter = '';
-    this.countryFilter = '';
+    this.injuryfilter.next(undefined);
+    this.nameFilter.next('');
+    this.countryFilter.next('');
   };
 
   error() {
