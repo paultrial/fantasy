@@ -30,10 +30,10 @@ export class DataService {
   }
 
   
-  public minweightedPointDelta!: number;
-  public maxweightedPointDelta!: number;
-  public minweightedPriceDelta!: number;
-  public maxweightedPriceDelta!: number;
+  public minweightedPointDelta: any = new BehaviorSubject(null);
+  public maxweightedPointDelta: any = new BehaviorSubject(null);
+  public minweightedPriceDelta: any = new BehaviorSubject(null);
+  public maxweightedPriceDelta: any = new BehaviorSubject(null);
 
   injuryfilter: boolean | undefined;
   nameFilter = '';
@@ -372,14 +372,14 @@ export class DataService {
 
     // this.historyTeams = this.getLSTeamHistory();
 
-    // this.progressionScores = this.data.map((a: any) => a.progressionScore).sort((a: any, b: any) => { a.weightedPointDelta - b.weightedPointDelta });
+    this.progressionScores = this.data.map((a: any) => a.progressionScore).sort((a: any, b: any) => { a.weightedPointDelta - b.weightedPointDelta });
 
-    // this.minweightedPointDelta = Math.min(...this.progressionScores.map((e: any) => +e.weightedPointDelta) as any);
-    // this.maxweightedPointDelta = Math.max(...this.progressionScores.map((e: any) => +e.weightedPointDelta) as any);
-    // this.minweightedPriceDelta = Math.min(...this.progressionScores.map((e: any) => +e.weightedPriceDelta) as any);
-    // this.maxweightedPriceDelta = Math.max(...this.progressionScores.map((e: any) => +e.weightedPriceDelta) as any);
+    this.minweightedPointDelta.next(Math.min(...this.progressionScores.map((e: any) => +e.weightedPointDelta) as any));
+    this.maxweightedPointDelta.next(Math.max(...this.progressionScores.map((e: any) => +e.weightedPointDelta) as any));
+    this.minweightedPriceDelta.next(Math.min(...this.progressionScores.map((e: any) => +e.weightedPriceDelta) as any));
+    this.maxweightedPriceDelta.next(Math.max(...this.progressionScores.map((e: any) => +e.weightedPriceDelta) as any));
 
-    // this.getInstagramData();
+    this.getInstagramData();
     // this.applyFilters();
   };
 
