@@ -8,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrl: './history.component.less'
 })
 export class HistoryComponent {
-
+constructor() {
+  console.log('HistoryComponent initialized');
+}
 }

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import Fuse from 'fuse.js';
-import { FiltersComponent } from './filters/filters.component';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +10,10 @@ export class DataService {
   private jsonUrl = 'assets/PBathletes.json';
 
   data: any;
-  team: any[] = [];
+  
   countrylist = new BehaviorSubject<any[]>([]);
   progressionScores: number[] = [];
-  sum: number = 0;
+  
   totalPointsfilter = {
     min: undefined,
     max: undefined
@@ -40,17 +39,7 @@ export class DataService {
   filterGender = new BehaviorSubject<string>('');
   countryFilter = new BehaviorSubject<string>('');
 
-  errorMessage: string = '';
-
-  currentStats = {};
-
-  maxNrWomenPerTeam = 2
-  maxNrMenPerTeam = 4
-  nrWomenPerTeam = 0
-  nrMenPerTeam = 0
   localStorageTeam = undefined;
-  money: number = 1500000;
-  budget: number = 1500000;
 
   historyTeams: any[] = [];
   prevTeam: any = {};
@@ -184,40 +173,7 @@ export class DataService {
 
   
 
-  error() {
-    if (this.team.filter(e => e.gender == "Male").length > this.maxNrMenPerTeam) {
-      this.errorMessage = "Too many men on the team";
-    } else if (this.team.filter(e => e.gender == "Female").length > this.maxNrWomenPerTeam) {
-      this.errorMessage = "Too many women on the team";
-    } else if (
-      this.team.filter(e => e.gender == "Female").length > this.maxNrWomenPerTeam &&
-      this.team.filter(e => e.gender == "Male").length > this.maxNrMenPerTeam
-    ) {
-      this.errorMessage = "Too many people on the team";
-    } else {
-      this.errorMessage = ""
-    }
-  };
-
-  clearTeam() {
-    this.nrWomenPerTeam = 0;
-    this.nrMenPerTeam = 0;
-    this.team = [];
-    this.currentStats = {};
-    this.budget = 1500000;
-    this.sum = 0;
-    window.localStorage.removeItem("team");
-    this.nrWomenPerTeam = 0;
-    this.nrMenPerTeam = 0;
-    this.data.forEach((e: any) => {
-      e.selected = false;
-      e.overBudget = e.value > this.budget;
-    });
-    this.filteredAthletes.forEach((e: any) => {
-      e.selected = false;
-      e.overBudget = e.value > this.budget;
-    });
-  };
+  
 
   computeProgressionScore = (athlete: any) => {
     const allrounds = []
@@ -244,18 +200,7 @@ export class DataService {
     };
   };
 
-  saveForLater() {
-    const items = { ...localStorage };
-    const keys = Object.keys(items).filter(e => { return e.indexOf("team") > -1 });
-    if (!!keys.length) {
-      const next = keys.length == 1 ? 1 : Math.max(...keys.filter(e => e.indexOf("/") > 0 - 1).map(e => +e.split("team/")[1])) + 1;
-      const nextKey = `team/${next}`;
-      window.localStorage.setItem(nextKey, JSON.stringify(this.team));
-    } else {
-      window.localStorage.setItem('team', JSON.stringify(this.team));
-    }
-    this.historyTeams = this.getLSTeamHistory();
-  };
+  
 
   deleteOneFromHistory(number: number) {
     const key = `team/${number}`;
@@ -264,20 +209,20 @@ export class DataService {
     this.historyTeams.splice(index, 1)
   };
 
-  loadFromHistory(number: number) {
-    const key = `team/${number}`;
-    const team = JSON.parse(localStorage.getItem(key) as string);
+  // loadFromHistory(number: number) {
+  //   const key = `team/${number}`;
+  //   const team = JSON.parse(localStorage.getItem(key) as string);
 
-    if (this.team.length > 0) {
-      this.saveForLater();
-    }
+  //   if (this.team.length > 0) {
+  //     this.saveForLater();
+  //   }
 
-    this.team = team;
-    this.sum = this.team.reduce((acc, a) => acc + +a.value, 0);
-    this.budget = this.money - this.sum;
+  //   this.team = team;
+  //   this.sum = this.team.reduce((acc, a) => acc + +a.value, 0);
+  //   this.budget = this.money - this.sum;
 
-    // this.deleteOneFromHistory(number);
-  };
+  //   // this.deleteOneFromHistory(number);
+  // };
 
   getLSTeamHistory() {
     const response: any[] = [];
@@ -418,32 +363,14 @@ export class DataService {
   }
 
   actionAthlete(a: any): void {
-    this.filteredAthletes.forEach((athlete: any) => {
+    const fs = this.filteredAthletes.getValue();
+    fs.forEach((athlete: any) => {
       if (a.id == athlete.id) {
         athlete.selected = !athlete.selected;
       }
     });
-    this.team = this.data.filter((e: any) => e.selected);
-    this.sum = this.team.reduce((acc, a) => acc + +a.value, 0);
-    this.budget = this.money - this.sum;
-    this.data.forEach((athlete: any) => {
-      athlete.overBudget = athlete.value > this.budget;
-    });
-    this.error();
 
-    const stats: any = { sum: 0 };
-    this.rounds.forEach((rn, i) => {
-      stats[this.roundsAliases[i]] = {
-        points: this.team.reduce((acc: any, i: any) => acc + +i[rn], 0),
-        price: this.team.reduce((acc: any, i: any) => acc + i.valorileVechi[rn], 0)
-      }
-      stats.sum += stats[this.roundsAliases[i]].points;
-    });
-
-    this.currentStats = stats;
-    this.nrWomenPerTeam = this.team.filter(e => e.gender === "Female").length;
-    this.nrMenPerTeam = this.team.filter(e => e.gender === "Male").length;
-    window.localStorage.setItem("team", JSON.stringify(this.team));
+    this.filteredAthletes.next(fs);    
   }
 
 
