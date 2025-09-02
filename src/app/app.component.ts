@@ -65,7 +65,7 @@ export class AppComponent implements OnInit {
   prevTeam: any = {};
 
   roundFilters: { [key: string]: { min?: number; max?: number } } = {};
-  rounds = Array.from({ length: 6 }, (_, i) => `round${i + 1}`);
+  rounds = Array.from({ length: 7 }, (_, i) => `round${i + 1}`);
   roundsAliases = [
     "Bielsko-Biala WC #1",
     "Loudenvielle WC #2",
