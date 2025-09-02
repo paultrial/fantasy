@@ -1,0 +1,49 @@
+<section>
+  <ul *ngIf="filteredAthletes.length > 0" class="athleteList">
+    <li class="header">
+      <div class="name">Name</div>
+      <div class="data">
+        <div (click)="sortBy('value')" class="clickable price">
+          <span>Price</span>
+          <div class="icon arrow_drop_up" *ngIf="sortKey.key == 'value' && sortKey.direction == 'rw' "></div>
+          <div class="icon arrow_drop_down" *ngIf="sortKey.key == 'value' && sortKey.direction == 'fw' "></div>
+        </div>
+        <div (click)="sortBy('totalpoints')" class="clickable points">
+          <span>Points</span>
+          <div class="icon arrow_drop_up" *ngIf="sortKey.key == 'totalpoints' && sortKey.direction == 'rw'"></div>
+          <div class="icon arrow_drop_down" *ngIf="sortKey.key == 'totalpoints' && sortKey.direction == 'fw'"></div>
+        </div>
+        <div (click)="sortBy('pricePerPoint')" class="clickable pricePerPoint">
+          <span>Price Per Point</span>
+          <div class="icon arrow_drop_up" *ngIf="sortKey.key == 'pricePerPoint' && sortKey.direction == 'rw'"></div>
+          <div class="icon arrow_drop_down" *ngIf="sortKey.key == 'pricePerPoint' && sortKey.direction == 'fw'"></div>
+        </div>
+        <div class="action teamAction">+/-</div>
+      </div>
+    </li>
+    <li class="athlete" *ngFor="let athlete of filteredAthletes"
+      title="{{athlete.roundsPoints | json}} {{athlete.progressionScore | json}} {{athlete.roundValues}}"
+      [ngClass]="{overBudget: athlete.overBudget, selected: athlete.selected}">
+      <div class="name" [ngClass]="{ notinQuali: athlete.inQuali }">
+        <div class="flag"><img src="{{'assets/flags/' + athlete.country + '.gif'}}" alt=""></div>
+        <div class="nume">{{ athlete.firstname }} {{athlete.lastname }}</div>
+        <div class="insta" *ngIf="athlete.instagram"><a href="https://instagram.com/{{athlete.instagram}}"
+            target="_blank"></a></div>
+        <div *ngIf="athlete.injury" class="injury"></div>
+      </div>
+      <div class="data">
+        <div class="price"
+          [ngStyle]="{backgroundColor: valueToRedBlackColor(athlete.progressionScore.weightedPriceDelta)}">
+          {{athlete.value | currency: 'USD':'symbol':'1.0-0'}}</div>
+        <div class="points"
+          [ngStyle]="{backgroundColor: valueTogreenBlackColor(athlete.progressionScore.weightedPointDelta)}">{{
+          athlete.totalpoints }}</div>
+        <div class="pricePerPoint">{{ athlete.pricePerPoint | currency: 'USD':'symbol':'1.0-0' }}</div>
+        <div class="teamAction" *ngIf="!athlete.selected" (click)="actionAthlete(athlete)">+</div>
+        <div class="teamAction" *ngIf="athlete.selected" (click)="actionAthlete(athlete)">-</div>
+      </div>
+    </li>
+  </ul>
+  {{filteredAthletes.length}} athletes
+
+</section>
