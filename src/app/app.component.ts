@@ -4,11 +4,12 @@ import { RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AtheleteListComponent } from './athelete-list/athelete-list.component';
 import { FiltersComponent } from './filters/filters.component';
+import { TeamComponent } from './team/team.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [MatIconModule, RouterOutlet, FormsModule, AtheleteListComponent, FiltersComponent],
+  imports: [TeamComponent, MatIconModule, RouterOutlet, FormsModule, AtheleteListComponent, FiltersComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.less'
 })

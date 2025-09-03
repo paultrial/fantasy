@@ -17,10 +17,10 @@ export class TeamComponent implements OnInit {
 
   maxNrWomenPerTeam = 2
   maxNrMenPerTeam = 4
-  nrWomenPerTeam = 0
-  nrMenPerTeam = 0
   money: number = 1500000;
+  nrMenPerTeam = 0
   budget: number = 1500000;
+  nrWomenPerTeam = 0
   team: any[] = [];
   // historyTeams: any[] = this.getLSTeamHistory();
   sum: number = 0;
