@@ -499,7 +499,7 @@ export class AppComponent implements OnInit {
     }
 
     function getValueAtRound(athlete: any, round: number) {
-      return athlete.valorileVechi[`round${round-1}`] || athlete.value;
+      return athlete.valorileVechi[`round${round - 1}`] || athlete.value;
     }
 
     function scoreAthlete(athlete: any, round: number) {
@@ -534,6 +534,7 @@ export class AppComponent implements OnInit {
 
       const maleCombos = getCombinations(scoredMales, 4);
       const femaleCombos = getCombinations(scoredFemales, 2);
+      // debugger
 
       for (const m of maleCombos) {
         for (const f of femaleCombos) {
@@ -542,10 +543,15 @@ export class AppComponent implements OnInit {
           if (totalValue > budget) continue;
 
           const totalPoints = team.reduce((sum, a) => sum + a.roundPoints, 0);
-          const roundname = this.roundsAliases[round-1];
+          const roundname = this.roundsAliases[round - 1];
 
           if (totalPoints > bestPoints) {
             bestPoints = totalPoints;
+
+            team.forEach((athlete: any) => {
+              athlete.thenValue = getValueAtRound(athlete, round);
+              athlete.thenPoints = getPointsUpToRound(athlete, round);
+            });
             bestTeam = { team, bestPoints, totalValue, roundname };
           }
         }
@@ -558,66 +564,66 @@ export class AppComponent implements OnInit {
 
 
   predictNextRoundTeams(athletes: any[], budget = 1500000, shortlistSize = 25, lookback = 3) {
-  const males = athletes.filter(a => a.gender === "Male");
-  const females = athletes.filter(a => a.gender === "Female");
+    const males = athletes.filter(a => a.gender === "Male");
+    const females = athletes.filter(a => a.gender === "Female");
 
-  function getRecentAveragePoints(athlete: any, lookback: number) {
-    const points = [];
-    for (let r = 16; r >= 1; r--) {
-      const val = Number(athlete[`round${r}`] || 0);
-      if (val > 0) points.push(val);
-      if (points.length >= lookback) break;
+    function getRecentAveragePoints(athlete: any, lookback: number) {
+      const points = [];
+      for (let r = 16; r >= 1; r--) {
+        const val = Number(athlete[`round${r}`] || 0);
+        if (val > 0) points.push(val);
+        if (points.length >= lookback) break;
+      }
+      if (points.length === 0) return 0;
+      return points.reduce((a, b) => a + b, 0) / points.length;
     }
-    if (points.length === 0) return 0;
-    return points.reduce((a, b) => a + b, 0) / points.length;
-  }
 
-  function predictAthlete(athlete: any) {
-    const avg = getRecentAveragePoints(athlete, lookback);
-    const trend = Number(athlete.progressionScore?.weightedPointDelta || 0);
-    const expectedPoints = avg + 0.5 * trend; // weighting factor
-    return {
-      ...athlete,
-      nextPoints: expectedPoints,
-      nextValue: athlete.value,
-      efficiency: expectedPoints / athlete.value
-    };
-  }
+    function predictAthlete(athlete: any) {
+      const avg = getRecentAveragePoints(athlete, lookback);
+      const trend = Number(athlete.progressionScore?.weightedPointDelta || 0);
+      const expectedPoints = avg + 0.5 * trend; // weighting factor
+      return {
+        ...athlete,
+        nextPoints: expectedPoints,
+        nextValue: athlete.value,
+        efficiency: expectedPoints / athlete.value
+      };
+    }
 
-  function getCombinations(arr: any[], k: number): any[][] {
-    if (k === 0) return [[]];
-    if (arr.length === 0) return [];
-    const [first, ...rest] = arr;
-    const withFirst = getCombinations(rest, k - 1).map(c => [first, ...c]);
-    const withoutFirst = getCombinations(rest, k);
-    return [...withFirst, ...withoutFirst];
-  }
+    function getCombinations(arr: any[], k: number): any[][] {
+      if (k === 0) return [[]];
+      if (arr.length === 0) return [];
+      const [first, ...rest] = arr;
+      const withFirst = getCombinations(rest, k - 1).map(c => [first, ...c]);
+      const withoutFirst = getCombinations(rest, k);
+      return [...withFirst, ...withoutFirst];
+    }
 
-  const scoredMales = males.map(predictAthlete).sort((a, b) => b.efficiency - a.efficiency).slice(0, shortlistSize);
-  const scoredFemales = females.map(predictAthlete).sort((a, b) => b.efficiency - a.efficiency).slice(0, shortlistSize);
+    const scoredMales = males.map(predictAthlete).sort((a, b) => b.efficiency - a.efficiency).slice(0, shortlistSize);
+    const scoredFemales = females.map(predictAthlete).sort((a, b) => b.efficiency - a.efficiency).slice(0, shortlistSize);
 
-  let bestTeam = null;
-  let bestPoints = -1;
+    let bestTeam = null;
+    let bestPoints = -1;
 
-  const maleCombos = getCombinations(scoredMales, 4);
-  const femaleCombos = getCombinations(scoredFemales, 2);
+    const maleCombos = getCombinations(scoredMales, 4);
+    const femaleCombos = getCombinations(scoredFemales, 2);
 
-  for (const m of maleCombos) {
-    for (const f of femaleCombos) {
-      const team = [...m, ...f];
-      const totalValue = team.reduce((sum, a) => sum + a.nextValue, 0);
-      if (totalValue > budget) continue;
+    for (const m of maleCombos) {
+      for (const f of femaleCombos) {
+        const team = [...m, ...f];
+        const totalValue = team.reduce((sum, a) => sum + a.nextValue, 0);
+        if (totalValue > budget) continue;
 
-      const totalPoints = team.reduce((sum, a) => sum + a.nextPoints, 0);
+        const totalPoints = team.reduce((sum, a) => sum + a.nextPoints, 0);
 
-      if (totalPoints > bestPoints) {
-        bestPoints = totalPoints;
-        bestTeam = { team, predictedPoints: totalPoints, totalValue };
+        if (totalPoints > bestPoints) {
+          bestPoints = totalPoints;
+          bestTeam = { team, predictedPoints: totalPoints, totalValue };
+        }
       }
     }
-  }
 
-  return bestTeam;
-}
+    return bestTeam;
+  }
 
 }

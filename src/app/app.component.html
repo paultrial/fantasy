@@ -238,7 +238,7 @@
       {{filteredAthletes.length}} athletes
     </section>
 
-    <section>
+    <section style="width: 471px;">
       <h4>Best Teams</h4>
 
       <ul class="athleteList" *ngFor="let round of bestTeams">
@@ -250,29 +250,19 @@
           <div class="data">
             <div class="price">
               <span>Price</span>
-              <div class="icon arrow_drop_up" *ngIf="sortKey.key == 'value' && sortKey.direction == 'rw' "></div>
-              <div class="icon arrow_drop_down" *ngIf="sortKey.key == 'value' && sortKey.direction == 'fw' "></div>
             </div>
             <div class="points">
               <span>Points</span>
-              <div class="icon arrow_drop_up" *ngIf="sortKey.key == 'totalpoints' && sortKey.direction == 'rw'"></div>
-              <div class="icon arrow_drop_down" *ngIf="sortKey.key == 'totalpoints' && sortKey.direction == 'fw'"></div>
             </div>
-            <div class="pricePerPoint">
-              <span>Price Per Point</span>
-              <div class="icon arrow_drop_up" *ngIf="sortKey.key == 'pricePerPoint' && sortKey.direction == 'rw'"></div>
-              <div class="icon arrow_drop_down" *ngIf="sortKey.key == 'pricePerPoint' && sortKey.direction == 'fw'"></div>
-            </div>
-            <div class="action teamAction">+/-</div>
           </div>
         </li>
           <li class="athlete" *ngFor="let athlete of round.team" title="{{athlete.roundsPoints | json}}" >
             <div class="name"><span *ngIf="athlete.inQuali">!!!</span> {{ athlete.firstname }} {{ athlete.lastname }}
             </div>
             <div class="data">
-              <div class="price">{{ athlete.value | currency: 'USD':'symbol':'1.0-0'}} </div>
-              <div class="points">{{ athlete.totalpoints }}</div>
-              <div class="pricePerPoint">{{ athlete.pricePerPoint }}</div>
+              <div style="background-color: red;" class="price">{{ athlete.thenValue | currency: 'USD':'symbol':'1.0-0'}} </div>
+              <div style="background-color: green;" class="points">{{ athlete.thenPoints }}</div>
+              
             </div>
           </li>
         </ul>
