@@ -24,6 +24,11 @@ export class AppComponent implements OnInit {
     max: undefined
   }
 
+  priceFilter = {
+    min: undefined,
+    max: undefined
+  }
+
   weightedPriceDeltaFilter = {
     min: undefined,
     max: undefined
@@ -113,7 +118,7 @@ export class AppComponent implements OnInit {
 
         athlete.gender = +athlete.gender == 1 ? 'Male' : 'Female';
         athlete.progressionScore = this.computeProgressionScore(athlete);
-        athlete.pricePerPoint = athlete.totalpoints > 0 ? (athlete.value / +athlete.totalpoints).toFixed(2) : 0;
+        athlete.valuePerPoint = athlete.totalpoints > 0 ? (athlete.value / +athlete.totalpoints).toFixed(2) : 0;
 
         // const qualiNames = qualiRes.map((e: any) => e.columns[1].toLowerCase());
         // athlete.inQuali = !this.isAthleteInList(qualiNames, athlete.firstname, athlete.lastname);
@@ -187,6 +192,8 @@ export class AppComponent implements OnInit {
         return (!filter?.min || value >= filter.min);
       });
 
+      const priceFilterMatch = (!this.priceFilter?.min || athlete.value >= this.priceFilter.min) && (!this.priceFilter?.max || athlete.value <= this.priceFilter.max);
+
       const totalPointsfilterMatch = (!this.totalPointsfilter?.min || athlete.totalpoints >= this.totalPointsfilter.min) && (!this.totalPointsfilter?.max || athlete.totalpoints <= this.totalPointsfilter.max);
       const weightedPointDeltaFilterMatch = (!this.weightedPointDeltaFilter?.min || athlete.progressionScore.weightedPointDelta >= this.weightedPointDeltaFilter.min) && (!this.weightedPointDeltaFilter?.max || athlete.progressionScore.weightedPointDelta <= this.weightedPointDeltaFilter.max);
       const weightedPriceDeltaFilterMatch = (!this.weightedPriceDeltaFilter?.min || athlete.progressionScore.weightedPriceDelta >= this.weightedPriceDeltaFilter.min) && (!this.weightedPriceDeltaFilter?.max || athlete.progressionScore.weightedPriceDelta <= this.weightedPriceDeltaFilter.max);
@@ -196,6 +203,7 @@ export class AppComponent implements OnInit {
       return genderMatch &&
         roundsMatch &&
         totalPointsfilterMatch &&
+        priceFilterMatch &&
         injuryFilterMatch &&
         weightedPointDeltaFilterMatch &&
         weightedPriceDeltaFilterMatch &&
@@ -207,10 +215,14 @@ export class AppComponent implements OnInit {
   }
 
   resetFilters(): void {
+    this.priceFilter = {
+      min: undefined,
+      max: undefined
+    };
     this.totalPointsfilter = {
       min: undefined,
       max: undefined
-    }
+    };
     this.filterGender = '';
     this.filteredAthletes = [...this.data];
     this.rounds.forEach(r => {

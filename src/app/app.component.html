@@ -88,6 +88,12 @@
             <option value="Male">Male</option>
             <option value="Female">Female</option>
           </select>
+
+          <div class="filter-row totalPoints">
+            <label>by price</label>
+            <input type="number" step="1000" min="25000" max="500000" placeholder="min" [(ngModel)]="priceFilter.min" (input)="applyFilters()" />
+            <input type="number" step="1000" min="25000" max="500000" placeholder="max" [(ngModel)]="priceFilter.max" (input)="applyFilters()" />
+          </div>
           
           <div class="filter-row totalPoints">
             <label>by total Points</label>
@@ -223,7 +229,7 @@
           <div class="data">
             <div class="price" [ngStyle]="{backgroundColor: valueToRedBlackColor(athlete.progressionScore.weightedPriceDelta)}">{{athlete.value | currency: 'USD':'symbol':'1.0-0'}}</div>
             <div class="points" [ngStyle]="{backgroundColor: valueTogreenBlackColor(athlete.progressionScore.weightedPointDelta)}">{{ athlete.totalpoints }}</div>
-            <div class="pricePerPoint">{{ athlete.pricePerPoint | currency: 'USD':'symbol':'1.0-0' }}</div>
+            <div class="pricePerPoint">{{ athlete.valuePerPoint | currency: 'USD':'symbol':'1.0-0' }}</div>
             <div class="teamAction" *ngIf="!athlete.selected" (click)="actionAthlete(athlete)">+</div>
             <div class="teamAction" *ngIf="athlete.selected" (click)="actionAthlete(athlete)">-</div>
           </div>
