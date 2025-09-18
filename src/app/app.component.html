@@ -283,7 +283,7 @@
       <ul class="athleteList" *ngFor="let round of bestTeams">
         {{round.bestPoints}} points
         {{round.roundname}}
-        {{round.totalValue | currency: 'USD':'symbol':'1.0-0'}}
+        {{1500000 - round.totalValue | currency: 'USD':'symbol':'1.0-0'}}
         <li class="header">
           <div class="name">Name</div>
           <div class="data">
