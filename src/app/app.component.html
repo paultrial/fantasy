@@ -197,9 +197,17 @@
 
       <section class="predictNextRoundTeams history">
         <h4>Predicted next best team</h4>
+        <div class="filters">
+          <div class="filter-row">
+            <label for="minpoints">min points</label>
+            <input id="minpoints" type="number" max="94" min="1" step="1"
+              [(ngModel)]="predictNextRoundTeamsMinPioints" />
+          </div>
+        </div>
         <div class="container" *ngIf="bt | async as bestTeam">
           <div class="stats" title="{{bt | json}}">predicted points: {{bestTeam.predictedPoints}} - total price:
-            {{bestTeam.totalValue | currency: 'USD':'symbol':'1.0-0'}} leftovers: {{1500000 - bestTeam.totalValue | currency: 'USD':'symbol':'1.0-0'}}</div>
+            {{bestTeam.totalValue | currency: 'USD':'symbol':'1.0-0'}} leftovers: {{1500000 - bestTeam.totalValue |
+            currency: 'USD':'symbol':'1.0-0'}}</div>
           <ul class="athleteList" title="{{bestTeam | json}}">
             <li class="athlete" *ngFor="let athlete of bestTeam.team">
               <div class="name"><span *ngIf="athlete.inQuali">!!!</span> {{ athlete.firstname }} {{ athlete.lastname }}
@@ -213,7 +221,8 @@
           </ul>
         </div>
       </section>
-      <button (click)="findHighScoringTeam()">Predict next best team</button>
+      <button (click)="findHighScoringTeam(predictNextRoundTeamsMinPioints)">Predict next best team</button>
+
     </div>
   </div>
   <div class="divider" role="separator" aria-label="Divider"></div>

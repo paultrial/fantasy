@@ -101,6 +101,8 @@ export class AppComponent implements OnInit {
     "Dry"
   ]
 
+  predictNextRoundTeamsMinPioints = 94;
+
   constructor(private dataService: DataService) {
     // for (let rn = 1; rn <= 5; rn++) { this.rounds.push("round" + rn.toString()) }
     for (let i = 1; i < 12; i++) { this.weights.push(i / 10); }
@@ -734,13 +736,12 @@ export class AppComponent implements OnInit {
     return bestTeam;
   }
 
-
-  findHighScoringTeam() {
+  findHighScoringTeam(points: number) {
     const athletes = this.data as any[],
     budget = 1500000
     // Filter eligible athletes
-    const males = athletes.filter(a => a.gender === 'Male' && a.totalpoints >= 94);
-    const females = athletes.filter(a => a.gender === 'Female' && a.totalpoints >= 94);
+    const males = athletes.filter(a => a.gender === 'Male' && a.totalpoints >= points);
+    const females = athletes.filter(a => a.gender === 'Female' && a.totalpoints >= points);
 
     let bestTeam = null;
     let bestPoints = -1;
@@ -762,8 +763,8 @@ export class AppComponent implements OnInit {
         }
       }
     }
-
     this.bt = of(bestTeam);
+    return bestTeam;
   }
 
 
