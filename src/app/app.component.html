@@ -71,7 +71,7 @@
       <section>
         <div class="filters">
           <h3>Filters</h3>
-          
+
           <div class="filter-row checkbox">
             <label for="injuryFilter">not injured</label>
             <input type="checkbox" id="injuryFilter" [(ngModel)]="injuryfilter" (change)="applyFilters()">
@@ -79,7 +79,8 @@
 
           <div class="filter-row">
             <label for="nameFilter">Filter by name</label>
-            <input id="nameFilter" type="text" [(ngModel)]="nameFilter" (input)="applyFilters()" placeholder="Filter by name" />
+            <input id="nameFilter" type="text" [(ngModel)]="nameFilter" (input)="applyFilters()"
+              placeholder="Filter by name" />
           </div>
 
           <label for="gender">by gender</label>
@@ -91,24 +92,28 @@
 
           <div class="filter-row totalPoints">
             <label>by price</label>
-            <input type="number" step="1000" min="25000" max="500000" placeholder="min" [(ngModel)]="priceFilter.min" (input)="applyFilters()" />
-            <input type="number" step="1000" min="25000" max="500000" placeholder="max" [(ngModel)]="priceFilter.max" (input)="applyFilters()" />
+            <input type="number" step="1000" min="25000" max="500000" placeholder="min" [(ngModel)]="priceFilter.min"
+              (input)="applyFilters()" />
+            <input type="number" step="1000" min="25000" max="500000" placeholder="max" [(ngModel)]="priceFilter.max"
+              (input)="applyFilters()" />
           </div>
-          
+
           <div class="filter-row totalPoints">
             <label>by total Points</label>
-            <input type="number" min="0" placeholder="Min" [(ngModel)]="totalPointsfilter.min" (input)="applyFilters()" />
+            <input type="number" min="0" placeholder="Min" [(ngModel)]="totalPointsfilter.min"
+              (input)="applyFilters()" />
             <input type="number" placeholder="Max" [(ngModel)]="totalPointsfilter.max" (input)="applyFilters()" />
           </div>
-          
+
           <div class="filter-row byCountry">
             <label>by country</label>
             <select [(ngModel)]="countryFilter" (change)="applyFilters()">
               <option value="">All Countries</option>
-              <option *ngFor="let c of countrylist" [value]="c.contryCode">{{c.countryName}} // #ath: {{c.athletes}} // #points: {{c.points}}</option>
+              <option *ngFor="let c of countrylist" [value]="c.contryCode">{{c.countryName}} // #ath: {{c.athletes}} //
+                #points: {{c.points}}</option>
             </select>
           </div>
-                    
+
           <div class="filter-row totalPoints">
             <label>by total weightedPointDelta</label>
             <input type="number" min="{{minweightedPointDelta}}" step="0.1" placeholder="{{minweightedPointDelta}}"
@@ -189,6 +194,26 @@
         </ul>
       </section>
       <button *ngIf="localStorageTeam" (click)="clearHistory()">Clear History</button>
+
+      <section class="predictNextRoundTeams history">
+        <h4>Predicted next best team</h4>
+        <div class="container" *ngIf="bt | async as bestTeam">
+          <div class="stats" title="{{bt | json}}">predicted points: {{bestTeam.predictedPoints}} - total price:
+            {{bestTeam.totalValue | currency: 'USD':'symbol':'1.0-0'}} leftovers: {{1500000 - bestTeam.totalValue | currency: 'USD':'symbol':'1.0-0'}}</div>
+          <ul class="athleteList" title="{{bestTeam | json}}">
+            <li class="athlete" *ngFor="let athlete of bestTeam.team">
+              <div class="name"><span *ngIf="athlete.inQuali">!!!</span> {{ athlete.firstname }} {{ athlete.lastname }}
+              </div>
+              <div class="data">
+                <div class="price">{{ athlete.value | currency: 'USD':'symbol':'1.0-0'}} </div>
+                <div class="points">{{ athlete.totalpoints }}</div>
+                <div class="pricePerPoint">{{ athlete.pricePerPoint }}</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+      <button (click)="findHighScoringTeam()">Predict next best team</button>
     </div>
   </div>
   <div class="divider" role="separator" aria-label="Divider"></div>
@@ -211,13 +236,14 @@
             <div (click)="sortBy('pricePerPoint')" class="clickable pricePerPoint">
               <span>Price Per Point</span>
               <div class="icon arrow_drop_up" *ngIf="sortKey.key == 'pricePerPoint' && sortKey.direction == 'rw'"></div>
-              <div class="icon arrow_drop_down" *ngIf="sortKey.key == 'pricePerPoint' && sortKey.direction == 'fw'"></div>
+              <div class="icon arrow_drop_down" *ngIf="sortKey.key == 'pricePerPoint' && sortKey.direction == 'fw'">
+              </div>
             </div>
             <div class="action teamAction">+/-</div>
           </div>
         </li>
         <li class="athlete" *ngFor="let athlete of filteredAthletes"
-          title="{{athlete.roundsPoints | json}} {{athlete.progressionScore | json}} {{athlete.roundValues}}"
+          title="{{athlete.roundsPoints | json}} {{athlete.progressionScore | json}} {{athlete.valorileVechi | json}}"
           [ngClass]="{overBudget: athlete.overBudget, selected: athlete.selected}">
           <div class="name" [ngClass]="{ notinQuali: athlete.inQuali }">
             <div class="flag"><img src="{{'assets/flags/' + athlete.country + '.gif'}}" alt=""></div>
@@ -227,8 +253,12 @@
             <div *ngIf="athlete.injury" class="injury"></div>
           </div>
           <div class="data">
-            <div class="price" [ngStyle]="{backgroundColor: valueToRedBlackColor(athlete.progressionScore.weightedPriceDelta)}">{{athlete.value | currency: 'USD':'symbol':'1.0-0'}}</div>
-            <div class="points" [ngStyle]="{backgroundColor: valueTogreenBlackColor(athlete.progressionScore.weightedPointDelta)}">{{ athlete.totalpoints }}</div>
+            <div class="price"
+              [ngStyle]="{backgroundColor: valueToRedBlackColor(athlete.progressionScore.weightedPriceDelta)}">
+              {{athlete.value | currency: 'USD':'symbol':'1.0-0'}}</div>
+            <div class="points"
+              [ngStyle]="{backgroundColor: valueTogreenBlackColor(athlete.progressionScore.weightedPointDelta)}">{{
+              athlete.totalpoints }}</div>
             <div class="pricePerPoint">{{ athlete.valuePerPoint | currency: 'USD':'symbol':'1.0-0' }}</div>
             <div class="teamAction" *ngIf="!athlete.selected" (click)="actionAthlete(athlete)">+</div>
             <div class="teamAction" *ngIf="athlete.selected" (click)="actionAthlete(athlete)">-</div>
@@ -242,10 +272,10 @@
       <h4>Best Teams</h4>
 
       <ul class="athleteList" *ngFor="let round of bestTeams">
-          {{round.bestPoints}} points
-          {{round.roundname}}
-          {{round.totalValue | currency: 'USD':'symbol':'1.0-0'}}
-          <li class="header">
+        {{round.bestPoints}} points
+        {{round.roundname}}
+        {{round.totalValue | currency: 'USD':'symbol':'1.0-0'}}
+        <li class="header">
           <div class="name">Name</div>
           <div class="data">
             <div class="price">
@@ -256,16 +286,17 @@
             </div>
           </div>
         </li>
-          <li class="athlete" *ngFor="let athlete of round.team" title="{{athlete.roundsPoints | json}}" >
-            <div class="name"><span *ngIf="athlete.inQuali">!!!</span> {{ athlete.firstname }} {{ athlete.lastname }}
+        <li class="athlete" *ngFor="let athlete of round.team" title="{{athlete.roundsPoints | json}}">
+          <div class="name"><span *ngIf="athlete.inQuali">!!!</span> {{ athlete.firstname }} {{ athlete.lastname }}
+          </div>
+          <div class="data">
+            <div style="background-color: red;" class="price">{{ athlete.thenValue | currency: 'USD':'symbol':'1.0-0'}}
             </div>
-            <div class="data">
-              <div style="background-color: red;" class="price">{{ athlete.thenValue | currency: 'USD':'symbol':'1.0-0'}} </div>
-              <div style="background-color: green;" class="points">{{ athlete.thenPoints }}</div>
-              
-            </div>
-          </li>
-        </ul>
+            <div style="background-color: green;" class="points">{{ athlete.thenPoints }}</div>
+
+          </div>
+        </li>
+      </ul>
     </section>
   </div>
 </main>

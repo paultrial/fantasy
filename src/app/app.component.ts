@@ -1,18 +1,20 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterOutlet } from '@angular/router';
 import { DataService } from './data-service.service';
-import { NgIf, NgFor, NgClass, JsonPipe, CurrencyPipe, NgStyle } from '@angular/common';
+import { NgIf, NgFor, NgClass, JsonPipe, CurrencyPipe, NgStyle, AsyncPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [MatIconModule, RouterOutlet, NgIf, NgFor, NgClass, FormsModule, JsonPipe, CurrencyPipe, NgStyle],
+  imports: [MatIconModule, RouterOutlet, NgIf, NgFor, NgClass, FormsModule, JsonPipe, CurrencyPipe, NgStyle, AsyncPipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.less'
 })
 export class AppComponent implements OnInit {
+  bt: Observable<any> = of();
   title = 'P.B. Fantasy DH';
   data: any;
   team: any[] = [];
@@ -67,7 +69,7 @@ export class AppComponent implements OnInit {
   countryFilter = '';
   filteredAthletes: any[] = [];
   historyTeams: any[] = [];
-  bestTeams: any = {};
+  bestTeams: any = [];
   prevTeam: any = {};
 
   roundFilters: { [key: string]: { min?: number; max?: number } } = {};
@@ -85,6 +87,19 @@ export class AppComponent implements OnInit {
     "Lake Placid WC #9",
     "Mont-Sainte-Anne WC #1",
   ];
+  roundsConditions = [
+    "Wet",
+    "Dry",
+    "Dry",
+    "Dry",
+    "Dry",
+    "Dry",
+    "Wet",
+    "Dry",
+    "Dry",
+    "Dry",
+    "Dry"
+  ]
 
   constructor(private dataService: DataService) {
     // for (let rn = 1; rn <= 5; rn++) { this.rounds.push("round" + rn.toString()) }
@@ -125,14 +140,20 @@ export class AppComponent implements OnInit {
         // athlete.inQuali = !this.isAthleteInList(qualiNames, athlete.firstname, athlete.lastname);
         return athlete;
       });
-      // debugger;
 
-      this.bestTeams = this.findBestTeamsOptimized(this.data, this.money, 8, 25);
+      const localStorageBestTeams = window.localStorage.getItem("bestTeams");
+
+      if (!localStorageBestTeams) {
+        this.bestTeams = this.findBestTeamsOptimized(this.data, this.money, 8, 25);
+        window.localStorage.setItem('bestTeams', JSON.stringify(this.bestTeams));
+      } else {
+        this.bestTeams = JSON.parse(localStorageBestTeams);
+      }
+
       this.lst();
       this.sort();
       this.countrylist = this.createCountryList();
     });
-    // });
   }
 
   sortBy(key: string) {
@@ -485,7 +506,14 @@ export class AppComponent implements OnInit {
     return c.sort((a: any, b: any) => b.points - a.points);
   };
 
-
+  getCombinations(arr: any[], k: number): any[][] {
+      if (k === 0) return [[]];
+      if (arr.length === 0) return [];
+      const [first, ...rest] = arr;
+      const withFirst = this.getCombinations(rest, k - 1).map(c => [first, ...c]);
+      const withoutFirst = this.getCombinations(rest, k);
+      return [...withFirst, ...withoutFirst];
+    }
 
 
   // find best teams
@@ -522,7 +550,7 @@ export class AppComponent implements OnInit {
       return [...withFirst, ...withoutFirst];
     }
 
-    const results: any[] = [];
+    const results = [];
 
     for (let round = 1; round <= roundsPlayed; round++) {
       // Score athletes for this round
@@ -558,14 +586,15 @@ export class AppComponent implements OnInit {
       }
 
       results.push(bestTeam);
-    }
+    };
     return results;
   }
 
 
-  predictNextRoundTeams(athletes: any[], budget = 1500000, shortlistSize = 25, lookback = 3) {
-    const males = athletes.filter(a => a.gender === "Male");
-    const females = athletes.filter(a => a.gender === "Female");
+  predictNextRoundTeams() {
+    const athletes = this.data, budget = 1500000, shortlistSize = 25, lookback = 7;
+    const males = athletes.filter((a: any) => a.gender === "Male");
+    const females = athletes.filter((a: any) => a.gender === "Female");
 
     function getRecentAveragePoints(athlete: any, lookback: number) {
       const points = [];
@@ -589,6 +618,44 @@ export class AppComponent implements OnInit {
         efficiency: expectedPoints / athlete.value
       };
     }
+    
+    const scoredMales = males.map(predictAthlete).sort((a: any, b: any) => b.efficiency - a.efficiency).slice(0, shortlistSize);
+    const scoredFemales = females.map(predictAthlete).sort((a: any, b: any) => b.efficiency - a.efficiency).slice(0, shortlistSize);
+
+    let bestTeam = null;
+    let bestPoints = -1;
+
+    const maleCombos = this.getCombinations(scoredMales, 4);
+    const femaleCombos = this.getCombinations(scoredFemales, 2);
+
+    for (const m of maleCombos) {
+      for (const f of femaleCombos) {
+        const team = [...m, ...f];
+        const totalValue = team.reduce((sum, a) => sum + a.nextValue, 0);
+        if (totalValue > budget) continue;
+
+        const totalPoints = team.reduce((sum, a) => sum + a.nextPoints, 0);
+
+        if (totalPoints > bestPoints) {
+          bestPoints = totalPoints;
+          bestTeam = { team, predictedPoints: totalPoints.toFixed(), totalValue: totalValue.toFixed() };
+        }
+      }
+    }
+    this.bt = of(bestTeam);
+  }
+
+  // weather can be "Wet" or "Dry"
+  public predictNextRoundTeam() {
+
+    const athletes = this.data as any[],
+      budget = 1_500_000,
+      shortlistSize = 25,
+      lookback = 8
+    const roundsMeta = this.roundsConditions;
+
+    const males = athletes.filter(a => a.gender === 'Male');
+    const females = athletes.filter(a => a.gender === 'Female');
 
     function getCombinations(arr: any[], k: number): any[][] {
       if (k === 0) return [[]];
@@ -598,6 +665,47 @@ export class AppComponent implements OnInit {
       const withoutFirst = getCombinations(rest, k);
       return [...withFirst, ...withoutFirst];
     }
+
+    // Compute average performance by weather
+    const getWeatherPerformance = (athlete: any, weather: string): number => {
+      const scores: number[] = [];
+      for (let i = 0; i <= this.roundsConditions.length; i++) {
+
+        const pts = Number(athlete[`round${i + 1}`] || 0);
+        if (pts > 0) scores.push(pts);
+      }
+      if (scores.length === 0) return 0; // no data
+      return scores.reduce((a, b) => a + b, 0) / scores.length;
+    };
+
+    const getRecentAveragePoints = (athlete: any, lookback: number): number => {
+      const points: number[] = [];
+      for (let r = 16; r >= 1; r--) {
+        const val = Number(athlete[`round${r}`] || 0);
+        if (val > 0) points.push(val);
+        if (points.length >= lookback) break;
+      }
+      if (points.length === 0) return 0;
+      return points.reduce((a, b) => a + b, 0) / points.length;
+    };
+
+    const predictAthlete = (athlete: any) => {
+      const avgRecent = getRecentAveragePoints(athlete, lookback);
+      const trend = Number(athlete.progressionScore?.weightedPointDelta || 0);
+      const basePoints = avgRecent + 0.5 * trend;
+
+      const weatherAvg = getWeatherPerformance(athlete, "Dry");
+      const adjustedPoints = weatherAvg > 0
+        ? (basePoints * 0.7 + weatherAvg * 0.3) // blend recent + weather history
+        : basePoints; // fallback if no weather data
+
+      return {
+        ...athlete,
+        roundValue: athlete.value,
+        roundPoints: adjustedPoints,
+        efficiency: adjustedPoints / athlete.value
+      };
+    };
 
     const scoredMales = males.map(predictAthlete).sort((a, b) => b.efficiency - a.efficiency).slice(0, shortlistSize);
     const scoredFemales = females.map(predictAthlete).sort((a, b) => b.efficiency - a.efficiency).slice(0, shortlistSize);
@@ -611,10 +719,10 @@ export class AppComponent implements OnInit {
     for (const m of maleCombos) {
       for (const f of femaleCombos) {
         const team = [...m, ...f];
-        const totalValue = team.reduce((sum, a) => sum + a.nextValue, 0);
+        const totalValue = team.reduce((sum, a) => sum + a.roundValue, 0);
         if (totalValue > budget) continue;
 
-        const totalPoints = team.reduce((sum, a) => sum + a.nextPoints, 0);
+        const totalPoints = team.reduce((sum, a) => sum + a.roundPoints, 0);
 
         if (totalPoints > bestPoints) {
           bestPoints = totalPoints;
@@ -625,5 +733,39 @@ export class AppComponent implements OnInit {
 
     return bestTeam;
   }
+
+
+  findHighScoringTeam() {
+    const athletes = this.data as any[],
+    budget = 1500000
+    // Filter eligible athletes
+    const males = athletes.filter(a => a.gender === 'Male' && a.totalpoints >= 94);
+    const females = athletes.filter(a => a.gender === 'Female' && a.totalpoints >= 94);
+
+    let bestTeam = null;
+    let bestPoints = -1;
+
+    const maleCombos = this.getCombinations(males, 4);
+    const femaleCombos = this.getCombinations(females, 2);
+
+    for (const m of maleCombos) {
+      for (const f of femaleCombos) {
+        const team = [...m, ...f];
+        const totalValue = team.reduce((sum, a) => sum + a.value, 0);
+        if (totalValue > budget) continue; // skip if over budget
+
+        const totalPoints = team.reduce((sum, a) => sum + a.totalpoints, 0);
+
+        if (totalPoints > bestPoints) {
+          bestPoints = totalPoints;
+          bestTeam = { team, predictedPoints: totalPoints, totalValue };
+        }
+      }
+    }
+
+    this.bt = of(bestTeam);
+  }
+
+
 
 }
