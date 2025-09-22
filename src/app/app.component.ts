@@ -136,7 +136,7 @@ export class AppComponent implements OnInit {
 
         athlete.gender = +athlete.gender == 1 ? 'Male' : 'Female';
         athlete.progressionScore = this.computeProgressionScore(athlete);
-        athlete.valuePerPoint = athlete.totalpoints > 0 ? (athlete.value / +athlete.totalpoints).toFixed(2) : 0;
+        athlete.pricePerPoint = athlete.totalpoints > 0 ? (athlete.value / +athlete.totalpoints).toFixed(2) : 0;
 
         // const qualiNames = qualiRes.map((e: any) => e.columns[1].toLowerCase());
         // athlete.inQuali = !this.isAthleteInList(qualiNames, athlete.firstname, athlete.lastname);
