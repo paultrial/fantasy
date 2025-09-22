@@ -73,7 +73,7 @@ export class AppComponent implements OnInit {
   prevTeam: any = {};
 
   roundFilters: { [key: string]: { min?: number; max?: number } } = {};
-  rounds = Array.from({ length: 8 }, (_, i) => `round${i + 1}`);
+  rounds = Array.from({ length: 9 }, (_, i) => `round${i + 1}`);
   roundsAliases = [
     "Bielsko-Biala WC #1",
     "Loudenvielle WC #2",
@@ -101,7 +101,7 @@ export class AppComponent implements OnInit {
     "Dry"
   ]
 
-  predictNextRoundTeamsMinPioints = 94;
+  predictNextRoundTeamsMinPioints = 120;
 
   constructor(private dataService: DataService) {
     // for (let rn = 1; rn <= 5; rn++) { this.rounds.push("round" + rn.toString()) }
@@ -146,7 +146,7 @@ export class AppComponent implements OnInit {
       const localStorageBestTeams = window.localStorage.getItem("bestTeams");
 
       if (!localStorageBestTeams) {
-        this.bestTeams = this.findBestTeamsOptimized(this.data, this.money, 8, 25);
+        this.bestTeams = this.findBestTeamsOptimized(this.data, this.money, 9, 25);
         window.localStorage.setItem('bestTeams', JSON.stringify(this.bestTeams));
       } else {
         this.bestTeams = JSON.parse(localStorageBestTeams);
@@ -520,7 +520,7 @@ export class AppComponent implements OnInit {
 
   // find best teams
 
-  findBestTeamsOptimized(athletes: any[], budget = 1500000, roundsPlayed = 6, shortlistSize = 25) {
+  findBestTeamsOptimized(athletes: any[], budget = 1500000, roundsPlayed = 9, shortlistSize = 25) {
     const males = athletes.filter(a => a.gender === "Male");
     const females = athletes.filter(a => a.gender === "Female");
 
