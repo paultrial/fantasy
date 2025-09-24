@@ -146,8 +146,10 @@ export class AppComponent implements OnInit {
       const localStorageBestTeams = window.localStorage.getItem("bestTeams");
 
       if (!localStorageBestTeams) {
+        console.time("finding best teams");
         this.bestTeams = this.findBestTeamsOptimized(this.data, this.money, 9, 25);
         window.localStorage.setItem('bestTeams', JSON.stringify(this.bestTeams));
+        console.timeEnd("finding best teams");
       } else {
         this.bestTeams = JSON.parse(localStorageBestTeams);
       }
