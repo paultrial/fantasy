@@ -589,6 +589,21 @@ export class AppComponent implements OnInit {
 
       results.push(bestTeam);
     };
+
+    const count: any = {
+
+    }
+
+    results.forEach((bt: any) => {
+      bt.team.forEach((athlete: any) => {
+        if (!count[athlete.id]) {
+          count[athlete.id] = { athlete, appearances: 0, totalPoints: 0, totalValue: 0 };
+          athlete.appearances = count[athlete.id].appearances;
+        }
+        count[athlete.id].appearances += 1;
+        athlete.appearances = count[athlete.id].appearances;
+      });
+    });
     return results;
   }
 

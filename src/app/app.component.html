@@ -297,8 +297,7 @@
           </div>
         </li>
         <li class="athlete" *ngFor="let athlete of round.team" title="{{athlete.roundsPoints | json}}">
-          <div class="name"><span *ngIf="athlete.inQuali">!!!</span> {{ athlete.firstname }} {{ athlete.lastname }}
-          </div>
+          <div class="name"> {{ athlete.firstname }} {{ athlete.lastname }} ({{athlete.appearances}})</div>
           <div class="data">
             <div style="background-color: red;" class="price">{{ athlete.thenValue | currency: 'USD':'symbol':'1.0-0'}}
             </div>
