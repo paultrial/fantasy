@@ -146,8 +146,11 @@ export class AppComponent implements OnInit {
       const localStorageBestTeams = window.localStorage.getItem("bestTeams");
 
       if (!localStorageBestTeams) {
-        this.bestTeams = this.findBestTeamsOptimized(this.data, this.money, 10, 25);
+        let start = performance.now();
+        this.bestTeams = this.findBestTeamsOptimized(this.data, this.money, 9, 38);
         window.localStorage.setItem('bestTeams', JSON.stringify(this.bestTeams));
+        let end = performance.now();
+        alert(`Best teams calculated in ${(end - start).toFixed(2)} ms. Found ${this.bestTeams.length} best teams.`);
       } else {
         this.bestTeams = JSON.parse(localStorageBestTeams);
       }
@@ -409,7 +412,7 @@ export class AppComponent implements OnInit {
   valueToRedBlackColor(value: number): string {
     const clamped = Math.max(this.minweightedPriceDelta, Math.min(value, this.maxweightedPriceDelta));
     const normalized = (clamped - this.minweightedPriceDelta) / (this.maxweightedPriceDelta - this.minweightedPriceDelta);
-    const red = Math.round(255 * (1 - normalized));
+    const red = Math.round(220 * (1 - normalized));
     return `rgb(${red}, 0, 0)`;
   };
 
@@ -520,7 +523,7 @@ export class AppComponent implements OnInit {
 
   // find best teams
 
-  findBestTeamsOptimized(athletes: any[], budget = 1500000, roundsPlayed = 10, shortlistSize = 25) {
+  findBestTeamsOptimized(athletes: any[], budget = 1500000, roundsPlayed = 9, shortlistSize: number) {
     const males = athletes.filter(a => a.gender === "Male");
     const females = athletes.filter(a => a.gender === "Female");
 
@@ -551,7 +554,7 @@ export class AppComponent implements OnInit {
       const withoutFirst = getCombinations(rest, k);
       return [...withFirst, ...withoutFirst];
     }
-
+    debugger;
     const results = [];
 
     for (let round = 1; round <= roundsPlayed; round++) {
@@ -589,6 +592,21 @@ export class AppComponent implements OnInit {
 
       results.push(bestTeam);
     };
+
+    const count: any = {
+
+    }
+
+    results.forEach((bt: any) => {
+      bt.team.forEach((athlete: any) => {
+        if (!count[athlete.id]) {
+          count[athlete.id] = { athlete, appearances: 0, totalPoints: 0, totalValue: 0 };
+          athlete.appearances = count[athlete.id].appearances;
+        }
+        count[athlete.id].appearances += 1;
+        athlete.appearances = count[athlete.id].appearances;
+      });
+    });
     return results;
   }
 
