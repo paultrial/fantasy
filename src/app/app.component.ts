@@ -9,11 +9,12 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [MatIconModule, RouterOutlet, NgIf, NgFor, NgClass, FormsModule, JsonPipe, CurrencyPipe, NgStyle, AsyncPipe],
+  imports: [RouterOutlet, NgIf, NgFor, NgClass, FormsModule, JsonPipe, CurrencyPipe, NgStyle, AsyncPipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.less'
 })
 export class AppComponent implements OnInit {
+  maxPointsPossible = 0;
   bt: Observable<any> = of();
   title = 'P.B. Fantasy DH';
   data: any;
@@ -150,10 +151,13 @@ export class AppComponent implements OnInit {
         let start = performance.now();
         this.bestTeams = this.findBestTeamsOptimized(this.data, this.money, this.nor, 36);
         window.localStorage.setItem('bestTeams', JSON.stringify(this.bestTeams));
+        this.maxPointsPossible = this.bestTeams.map((e: any) => e.bestPoints).reduce((accumulator: any, currentValue: any) => accumulator + currentValue, 0);
+        
         let end = performance.now();
         alert(`Best teams calculated in ${(end - start).toFixed(2)} ms. Found ${this.bestTeams.length} best teams.`);
       } else {
         this.bestTeams = JSON.parse(localStorageBestTeams);
+        this.maxPointsPossible = this.bestTeams.map((e: any) => e.bestPoints).reduce((accumulator: any, currentValue: any) => accumulator + currentValue, 0);
       }
 
       this.lst();
@@ -607,6 +611,7 @@ export class AppComponent implements OnInit {
         athlete.appearances = count[athlete.id].appearances;
       });
     });
+    // debugger
     return results;
   }
 
