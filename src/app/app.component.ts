@@ -72,7 +72,7 @@ export class AppComponent implements OnInit {
   historyTeams: any[] = [];
   bestTeams: any = [];
   prevTeam: any = {};
-  nor = 10; // number of rounds in the season
+  nor = 11; // number of rounds in the season
 
   roundFilters: { [key: string]: { min?: number; max?: number } } = {};
   rounds = Array.from({ length: this.nor }, (_, i) => `round${i + 1}`);
