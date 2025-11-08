@@ -129,19 +129,19 @@ export class AppComponent implements OnInit {
         athlete["valorileVechi"] = valorileVechi;
         athlete.selected = false;
         athlete.totalpoints = +athlete.totalpoints;
+        athlete.points = [];
 
         athlete.roundsPoints = this.rounds.map((r, i) => {
           const ob: any = {};
           ob[this.roundsAliases[i]] = athlete[r];
+          athlete.points.push(athlete[r])
           return ob;
-        })
+        });
 
         athlete.gender = +athlete.gender == 1 ? 'Male' : 'Female';
         athlete.progressionScore = this.computeProgressionScore(athlete);
         athlete.pricePerPoint = athlete.totalpoints > 0 ? (athlete.value / +athlete.totalpoints).toFixed(2) : 0;
-
-        // const qualiNames = qualiRes.map((e: any) => e.columns[1].toLowerCase());
-        // athlete.inQuali = !this.isAthleteInList(qualiNames, athlete.firstname, athlete.lastname);
+        // debugger;
         return athlete;
       });
 
@@ -152,7 +152,7 @@ export class AppComponent implements OnInit {
         this.bestTeams = this.findBestTeamsOptimized(this.data, this.money, this.nor, 36);
         window.localStorage.setItem('bestTeams', JSON.stringify(this.bestTeams));
         this.maxPointsPossible = this.bestTeams.map((e: any) => e.bestPoints).reduce((accumulator: any, currentValue: any) => accumulator + currentValue, 0);
-        
+
         let end = performance.now();
         alert(`Best teams calculated in ${(end - start).toFixed(2)} ms. Found ${this.bestTeams.length} best teams.`);
       } else {
@@ -517,13 +517,13 @@ export class AppComponent implements OnInit {
   };
 
   getCombinations(arr: any[], k: number): any[][] {
-      if (k === 0) return [[]];
-      if (arr.length === 0) return [];
-      const [first, ...rest] = arr;
-      const withFirst = this.getCombinations(rest, k - 1).map(c => [first, ...c]);
-      const withoutFirst = this.getCombinations(rest, k);
-      return [...withFirst, ...withoutFirst];
-    }
+    if (k === 0) return [[]];
+    if (arr.length === 0) return [];
+    const [first, ...rest] = arr;
+    const withFirst = this.getCombinations(rest, k - 1).map(c => [first, ...c]);
+    const withoutFirst = this.getCombinations(rest, k);
+    return [...withFirst, ...withoutFirst];
+  }
 
 
   // find best teams
@@ -643,7 +643,7 @@ export class AppComponent implements OnInit {
         efficiency: expectedPoints / athlete.value
       };
     }
-    
+
     const scoredMales = males.map(predictAthlete).sort((a: any, b: any) => b.efficiency - a.efficiency).slice(0, shortlistSize);
     const scoredFemales = females.map(predictAthlete).sort((a: any, b: any) => b.efficiency - a.efficiency).slice(0, shortlistSize);
 
@@ -761,7 +761,7 @@ export class AppComponent implements OnInit {
 
   findHighScoringTeam(points: number) {
     const athletes = this.data as any[],
-    budget = 1500000
+      budget = 1500000
     // Filter eligible athletes
     const males = athletes.filter(a => a.gender === 'Male' && a.totalpoints >= points);
     const females = athletes.filter(a => a.gender === 'Female' && a.totalpoints >= points);
@@ -788,6 +788,13 @@ export class AppComponent implements OnInit {
     }
     this.bt = of(bestTeam);
     return bestTeam;
+  }
+
+  barHeightCalc(points: number): string{
+    const str: string = `${points/100*30}px`;
+    // 30 - 100
+    // points x
+    return str;
   }
 
 

@@ -261,6 +261,9 @@
             <div class="insta" *ngIf="athlete.instagram"><a href="https://instagram.com/{{athlete.instagram}}"
                 target="_blank"></a></div>
             <div *ngIf="athlete.injury" class="injury"></div>
+            <div class="pointsGraph">
+              <div class="bar" *ngFor="let puncte of athlete.points" [ngStyle]="{height: barHeightCalc(puncte)}">{{puncte}}</div>
+            </div>
           </div>
           <div class="data">
             <div class="price"
