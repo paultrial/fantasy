@@ -263,8 +263,12 @@
             <div *ngIf="athlete.injury" class="injury"></div>
           </div>
           <div class="data">
-            <div class="pointsGraph"><div class="bar" *ngFor="let puncte of athlete.points" [ngStyle]="{height: barHeightCalcperPoints(puncte)}"><span>{{puncte}}</span></div></div>
-            <div class="priceGraph"><div class="bar" *ngFor="let price of athlete.prices" [ngStyle]="{height: barHeightCalcperPrice(price)}"><span>{{price/10000}}</span></div></div>
+            <div class="pointsGraph"><div class="bar" *ngFor="let puncte of athlete.points">
+              <div class="fill" [ngStyle]="{height: barHeightCalcperPoints(puncte)}" title="{{puncte}}"></div>
+            </div></div>
+            <div class="priceGraph"><div class="bar" *ngFor="let price of athlete.prices">
+              <div class="fill" [ngStyle]="{height: barHeightCalcperPrice(price)}" title="{{price}}"></div>
+            </div></div>
             <div class="price"
               [ngStyle]="{backgroundColor: valueToRedBlackColor(athlete.progressionScore.weightedPriceDelta)}">
               {{athlete.value | currency: 'USD':'symbol':'1.0-0'}}</div>
