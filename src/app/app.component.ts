@@ -118,14 +118,17 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataService.getData().subscribe((res) => {
-      // this.dataService.getqualiStartList().subscribe((qualiRes) => {
       this.data = Object.keys(res).map(i => {
         const athlete = res[i];
         athlete.value = +athlete.value;
+        athlete.prices = [];
         athlete.injury = !!athlete.injury;
         const values = athlete.roundValues.replace(/,/g, "").split(";");
         const valorileVechi = {} as any;
-        values.forEach((e: any, i: number) => { valorileVechi['round' + i.toString()] = +values[i].split(":")[1] });
+        values.forEach((e: any, i: number) => { 
+          valorileVechi['round' + i.toString()] = +values[i].split(":")[1];
+          athlete.prices.push(+values[i].split(":")[1]);
+        });
         athlete["valorileVechi"] = valorileVechi;
         athlete.selected = false;
         athlete.totalpoints = +athlete.totalpoints;
@@ -141,7 +144,6 @@ export class AppComponent implements OnInit {
         athlete.gender = +athlete.gender == 1 ? 'Male' : 'Female';
         athlete.progressionScore = this.computeProgressionScore(athlete);
         athlete.pricePerPoint = athlete.totalpoints > 0 ? (athlete.value / +athlete.totalpoints).toFixed(2) : 0;
-        // debugger;
         return athlete;
       });
 
@@ -790,13 +792,13 @@ export class AppComponent implements OnInit {
     return bestTeam;
   }
 
-  barHeightCalc(points: number): string{
-    const str: string = `${points/100*30}px`;
-    // 30 - 100
-    // points x
+  barHeightCalcperPoints(points: number): string{
+    const str: string = `${points*100/30}%`;
     return str;
   }
 
-
-
+  barHeightCalcperPrice(price: number): string{
+    const str: string = `${price*100/750000}%`;
+    return str;
+  }
 }

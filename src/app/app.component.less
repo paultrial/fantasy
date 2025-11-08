@@ -362,20 +362,7 @@ h4.nrathletePerTeam {
                         margin-left: 5px;
                     }
 
-                    .pointsGraph{
-                        width: 310px;
-                        height: 30px;
-                        overflow: hidden;
-                        display: flex;
-                        background-color: #007bff;
-                        flex-direction: row;
-                    .bar{
-                        width: 30px;
-                        background-color: orange;
-                        color: red;
-
-                        }
-                    }
+                    
                 }
 
                 .data {
@@ -383,6 +370,45 @@ h4.nrathletePerTeam {
                     flex-direction: row;
                     justify-content: flex-end;
                     text-align: center;
+
+
+                    .pointsGraph{                        
+                        height: 100%;
+                        overflow: hidden;
+                        display: flex;
+                        background-color: #007bff;
+                        flex-direction: row;
+                        align-items: flex-end;
+                        .bar{
+                            width: 18px;
+                            background-color: orange;
+                            color: red;
+                            text-align: center;
+                            display: flex;
+                            span {
+                                align-self: flex-end
+                            }
+                            }
+                    }
+
+                    .priceGraph{
+                        height: 100%;
+                        overflow: hidden;
+                        display: flex;
+                        background-color: #007bff;
+                        flex-direction: row;
+                        align-items: flex-end;
+                        .bar{
+                            width: 18px;
+                            background-color: orange;
+                            color: red;
+                            text-align: center;
+                            display: flex;
+                            span {
+                                align-self: flex-end
+                            }
+                            }
+                    }
 
                     .price {
                         width: 78px;
