@@ -7,12 +7,12 @@ import Fuse from 'fuse.js';
   providedIn: 'root'
 })
 export class DataService {
-  private jsonUrl = 'assets/PBathletes.json';
+  private defaultJsonUrl = 'assets/PBathletes.json';
 
   constructor(private http: HttpClient) { }
 
-  getData(): Observable<any> {
-    return this.http.get(this.jsonUrl);
+  getData(jsonUrl: string = this.defaultJsonUrl): Observable<any> {
+    return this.http.get(jsonUrl);
   }
 
   getqualiStartList(): Observable<any> {
@@ -21,32 +21,7 @@ export class DataService {
   getinstagramData(): Observable<any> {
     return this.http.get('assets/instagram.json');
   }
-
-
-
-  // shit
-
-  abbreviations = {
-    'j.': 'john',
-    'jos.': 'joseph',
-    'sam.': 'samuel',
-    'Vali': 'Valentina',
-    // Add more abbreviations as needed
-  };
-
-  /*
-  normalizeName(name) {
-    let normalized = name.toLowerCase();
-    normalized = normalized.replace(/[-.,]/g, ''); // Remove hyphens, periods, and commas
-    normalized = normalized.replace(/\s+/g, ' ').trim(); // Replace multiple spaces with a single space
-    const parts = normalized.split(' ');
-    const expandedParts = parts.map(part => abbreviations[part] || part);
-    return expandedParts.join(' ');
-  }
-  */
-
-  
-    
+   
   ompareNameLists(list1: any, list2: any) {
     const normalizedList2 = list2.map((name: string) => ({ original: name, normalized: this.normalizeName(name) }));
 
