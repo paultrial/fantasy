@@ -793,12 +793,12 @@ export class FantasyComponent implements OnInit {
   }
 
   barHeightCalcperPoints(points: number): string{
-    const str: string = `${points*100/30}%`;
+    const str: string = `${points*100/600}%`;
     return str;
   }
 
   barHeightCalcperPrice(price: number): string{
-    const str: string = `${price*100/750000}%`;
+    const str: string = `${price*100/300000}%`;
     return str;
   }
 }
