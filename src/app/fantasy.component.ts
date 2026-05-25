@@ -71,25 +71,24 @@ export class FantasyComponent implements OnInit {
   historyTeams: any[] = [];
   bestTeams: any = [];
   prevTeam: any = {};
-  nor = 11; // number of rounds in the season
+  nor = 1; // number of rounds in the season
 
   roundFilters: { [key: string]: { min?: number; max?: number } } = {};
   rounds = Array.from({ length: this.nor }, (_, i) => `round${i + 1}`);
   roundsAliases = [
-    "Bielsko-Biala WC #1",
-    "Loudenvielle WC #2",
-    "Leogang WC #3",
-    "Val di Sole WC #4",
-    "La Thuile WC #5",
-    "Andorra WC #6",
-    "Les Gets WC #7",
-    "2025 World Championships Champery",
-    "Lenzerheide WC #8",
-    "Lake Placid WC #9",
-    "Mont-Sainte-Anne WC #1",
+    "South Korea World Cup #1",
+    "Loudenvielle World Cup #2",
+    "Leogang World Cup #3",
+    "Lenzerheide World Cup #4",
+    "La Thuile World Cup #5",
+    "Andorra World Cup #6",
+    "Les Gets World Cup #7",
+    "2026 World Championships",
+    "Whistler World Cup #8",
+    "Lake Placid World Cup #9"
   ];
   roundsConditions = [
-    "Wet",
+    "Dry",
     "Dry",
     "Dry",
     "Dry",
