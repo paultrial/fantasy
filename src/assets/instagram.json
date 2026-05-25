@@ -1,300 +1,324 @@
 {
-    "downhill_athletes": [
-         {
-            "name": "Jackson Goldstone",
-            "instagram_handle": "jacksongoldstone"
-        },
-        {
-            "name": "Nina Hoffmann",
-            "instagram_handle": "nina.hoff96"
-        },
-        {
-            "name": "Loris Vergier",
-            "instagram_handle": "lorisvergier"
-        },
-        {
-            "name": "Vali Höll",
-            "instagram_handle": "valihoell"
-        },
-        {
-            "name": "Gracey Hemstreet",
-            "instagram_handle": "graceyhemstreet"
-        },
-        {
-            "name": "Loic Bruni",
-            "instagram_handle": "loicbruni29"
-        },
-        {
-            "name": "Bernard Kerr",
-            "instagram_handle": "bernard_kerr"
-        },
-        {
-            "name": "Tahnee Seagrave",
-            "instagram_handle": "tahneeseagrave"
-        },
-        {
-            "name": "Ronan Dunne",
-            "instagram_handle": "ronandunne_dh"
-        },
-        {
-            "name": "Troy Brosnan",
-            "instagram_handle": "troybrosnan"
-        },
-        {
-            "name": "Finn Iles",
-            "instagram_handle": "finniles"
-        },
-        {
-            "name": "Luca Shaw",
-            "instagram_handle": "luca_shaw"
-        },
-        {
-            "name": "Jordan Williams",
-            "instagram_handle": "jordanwilliams17"
-        },
-        {
-            "name": "Camille Balanche",
-            "instagram_handle": "cam.bal"
-        },
-        {
-            "name": "Baptiste Pierron",
-            "instagram_handle": "baptistepierron8"
-        },
-        {
-            "name": "Oisin O Callaghan",
-            "instagram_handle": "oisinocallaghandh"
-        },
-        {
-            "name": "Thibaut Daprela",
-            "instagram_handle": "thibautdaprela"
-        },
-        {
-            "name": "Dakotah Norton",
-            "instagram_handle": "daknorton"
-        },
-        {
-            "name": "Ryan Pinkerton",
-            "instagram_handle": "pinkerton.ryan"
-        },
-        {
-            "name": "Marine Cabirou",
-            "instagram_handle": "marine_cabirou"
-        },
-        {
-            "name": "Amaury Pierron",
-            "instagram_handle": "amaurypierron4"
-        },
-        {
-            "name": "Monika Hrastnik",
-            "instagram_handle": "monikahrastnik"
-        },
-        {
-            "name": "Lachlan Stevens-Mcnab",
-            "instagram_handle": "lachiestevensmcnab"
-        },
-        {
-            "name": "Luke Meier-Smith",
-            "instagram_handle": "luke_ms1"
-        },
-        {
-            "name": "Phoebe Gale",
-            "instagram_handle": "_phoebegale"
-        },
-        {
-            "name": "Jess Blewitt",
-            "instagram_handle": "jessblewitt_"
-        },
-        {
-            "name": "Andreas Kolb",
-            "instagram_handle": "andreas.kolb66"
-        },
-        {
-            "name": "Benoit Coulanges",
-            "instagram_handle": "benoitcoulanges"
-        },
-        {
-            "name": "Dylan Maples",
-            "instagram_handle": "dylan.maples"
-        },
-        {
-            "name": "Simon Chapelet",
-            "instagram_handle": "simonchapelet47"
-        },
-        {
-            "name": "Max Hartenstern",
-            "instagram_handle": "max.hartenstern"
-        },
-        {
-            "name": "Charlie Hatton",
-            "instagram_handle": "charlie_hatton1"
-        },
-        {
-            "name": "Oliver Zwar",
-            "instagram_handle": "oliverzwar"
-        },
-        {
-            "name": "Danny Hart",
-            "instagram_handle": "dannyhart1"
-        },
-        {
-            "name": "Joe Breeden",
-            "instagram_handle": "joe_breeden17"
-        },
-        {
-            "name": "Henri Kiefer",
-            "instagram_handle": "henri_kiefer"
-        },
-        {
-            "name": "Matt Walker",
-            "instagram_handle": "mattwalkerdh"
-        },
-        {
-            "name": "Laurie Greenland",
-            "instagram_handle": "lauriegreenland_"
-        },
-        {
-            "name": "Stefano Introzzi",
-            "instagram_handle": "stefano_introzzi"
-        },
-        {
-            "name": "Harriet Harnden",
-            "instagram_handle": "hatt1e_harnden"
-        },
-        {
-            "name": "Davide Palazzari",
-            "instagram_handle": "minkja_daddy"
-        },
-        {
-            "name": "Rémi Thirion",
-            "instagram_handle": "remithirion"
-        },
-        {
-            "name": "Martin Maes",
-            "instagram_handle": "martin_maes5"
-        },
-        {
-            "name": "Bodhi Kuhn",
-            "instagram_handle": "bodhi_kuhn"
-        },
-        {
-            "name": "Anna Newkirk",
-            "instagram_handle": "annanewkirk_"
-        },
-        {
-            "name": "Myriam Nicole",
-            "instagram_handle": "myriam_nicole"
-        },
-        {
-            "name": "Aaron Gwin",
-            "instagram_handle": "aarongwin1"
-        },
-        {
-            "name": "Antoine Pierron",
-            "instagram_handle": "antoinepierron5"
-        },
-        {
-            "name": "Richie Rude",
-            "instagram_handle": "richie_rude1"
-        },
-        {
-            "name": "Reece Wilson",
-            "instagram_handle": "reecowilson"
-        },
-        {
-            "name": "Louise Ferguson",
-            "instagram_handle": "fergyferg__"
-        },
-        {
-            "name": "Luke Wayman",
-            "instagram_handle": "lukewayman1"
-        },
-        {
-            "name": "Veronika Widmann",
-            "instagram_handle": "vero_widmann"
-        },
-        {
-            "name": "Ethan Craik",
-            "instagram_handle": "ethan_craik"
-        },
-        {
-            "name": "Christian Hauser",
-            "instagram_handle": "christian_hauser_"
-        },
-        {
-            "name": "Fernando Muñoz",
-            "instagram_handle": "Not found"
-        },
-        {
-            "name": "Loris Revelli",
-            "instagram_handle": "lorisrevelli"
-        },
-        {
-            "name": "Davide Cappello",
-            "instagram_handle": "davide_cappello"
-        },
-        {
-            "name": "Eleonora Farina",
-            "instagram_handle": "elefarinamtb"
-        },
-        {
-            "name": "Sebastian Holguin",
-            "instagram_handle": "sebastianholguin_dh"
-        },
-        {
-            "name": "Erice Van_Leuven",
-            "instagram_handle": "ericevanleuven"
-        },
-        {
-            "name": "Sacha Earnest",
-            "instagram_handle": "sacha_earnest"
-        },
-        {
-            "name": "Tuhoto-Ariki Pene",
-            "instagram_handle": "tuhoto_ariki"
-        },
-        {
-            "name": "Mille Johnset",
-            "instagram_handle": "millejohnset"
-        },
-        {
-            "name": "Hugo Marini",
-            "instagram_handle": "hugo.marini"
-        },
-        {
-            "name": "Mylann Falquet",
-            "instagram_handle": "mylannfalquet"
-        },
-        {
-            "name": "Frida Ronning",
-            "instagram_handle": "frida9"
-        },
-        {
-            "name": "Jacob Dickson",
-            "instagram_handle": "jacobdickson"
-        },
-        {
-            "name": "Roger Vieira",
-            "instagram_handle": "rogervieira5"
-        },
-        {
-            "name": "Lisa Bouladou",
-            "instagram_handle": "lisa_bouladou"
-        },
-        {
-            "name": "Vicky Clavel",
-            "instagram_handle": "vickyclavel_"
-        },
-        {
-            "name": "Daniel Castellanos Liberal",
-            "instagram_handle": "danicastellanosspain"
-        },
-        {
-            "name": "Gloria Scarsi",
-            "instagram_handle": "gloria_scarsi"
-        },        
-        {
-            "name": "Lisa Baumann",
-            "instagram_handle": "_lisa.baumann._"
-        }
-    ]
+  "downhill_athletes": [
+    {
+      "name": "Jackson Goldstone",
+      "instagram_handle": "jacksongoldstone"
+    },
+    {
+      "name": "Nina Hoffmann",
+      "instagram_handle": "nina.hoff96"
+    },
+    {
+      "name": "Loris Vergier",
+      "instagram_handle": "lorisvergier"
+    },
+    {
+      "name": "Vali Höll",
+      "instagram_handle": "valihoell"
+    },
+    {
+      "name": "Gracey Hemstreet",
+      "instagram_handle": "graceyhemstreet"
+    },
+    {
+      "name": "Loic Bruni",
+      "instagram_handle": "loicbruni29"
+    },
+    {
+      "name": "Bernard Kerr",
+      "instagram_handle": "bernard_kerr"
+    },
+    {
+      "name": "Tahnee Seagrave",
+      "instagram_handle": "tahneeseagrave"
+    },
+    {
+      "name": "Ronan Dunne",
+      "instagram_handle": "ronandunne_dh"
+    },
+    {
+      "name": "Troy Brosnan",
+      "instagram_handle": "troybrosnan"
+    },
+    {
+      "name": "Finn Iles",
+      "instagram_handle": "finniles"
+    },
+    {
+      "name": "Luca Shaw",
+      "instagram_handle": "luca_shaw"
+    },
+    {
+      "name": "Jordan Williams",
+      "instagram_handle": "jordanwilliams17"
+    },
+    {
+      "name": "Camille Balanche",
+      "instagram_handle": "cam.bal"
+    },
+    {
+      "name": "Baptiste Pierron",
+      "instagram_handle": "baptistepierron8"
+    },
+    {
+      "name": "Oisin O Callaghan",
+      "instagram_handle": "oisinocallaghandh"
+    },
+    {
+      "name": "Thibaut Daprela",
+      "instagram_handle": "thibautdaprela"
+    },
+    {
+      "name": "Dakotah Norton",
+      "instagram_handle": "daknorton"
+    },
+    {
+      "name": "Ryan Pinkerton",
+      "instagram_handle": "pinkerton.ryan"
+    },
+    {
+      "name": "Marine Cabirou",
+      "instagram_handle": "marine_cabirou"
+    },
+    {
+      "name": "Amaury Pierron",
+      "instagram_handle": "amaurypierron4"
+    },
+    {
+      "name": "Monika Hrastnik",
+      "instagram_handle": "monikahrastnik"
+    },
+    {
+      "name": "Lachlan Stevens-Mcnab",
+      "instagram_handle": "lachiestevensmcnab"
+    },
+    {
+      "name": "Luke Meier-Smith",
+      "instagram_handle": "luke_ms1"
+    },
+    {
+      "name": "Phoebe Gale",
+      "instagram_handle": "_phoebegale"
+    },
+    {
+      "name": "Jess Blewitt",
+      "instagram_handle": "jessblewitt_"
+    },
+    {
+      "name": "Andreas Kolb",
+      "instagram_handle": "andreas.kolb66"
+    },
+    {
+      "name": "Benoit Coulanges",
+      "instagram_handle": "benoitcoulanges"
+    },
+    {
+      "name": "Dylan Maples",
+      "instagram_handle": "dylan.maples"
+    },
+    {
+      "name": "Simon Chapelet",
+      "instagram_handle": "simonchapelet47"
+    },
+    {
+      "name": "Max Hartenstern",
+      "instagram_handle": "max.hartenstern"
+    },
+    {
+      "name": "Charlie Hatton",
+      "instagram_handle": "charlie_hatton1"
+    },
+    {
+      "name": "Oliver Zwar",
+      "instagram_handle": "oliverzwar"
+    },
+    {
+      "name": "Danny Hart",
+      "instagram_handle": "dannyhart1"
+    },
+    {
+      "name": "Joe Breeden",
+      "instagram_handle": "joe_breeden17"
+    },
+    {
+      "name": "Henri Kiefer",
+      "instagram_handle": "henri_kiefer"
+    },
+    {
+      "name": "Matt Walker",
+      "instagram_handle": "mattwalkerdh"
+    },
+    {
+      "name": "Laurie Greenland",
+      "instagram_handle": "lauriegreenland_"
+    },
+    {
+      "name": "Stefano Introzzi",
+      "instagram_handle": "stefano_introzzi"
+    },
+    {
+      "name": "Harriet Harnden",
+      "instagram_handle": "hatt1e_harnden"
+    },
+    {
+      "name": "Davide Palazzari",
+      "instagram_handle": "minkja_daddy"
+    },
+    {
+      "name": "Rémi Thirion",
+      "instagram_handle": "remithirion"
+    },
+    {
+      "name": "Martin Maes",
+      "instagram_handle": "martin_maes5"
+    },
+    {
+      "name": "Bodhi Kuhn",
+      "instagram_handle": "bodhi_kuhn"
+    },
+    {
+      "name": "Anna Newkirk",
+      "instagram_handle": "annanewkirk_"
+    },
+    {
+      "name": "Myriam Nicole",
+      "instagram_handle": "myriam_nicole"
+    },
+    {
+      "name": "Aaron Gwin",
+      "instagram_handle": "aarongwin1"
+    },
+    {
+      "name": "Antoine Pierron",
+      "instagram_handle": "antoinepierron5"
+    },
+    {
+      "name": "Richie Rude",
+      "instagram_handle": "richie_rude1"
+    },
+    {
+      "name": "Reece Wilson",
+      "instagram_handle": "reecowilson"
+    },
+    {
+      "name": "Louise Ferguson",
+      "instagram_handle": "fergyferg__"
+    },
+    {
+      "name": "Luke Wayman",
+      "instagram_handle": "lukewayman1"
+    },
+    {
+      "name": "Veronika Widmann",
+      "instagram_handle": "vero_widmann"
+    },
+    {
+      "name": "Ethan Craik",
+      "instagram_handle": "ethan_craik"
+    },
+    {
+      "name": "Christian Hauser",
+      "instagram_handle": "christian_hauser_"
+    },
+    {
+      "name": "Fernando Muñoz",
+      "instagram_handle": "Not found"
+    },
+    {
+      "name": "Loris Revelli",
+      "instagram_handle": "lorisrevelli"
+    },
+    {
+      "name": "Davide Cappello",
+      "instagram_handle": "davide_cappello"
+    },
+    {
+      "name": "Eleonora Farina",
+      "instagram_handle": "elefarinamtb"
+    },
+    {
+      "name": "Sebastian Holguin",
+      "instagram_handle": "sebastianholguin_dh"
+    },
+    {
+      "name": "Erice Van_Leuven",
+      "instagram_handle": "ericevanleuven"
+    },
+    {
+      "name": "Sacha Earnest",
+      "instagram_handle": "sacha_earnest"
+    },
+    {
+      "name": "Tuhoto-Ariki Pene",
+      "instagram_handle": "tuhoto_ariki"
+    },
+    {
+      "name": "Mille Johnset",
+      "instagram_handle": "millejohnset"
+    },
+    {
+      "name": "Hugo Marini",
+      "instagram_handle": "hugo.marini"
+    },
+    {
+      "name": "Mylann Falquet",
+      "instagram_handle": "mylannfalquet"
+    },
+    {
+      "name": "Frida Ronning",
+      "instagram_handle": "frida9"
+    },
+    {
+      "name": "Jacob Dickson",
+      "instagram_handle": "jacobdickson"
+    },
+    {
+      "name": "Roger Vieira",
+      "instagram_handle": "rogervieira5"
+    },
+    {
+      "name": "Lisa Bouladou",
+      "instagram_handle": "lisa_bouladou"
+    },
+    {
+      "name": "Vicky Clavel",
+      "instagram_handle": "vickyclavel_"
+    },
+    {
+      "name": "Daniel Castellanos Liberal",
+      "instagram_handle": "danicastellanosspain"
+    },
+    {
+      "name": "Gloria Scarsi",
+      "instagram_handle": "gloria_scarsi"
+    },
+    {
+      "name": "Lisa Baumann",
+      "instagram_handle": "_lisa.baumann._"
+    },
+    {
+      "name": "Asa Vermette",
+      "instagram_handle": "asavermette"
+    },
+    {
+      "name": "Till Alran",
+      "instagram_handle": "alran_till_mtb"
+    },
+    {
+      "name": "Max Alran",
+      "instagram_handle": "max_alran_5"
+    },
+    {
+      "name": "Nathan Pontvianne",
+      "instagram_handle": "nathan.pontvianne"
+    },
+    {
+      "name": "Tyler Waite",
+      "instagram_handle": "tyler_waite1"
+    },
+    {
+      "name": "Evan Medcalf",
+      "instagram_handle": "evanmedcalf"
+    }
+  ]
 }
