@@ -124,10 +124,12 @@ export class FantasyComponent implements OnInit {
         athlete.injury = !!athlete.injury;
         const values = athlete.roundValues.replace(/,/g, "").split(";");
         const valorileVechi = {} as any;
-        values.forEach((e: any, i: number) => { 
+
+        for (let i = 0; i < this.nor; i++) {
           valorileVechi['round' + i.toString()] = +values[i].split(":")[1];
           athlete.prices.push(+values[i].split(":")[1]);
-        });
+        }
+
         athlete["valorileVechi"] = valorileVechi;
         athlete.selected = false;
         athlete.totalpoints = +athlete.totalpoints;
