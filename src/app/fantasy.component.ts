@@ -71,7 +71,7 @@ export class FantasyComponent implements OnInit {
   historyTeams: any[] = [];
   bestTeams: any = [];
   prevTeam: any = {};
-  nor = 1; // number of rounds in the season
+  nor = 2; // number of rounds in the season
 
   roundFilters: { [key: string]: { min?: number; max?: number } } = {};
   rounds = Array.from({ length: this.nor }, (_, i) => `round${i + 1}`);
@@ -148,12 +148,13 @@ export class FantasyComponent implements OnInit {
         return athlete;
       });
 
-      const localStorageBestTeams = window.localStorage.getItem("bestTeams");
+      const bestTeamsStorageKey = `bestTeams/v2/${this.nor}/${this.money}`;
+      const localStorageBestTeams = window.localStorage.getItem(bestTeamsStorageKey);
 
       if (!localStorageBestTeams) {
         let start = performance.now();
         this.bestTeams = this.findBestTeamsOptimized(this.data, this.money, this.nor, 36);
-        window.localStorage.setItem('bestTeams', JSON.stringify(this.bestTeams));
+        window.localStorage.setItem(bestTeamsStorageKey, JSON.stringify(this.bestTeams));
         this.maxPointsPossible = this.bestTeams.map((e: any) => e.bestPoints).reduce((accumulator: any, currentValue: any) => accumulator + currentValue, 0);
 
         let end = performance.now();
@@ -530,17 +531,21 @@ export class FantasyComponent implements OnInit {
 
 
   // find best teams
-
   findBestTeamsOptimized(athletes: any[], budget = 1500000, roundsPlayed = this.nor, shortlistSize: number) {
+    void shortlistSize; // Kept for the existing call signature; this search is exact now.
     const males = athletes.filter(a => a.gender === "Male");
     const females = athletes.filter(a => a.gender === "Female");
 
     function getPointsUpToRound(athlete: any, round: number) {
-      return +athlete[`round${round}`];
+      return +athlete[`round${round}`] || 0;
     }
 
     function getValueAtRound(athlete: any, round: number) {
-      return athlete.valorileVechi[`round${round - 1}`] || athlete.value;
+      if (round <= 1) {
+        return athlete.valorileVechi?.round0 || athlete.value;
+      }
+
+      return athlete.valorileVechi?.[`round${round - 2}`] || athlete.value;
     }
 
     function scoreAthlete(athlete: any, round: number) {
@@ -554,48 +559,114 @@ export class FantasyComponent implements OnInit {
       };
     }
 
-    function getCombinations(arr: any[], k: number): any[][] {
-      if (k === 0) return [[]];
-      if (arr.length === 0) return [];
-      const [first, ...rest] = arr;
-      const withFirst = getCombinations(rest, k - 1).map(c => [first, ...c]);
-      const withoutFirst = getCombinations(rest, k);
-      return [...withFirst, ...withoutFirst];
+    type TeamCombination = {
+      team: any[];
+      totalValue: number;
+      totalPoints: number;
+    };
+
+    function forEachTeamCombination(
+      arr: any[],
+      k: number,
+      onCombination: (combination: TeamCombination) => void,
+      maxBudget = budget
+    ) {
+      const team: any[] = [];
+
+      function build(start: number, totalValue: number, totalPoints: number) {
+        if (team.length === k) {
+          onCombination({
+            team: [...team],
+            totalValue,
+            totalPoints
+          });
+          return;
+        }
+
+        for (let i = start; i <= arr.length - (k - team.length); i++) {
+          const athlete = arr[i];
+          const nextValue = totalValue + athlete.roundValue;
+
+          if (nextValue > maxBudget) {
+            break;
+          }
+
+          team.push(athlete);
+          build(i + 1, nextValue, totalPoints + athlete.roundPoints);
+          team.pop();
+        }
+      }
+
+      build(0, 0, 0);
+    }
+
+    function getTeamCombinations(arr: any[], k: number, maxBudget = budget) {
+      const combinations: TeamCombination[] = [];
+      forEachTeamCombination(arr, k, combination => combinations.push(combination), maxBudget);
+      return combinations;
+    }
+
+    function findBestAffordableCombo(combos: any[], budgetRemaining: number) {
+      let low = 0;
+      let high = combos.length - 1;
+      let bestIndex = -1;
+
+      while (low <= high) {
+        const mid = Math.floor((low + high) / 2);
+
+        if (combos[mid].totalValue <= budgetRemaining) {
+          bestIndex = mid;
+          low = mid + 1;
+        } else {
+          high = mid - 1;
+        }
+      }
+
+      return bestIndex === -1 ? null : combos[bestIndex].bestCombo;
     }
     const results = [];
 
     for (let round = 1; round <= roundsPlayed; round++) {
       // Score athletes for this round
-      const scoredMales = males.map(a => scoreAthlete(a, round)).sort((a, b) => b.efficiency - a.efficiency).slice(0, shortlistSize);
-      const scoredFemales = females.map(a => scoreAthlete(a, round)).sort((a, b) => b.efficiency - a.efficiency).slice(0, shortlistSize);
+      const scoredMales = males.map(a => scoreAthlete(a, round)).sort((a, b) => a.roundValue - b.roundValue);
+      const scoredFemales = females.map(a => scoreAthlete(a, round)).sort((a, b) => a.roundValue - b.roundValue);
 
       let bestTeam = null;
       let bestPoints = -1;
 
-      const maleCombos = getCombinations(scoredMales, 4);
-      const femaleCombos = getCombinations(scoredFemales, 2);
-      // debugger
+      const femaleCombos = getTeamCombinations(scoredFemales, 2, budget).sort((a, b) => a.totalValue - b.totalValue);
 
-      for (const m of maleCombos) {
-        for (const f of femaleCombos) {
-          const team = [...m, ...f];
-          const totalValue = team.reduce((sum, a) => sum + a.roundValue, 0);
-          if (totalValue > budget) continue;
-
-          const totalPoints = team.reduce((sum, a) => sum + a.roundPoints, 0);
-          const roundname = this.roundsAliases[round - 1];
-
-          if (totalPoints > bestPoints) {
-            bestPoints = totalPoints;
-
-            team.forEach((athlete: any) => {
-              athlete.thenValue = getValueAtRound(athlete, round);
-              athlete.thenPoints = getPointsUpToRound(athlete, round);
-            });
-            bestTeam = { team, bestPoints, totalValue, roundname };
-          }
+      let bestFemaleCombo: any = null;
+      const bestFemaleCombosByBudget = femaleCombos.map((combo) => {
+        if (!bestFemaleCombo || combo.totalPoints > bestFemaleCombo.totalPoints) {
+          bestFemaleCombo = combo;
         }
-      }
+
+        return {
+          ...combo,
+          bestCombo: bestFemaleCombo
+        };
+      });
+
+      forEachTeamCombination(scoredMales, 4, (m) => {
+        const f = findBestAffordableCombo(bestFemaleCombosByBudget, budget - m.totalValue);
+        if (!f) return;
+
+        const team = [...m.team, ...f.team];
+        const totalValue = m.totalValue + f.totalValue;
+        const totalPoints = m.totalPoints + f.totalPoints;
+        const roundname = this.roundsAliases[round - 1];
+
+        if (totalPoints > bestPoints) {
+          bestPoints = totalPoints;
+
+          team.forEach((athlete: any) => {
+            athlete.thenValue = getValueAtRound(athlete, round);
+            athlete.thenPoints = getPointsUpToRound(athlete, round);
+          });
+          bestTeam = { team, bestPoints, totalValue, roundname };
+        }
+      }, budget);
 
       results.push(bestTeam);
     };

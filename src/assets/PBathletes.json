@@ -9,12 +9,12 @@
                 "bdate": "1900-01-01",
                 "gender": "1",
                 "sport": "1",
-                "ts": "1777312770",
+                "ts": "1780078250",
                 "athleteid": "1093",
                 "value": "300000",
                 "sponsor": "",
                 "prevpoints": "0",
-                "injury": "",
+                "injury": "Injured",
                 "round1": "400",
                 "round2": "0",
                 "round3": "0",
@@ -33,7 +33,7 @@
                 "round16": "0",
                 "totalpoints": "400",
                 "year": "2026",
-                "roundValues": "2:300,000"
+                "roundValues": "2:300,000;3:320,000;4:0;5:0;6:0;7:0;8:0;9:0;10:0"
             },
             "1142": {
                 "id": "1142",
@@ -69,7 +69,7 @@
                 "round16": "0",
                 "totalpoints": "600",
                 "year": "2026",
-                "roundValues": "2:300,000"
+                "roundValues": "2:300,000;3:370,000"
             },
             "73": {
                 "id": "73",
@@ -88,7 +88,7 @@
                 "prevpoints": "0",
                 "injury": "",
                 "round1": "375",
-                "round2": "0",
+                "round2": "175",
                 "round3": "0",
                 "round4": "0",
                 "round5": "0",
@@ -103,9 +103,9 @@
                 "round14": "0",
                 "round15": "0",
                 "round16": "0",
-                "totalpoints": "375",
+                "totalpoints": "550",
                 "year": "2026",
-                "roundValues": "2:295,000"
+                "roundValues": "2:295,000;3:360,000"
             },
             "2": {
                 "id": "2",
@@ -141,7 +141,7 @@
                 "round16": "0",
                 "totalpoints": "40",
                 "year": "2026",
-                "roundValues": "2:290,000"
+                "roundValues": "2:290,000;3:335,000"
             },
             "4": {
                 "id": "4",
@@ -160,7 +160,7 @@
                 "prevpoints": "0",
                 "injury": "",
                 "round1": "275",
-                "round2": "0",
+                "round2": "70",
                 "round3": "0",
                 "round4": "0",
                 "round5": "0",
@@ -175,9 +175,9 @@
                 "round14": "0",
                 "round15": "0",
                 "round16": "0",
-                "totalpoints": "275",
+                "totalpoints": "345",
                 "year": "2026",
-                "roundValues": "2:290,000"
+                "roundValues": "2:290,000;3:330,000"
             },
             "5": {
                 "id": "5",
@@ -196,7 +196,7 @@
                 "prevpoints": "0",
                 "injury": "",
                 "round1": "200",
-                "round2": "0",
+                "round2": "230",
                 "round3": "0",
                 "round4": "0",
                 "round5": "0",
@@ -211,9 +211,9 @@
                 "round14": "0",
                 "round15": "0",
                 "round16": "0",
-                "totalpoints": "200",
+                "totalpoints": "430",
                 "year": "2026",
-                "roundValues": "2:280,000"
+                "roundValues": "2:280,000;3:350,000"
             },
             "13": {
                 "id": "13",
@@ -232,7 +232,7 @@
                 "prevpoints": "0",
                 "injury": "",
                 "round1": "140",
-                "round2": "0",
+                "round2": "550",
                 "round3": "0",
                 "round4": "0",
                 "round5": "0",
@@ -247,9 +247,9 @@
                 "round14": "0",
                 "round15": "0",
                 "round16": "0",
-                "totalpoints": "140",
+                "totalpoints": "690",
                 "year": "2026",
-                "roundValues": "2:270,000"
+                "roundValues": "2:270,000;3:375,000"
             },
             "88": {
                 "id": "88",
@@ -268,7 +268,7 @@
                 "prevpoints": "0",
                 "injury": "",
                 "round1": "220",
-                "round2": "0",
+                "round2": "200",
                 "round3": "0",
                 "round4": "0",
                 "round5": "0",
@@ -283,9 +283,9 @@
                 "round14": "0",
                 "round15": "0",
                 "round16": "0",
-                "totalpoints": "220",
+                "totalpoints": "420",
                 "year": "2026",
-                "roundValues": "2:260,000"
+                "roundValues": "2:260,000;3:310,000"
             },
             "80": {
                 "id": "80",
@@ -304,7 +304,7 @@
                 "prevpoints": "0",
                 "injury": "",
                 "round1": "110",
-                "round2": "0",
+                "round2": "150",
                 "round3": "0",
                 "round4": "0",
                 "round5": "0",
@@ -319,9 +319,9 @@
                 "round14": "0",
                 "round15": "0",
                 "round16": "0",
-                "totalpoints": "110",
+                "totalpoints": "260",
                 "year": "2026",
-                "roundValues": "2:250,000"
+                "roundValues": "2:250,000;3:250,000"
             },
             "1095": {
                 "id": "1095",
@@ -340,7 +340,7 @@
                 "prevpoints": "0",
                 "injury": "",
                 "round1": "230",
-                "round2": "0",
+                "round2": "210",
                 "round3": "0",
                 "round4": "0",
                 "round5": "0",
@@ -355,9 +355,9 @@
                 "round14": "0",
                 "round15": "0",
                 "round16": "0",
-                "totalpoints": "230",
+                "totalpoints": "440",
                 "year": "2026",
-                "roundValues": "2:250,000"
+                "roundValues": "2:250,000;3:300,000"
             },
             "1141": {
                 "id": "1141",
@@ -376,7 +376,7 @@
                 "prevpoints": "0",
                 "injury": "",
                 "round1": "210",
-                "round2": "0",
+                "round2": "220",
                 "round3": "0",
                 "round4": "0",
                 "round5": "0",
@@ -391,9 +391,9 @@
                 "round14": "0",
                 "round15": "0",
                 "round16": "0",
-                "totalpoints": "210",
+                "totalpoints": "430",
                 "year": "2026",
-                "roundValues": "2:245,000"
+                "roundValues": "2:245,000;3:345,000"
             },
             "11": {
                 "id": "11",
@@ -429,7 +429,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "2:240,000"
+                "roundValues": "2:240,000;3:220,000"
             },
             "14": {
                 "id": "14",
@@ -448,7 +448,7 @@
                 "prevpoints": "0",
                 "injury": "",
                 "round1": "30",
-                "round2": "0",
+                "round2": "400",
                 "round3": "0",
                 "round4": "0",
                 "round5": "0",
@@ -463,9 +463,9 @@
                 "round14": "0",
                 "round15": "0",
                 "round16": "0",
-                "totalpoints": "30",
+                "totalpoints": "430",
                 "year": "2026",
-                "roundValues": "2:240,000"
+                "roundValues": "2:240,000;3:355,000"
             },
             "1147": {
                 "id": "1147",
@@ -484,7 +484,7 @@
                 "prevpoints": "0",
                 "injury": "",
                 "round1": "240",
-                "round2": "0",
+                "round2": "80",
                 "round3": "0",
                 "round4": "0",
                 "round5": "0",
@@ -499,9 +499,9 @@
                 "round14": "0",
                 "round15": "0",
                 "round16": "0",
-                "totalpoints": "240",
+                "totalpoints": "320",
                 "year": "2026",
-                "roundValues": "2:240,000"
+                "roundValues": "2:240,000;3:340,000"
             },
             "6": {
                 "id": "6",
@@ -520,7 +520,7 @@
                 "prevpoints": "0",
                 "injury": "",
                 "round1": "150",
-                "round2": "0",
+                "round2": "240",
                 "round3": "0",
                 "round4": "0",
                 "round5": "0",
@@ -535,9 +535,9 @@
                 "round14": "0",
                 "round15": "0",
                 "round16": "0",
-                "totalpoints": "150",
+                "totalpoints": "390",
                 "year": "2026",
-                "roundValues": "2:230,000"
+                "roundValues": "2:230,000;3:325,000"
             },
             "1094": {
                 "id": "1094",
@@ -573,7 +573,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "2:225,000"
+                "roundValues": "2:225,000;3:240,000"
             },
             "89": {
                 "id": "89",
@@ -609,7 +609,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "2:220,000"
+                "roundValues": "2:220,000;3:200,000"
             },
             "8": {
                 "id": "8",
@@ -628,7 +628,7 @@
                 "prevpoints": "0",
                 "injury": "",
                 "round1": "190",
-                "round2": "0",
+                "round2": "400",
                 "round3": "0",
                 "round4": "0",
                 "round5": "0",
@@ -643,9 +643,9 @@
                 "round14": "0",
                 "round15": "0",
                 "round16": "0",
-                "totalpoints": "190",
+                "totalpoints": "590",
                 "year": "2026",
-                "roundValues": "2:215,000"
+                "roundValues": "2:215,000;3:365,000"
             },
             "91": {
                 "id": "91",
@@ -664,7 +664,7 @@
                 "prevpoints": "0",
                 "injury": "",
                 "round1": "250",
-                "round2": "0",
+                "round2": "50",
                 "round3": "0",
                 "round4": "0",
                 "round5": "0",
@@ -679,9 +679,9 @@
                 "round14": "0",
                 "round15": "0",
                 "round16": "0",
-                "totalpoints": "250",
+                "totalpoints": "300",
                 "year": "2026",
-                "roundValues": "2:215,000"
+                "roundValues": "2:215,000;3:280,000"
             },
             "144": {
                 "id": "144",
@@ -717,7 +717,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "2:205,000"
+                "roundValues": "2:205,000;3:230,000"
             },
             "19": {
                 "id": "19",
@@ -753,7 +753,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "2:200,000"
+                "roundValues": "2:200,000;3:65,000"
             },
             "29": {
                 "id": "29",
@@ -772,7 +772,7 @@
                 "prevpoints": "0",
                 "injury": "",
                 "round1": "160",
-                "round2": "0",
+                "round2": "170",
                 "round3": "0",
                 "round4": "0",
                 "round5": "0",
@@ -787,9 +787,9 @@
                 "round14": "0",
                 "round15": "0",
                 "round16": "0",
-                "totalpoints": "160",
+                "totalpoints": "330",
                 "year": "2026",
-                "roundValues": "2:200,000"
+                "roundValues": "2:200,000;3:260,000"
             },
             "10": {
                 "id": "10",
@@ -825,7 +825,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "2:190,000"
+                "roundValues": "2:190,000;3:60,000"
             },
             "83": {
                 "id": "83",
@@ -861,7 +861,7 @@
                 "round16": "0",
                 "totalpoints": "130",
                 "year": "2026",
-                "roundValues": "2:190,000"
+                "roundValues": "2:190,000;3:110,000"
             },
             "38": {
                 "id": "38",
@@ -880,7 +880,7 @@
                 "prevpoints": "0",
                 "injury": "",
                 "round1": "180",
-                "round2": "0",
+                "round2": "190",
                 "round3": "0",
                 "round4": "0",
                 "round5": "0",
@@ -895,9 +895,9 @@
                 "round14": "0",
                 "round15": "0",
                 "round16": "0",
-                "totalpoints": "180",
+                "totalpoints": "370",
                 "year": "2026",
-                "roundValues": "2:185,000"
+                "roundValues": "2:185,000;3:305,000"
             },
             "21": {
                 "id": "21",
@@ -933,7 +933,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "2:180,000"
+                "roundValues": "2:180,000;3:210,000"
             },
             "27": {
                 "id": "27",
@@ -952,7 +952,7 @@
                 "prevpoints": "0",
                 "injury": "",
                 "round1": "70",
-                "round2": "0",
+                "round2": "130",
                 "round3": "0",
                 "round4": "0",
                 "round5": "0",
@@ -967,9 +967,9 @@
                 "round14": "0",
                 "round15": "0",
                 "round16": "0",
-                "totalpoints": "70",
+                "totalpoints": "200",
                 "year": "2026",
-                "roundValues": "2:180,000"
+                "roundValues": "2:180,000;3:180,000"
             },
             "9": {
                 "id": "9",
@@ -1005,7 +1005,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "2:175,000"
+                "roundValues": "2:175,000;3:150,000"
             },
             "1154": {
                 "id": "1154",
@@ -1041,7 +1041,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "2:0;3:0;4:0;5:0;6:0;7:0;8:0;9:0;10:0"
+                "roundValues": "2:0;3:70,000;4:0;5:0;6:0;7:0;8:0;9:0;10:0"
             },
             "40": {
                 "id": "40",
@@ -1077,7 +1077,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "2:170,000"
+                "roundValues": "2:170,000;3:55,000"
             },
             "1143": {
                 "id": "1143",
@@ -1096,7 +1096,7 @@
                 "prevpoints": "0",
                 "injury": "",
                 "round1": "60",
-                "round2": "0",
+                "round2": "250",
                 "round3": "0",
                 "round4": "0",
                 "round5": "0",
@@ -1111,9 +1111,9 @@
                 "round14": "0",
                 "round15": "0",
                 "round16": "0",
-                "totalpoints": "60",
+                "totalpoints": "310",
                 "year": "2026",
-                "roundValues": "2:170,000"
+                "roundValues": "2:170,000;3:290,000"
             },
             "26": {
                 "id": "26",
@@ -1149,7 +1149,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "2:165,000"
+                "roundValues": "2:165,000;3:50,000"
             },
             "3": {
                 "id": "3",
@@ -1168,7 +1168,7 @@
                 "prevpoints": "0",
                 "injury": "",
                 "round1": "15",
-                "round2": "0",
+                "round2": "275",
                 "round3": "0",
                 "round4": "0",
                 "round5": "0",
@@ -1183,9 +1183,9 @@
                 "round14": "0",
                 "round15": "0",
                 "round16": "0",
-                "totalpoints": "15",
+                "totalpoints": "290",
                 "year": "2026",
-                "roundValues": "2:150,000"
+                "roundValues": "2:150,000;3:315,000"
             },
             "74": {
                 "id": "74",
@@ -1204,7 +1204,7 @@
                 "prevpoints": "0",
                 "injury": "",
                 "round1": "80",
-                "round2": "0",
+                "round2": "180",
                 "round3": "0",
                 "round4": "0",
                 "round5": "0",
@@ -1219,9 +1219,9 @@
                 "round14": "0",
                 "round15": "0",
                 "round16": "0",
-                "totalpoints": "80",
+                "totalpoints": "260",
                 "year": "2026",
-                "roundValues": "2:145,000"
+                "roundValues": "2:145,000;3:270,000"
             },
             "46": {
                 "id": "46",
@@ -1257,7 +1257,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "2:140,000"
+                "roundValues": "2:140,000;3:40,000"
             },
             "1145": {
                 "id": "1145",
@@ -1293,7 +1293,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "1:0;2:140,000;3:0;4:0;5:0;6:0;7:0;8:0;9:0;10:0"
+                "roundValues": "1:0;2:140,000;3:45,000;4:0;5:0;6:0;7:0;8:0;9:0;10:0"
             },
             "25": {
                 "id": "25",
@@ -1329,7 +1329,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "2:135,000"
+                "roundValues": "2:135,000;3:35,000"
             },
             "75": {
                 "id": "75",
@@ -1365,7 +1365,7 @@
                 "round16": "0",
                 "totalpoints": "100",
                 "year": "2026",
-                "roundValues": "2:135,000"
+                "roundValues": "2:135,000;3:100,000"
             },
             "22": {
                 "id": "22",
@@ -1401,7 +1401,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "2:130,000"
+                "roundValues": "2:130,000;3:170,000"
             },
             "1103": {
                 "id": "1103",
@@ -1437,7 +1437,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "2:125,000"
+                "roundValues": "2:125,000;3:35,000"
             },
             "23": {
                 "id": "23",
@@ -1473,7 +1473,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "2:115,000"
+                "roundValues": "2:115,000;3:35,000"
             },
             "28": {
                 "id": "28",
@@ -1492,7 +1492,7 @@
                 "prevpoints": "0",
                 "injury": "",
                 "round1": "10",
-                "round2": "0",
+                "round2": "60",
                 "round3": "0",
                 "round4": "0",
                 "round5": "0",
@@ -1507,9 +1507,9 @@
                 "round14": "0",
                 "round15": "0",
                 "round16": "0",
-                "totalpoints": "10",
+                "totalpoints": "70",
                 "year": "2026",
-                "roundValues": "2:110,000"
+                "roundValues": "2:110,000;3:160,000"
             },
             "70": {
                 "id": "70",
@@ -1545,7 +1545,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "2:110,000"
+                "roundValues": "2:110,000;3:30,000"
             },
             "1148": {
                 "id": "1148",
@@ -1581,7 +1581,7 @@
                 "round16": "0",
                 "totalpoints": "220",
                 "year": "2026",
-                "roundValues": "2:105,000"
+                "roundValues": "2:105,000;3:140,000"
             },
             "17": {
                 "id": "17",
@@ -1600,7 +1600,7 @@
                 "prevpoints": "0",
                 "injury": "",
                 "round1": "0",
-                "round2": "0",
+                "round2": "160",
                 "round3": "0",
                 "round4": "0",
                 "round5": "0",
@@ -1615,9 +1615,9 @@
                 "round14": "0",
                 "round15": "0",
                 "round16": "0",
-                "totalpoints": "0",
+                "totalpoints": "160",
                 "year": "2026",
-                "roundValues": "2:100,000"
+                "roundValues": "2:100,000;3:130,000"
             },
             "1131": {
                 "id": "1131",
@@ -1653,7 +1653,7 @@
                 "round16": "0",
                 "totalpoints": "120",
                 "year": "2026",
-                "roundValues": "2:95,000"
+                "roundValues": "2:95,000;3:120,000"
             },
             "7": {
                 "id": "7",
@@ -1672,7 +1672,7 @@
                 "prevpoints": "0",
                 "injury": "",
                 "round1": "0",
-                "round2": "0",
+                "round2": "90",
                 "round3": "0",
                 "round4": "0",
                 "round5": "0",
@@ -1687,9 +1687,9 @@
                 "round14": "0",
                 "round15": "0",
                 "round16": "0",
-                "totalpoints": "0",
+                "totalpoints": "90",
                 "year": "2026",
-                "roundValues": "2:90,000"
+                "roundValues": "2:90,000;3:85,000"
             },
             "85": {
                 "id": "85",
@@ -1708,7 +1708,7 @@
                 "prevpoints": "0",
                 "injury": "",
                 "round1": "90",
-                "round2": "0",
+                "round2": "120",
                 "round3": "0",
                 "round4": "0",
                 "round5": "0",
@@ -1723,9 +1723,9 @@
                 "round14": "0",
                 "round15": "0",
                 "round16": "0",
-                "totalpoints": "90",
+                "totalpoints": "210",
                 "year": "2026",
-                "roundValues": "2:90,000"
+                "roundValues": "2:90,000;3:190,000"
             },
             "128": {
                 "id": "128",
@@ -1744,7 +1744,7 @@
                 "prevpoints": "0",
                 "injury": "",
                 "round1": "0",
-                "round2": "0",
+                "round2": "110",
                 "round3": "0",
                 "round4": "0",
                 "round5": "0",
@@ -1759,9 +1759,9 @@
                 "round14": "0",
                 "round15": "0",
                 "round16": "0",
-                "totalpoints": "0",
+                "totalpoints": "110",
                 "year": "2026",
-                "roundValues": "2:80,000"
+                "roundValues": "2:80,000;3:95,000"
             },
             "18": {
                 "id": "18",
@@ -1780,7 +1780,7 @@
                 "prevpoints": "0",
                 "injury": "",
                 "round1": "0",
-                "round2": "0",
+                "round2": "40",
                 "round3": "0",
                 "round4": "0",
                 "round5": "0",
@@ -1795,9 +1795,9 @@
                 "round14": "0",
                 "round15": "0",
                 "round16": "0",
-                "totalpoints": "0",
+                "totalpoints": "40",
                 "year": "2026",
-                "roundValues": "2:75,000"
+                "roundValues": "2:75,000;3:90,000"
             },
             "41": {
                 "id": "41",
@@ -1833,7 +1833,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "2:70,000"
+                "roundValues": "2:70,000;3:30,000"
             },
             "77": {
                 "id": "77",
@@ -1869,7 +1869,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "2:65,000"
+                "roundValues": "2:65,000;3:30,000"
             },
             "1108": {
                 "id": "1108",
@@ -1905,7 +1905,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "2:60,000"
+                "roundValues": "2:60,000;3:25,000"
             },
             "1146": {
                 "id": "1146",
@@ -1941,7 +1941,7 @@
                 "round16": "0",
                 "totalpoints": "50",
                 "year": "2026",
-                "roundValues": "2:55,000"
+                "roundValues": "2:55,000;3:75,000"
             },
             "1132": {
                 "id": "1132",
@@ -1977,7 +1977,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "2:45,000"
+                "roundValues": "2:45,000;3:25,000"
             },
             "102": {
                 "id": "102",
@@ -2013,7 +2013,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "2:40,000"
+                "roundValues": "2:40,000;3:25,000"
             },
             "39": {
                 "id": "39",
@@ -2049,7 +2049,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "2:30,000"
+                "roundValues": "2:30,000;3:15,000"
             },
             "1120": {
                 "id": "1120",
@@ -2085,7 +2085,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "2:30,000"
+                "roundValues": "2:30,000;3:15,000"
             },
             "1144": {
                 "id": "1144",
@@ -2121,7 +2121,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "2:30,000"
+                "roundValues": "2:30,000;3:15,000"
             },
             "93": {
                 "id": "93",
@@ -2140,7 +2140,7 @@
                 "prevpoints": "0",
                 "injury": "",
                 "round1": "0",
-                "round2": "0",
+                "round2": "30",
                 "round3": "0",
                 "round4": "0",
                 "round5": "0",
@@ -2155,9 +2155,9 @@
                 "round14": "0",
                 "round15": "0",
                 "round16": "0",
-                "totalpoints": "0",
+                "totalpoints": "30",
                 "year": "2026",
-                "roundValues": "2:25,000"
+                "roundValues": "2:25,000;3:80,000"
             },
             "146": {
                 "id": "146",
@@ -2193,7 +2193,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "2:25,000"
+                "roundValues": "2:25,000;3:10,000"
             },
             "1104": {
                 "id": "1104",
@@ -2229,7 +2229,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "2:25,000"
+                "roundValues": "2:25,000;3:10,000"
             },
             "30": {
                 "id": "30",
@@ -2265,7 +2265,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "2:20,000"
+                "roundValues": "2:20,000;3:10,000"
             },
             "1107": {
                 "id": "1107",
@@ -2301,7 +2301,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "2:20,000"
+                "roundValues": "2:20,000;3:10,000"
             },
             "1105": {
                 "id": "1105",
@@ -2337,7 +2337,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "1:0;2:15,000;3:0;4:0;5:0;6:0;7:0;8:0;9:0;10:0"
+                "roundValues": "1:0;2:15,000;3:10,000;4:0;5:0;6:0;7:0;8:0;9:0;10:0"
             },
             "1109": {
                 "id": "1109",
@@ -2373,7 +2373,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "2:15,000"
+                "roundValues": "2:15,000;3:10,000"
             },
             "1149": {
                 "id": "1149",
@@ -2409,7 +2409,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "2:15,000"
+                "roundValues": "2:15,000;3:10,000"
             },
             "48": {
                 "id": "48",
@@ -2428,7 +2428,7 @@
                 "prevpoints": "0",
                 "injury": "",
                 "round1": "500",
-                "round2": "0",
+                "round2": "600",
                 "round3": "0",
                 "round4": "0",
                 "round5": "0",
@@ -2443,9 +2443,9 @@
                 "round14": "0",
                 "round15": "0",
                 "round16": "0",
-                "totalpoints": "500",
+                "totalpoints": "1100",
                 "year": "2026",
-                "roundValues": "2:300,000"
+                "roundValues": "2:300,000;3:375,000"
             },
             "59": {
                 "id": "59",
@@ -2464,7 +2464,7 @@
                 "prevpoints": "0",
                 "injury": "",
                 "round1": "200",
-                "round2": "0",
+                "round2": "450",
                 "round3": "0",
                 "round4": "0",
                 "round5": "0",
@@ -2479,9 +2479,9 @@
                 "round14": "0",
                 "round15": "0",
                 "round16": "0",
-                "totalpoints": "200",
+                "totalpoints": "650",
                 "year": "2026",
-                "roundValues": "2:290,000"
+                "roundValues": "2:290,000;3:350,000"
             },
             "53": {
                 "id": "53",
@@ -2517,7 +2517,7 @@
                 "round16": "0",
                 "totalpoints": "150",
                 "year": "2026",
-                "roundValues": "2:275,000;3:0;4:0;5:0;6:0;7:0;8:0;9:0;10:0"
+                "roundValues": "2:275,000;3:200,000;4:0;5:0;6:0;7:0;8:0;9:0;10:0"
             },
             "49": {
                 "id": "49",
@@ -2536,7 +2536,7 @@
                 "prevpoints": "0",
                 "injury": "",
                 "round1": "300",
-                "round2": "0",
+                "round2": "350",
                 "round3": "0",
                 "round4": "0",
                 "round5": "0",
@@ -2551,9 +2551,9 @@
                 "round14": "0",
                 "round15": "0",
                 "round16": "0",
-                "totalpoints": "300",
+                "totalpoints": "650",
                 "year": "2026",
-                "roundValues": "2:265,000"
+                "roundValues": "2:265,000;3:360,000"
             },
             "137": {
                 "id": "137",
@@ -2572,7 +2572,7 @@
                 "prevpoints": "0",
                 "injury": "",
                 "round1": "0",
-                "round2": "0",
+                "round2": "125",
                 "round3": "0",
                 "round4": "0",
                 "round5": "0",
@@ -2587,9 +2587,9 @@
                 "round14": "0",
                 "round15": "0",
                 "round16": "0",
-                "totalpoints": "0",
+                "totalpoints": "125",
                 "year": "2026",
-                "roundValues": "2:260,000"
+                "roundValues": "2:260,000;3:260,000"
             },
             "56": {
                 "id": "56",
@@ -2608,7 +2608,7 @@
                 "prevpoints": "0",
                 "injury": "",
                 "round1": "25",
-                "round2": "0",
+                "round2": "175",
                 "round3": "0",
                 "round4": "0",
                 "round5": "0",
@@ -2623,9 +2623,9 @@
                 "round14": "0",
                 "round15": "0",
                 "round16": "0",
-                "totalpoints": "25",
+                "totalpoints": "200",
                 "year": "2026",
-                "roundValues": "2:255,000"
+                "roundValues": "2:255,000;3:320,000"
             },
             "1016": {
                 "id": "1016",
@@ -2644,7 +2644,7 @@
                 "prevpoints": "0",
                 "injury": "",
                 "round1": "50",
-                "round2": "0",
+                "round2": "150",
                 "round3": "0",
                 "round4": "0",
                 "round5": "0",
@@ -2659,9 +2659,9 @@
                 "round14": "0",
                 "round15": "0",
                 "round16": "0",
-                "totalpoints": "50",
+                "totalpoints": "200",
                 "year": "2026",
-                "roundValues": "2:245,000"
+                "roundValues": "2:245,000;3:280,000"
             },
             "132": {
                 "id": "132",
@@ -2680,7 +2680,7 @@
                 "prevpoints": "0",
                 "injury": "",
                 "round1": "175",
-                "round2": "0",
+                "round2": "75",
                 "round3": "0",
                 "round4": "0",
                 "round5": "0",
@@ -2695,9 +2695,9 @@
                 "round14": "0",
                 "round15": "0",
                 "round16": "0",
-                "totalpoints": "175",
+                "totalpoints": "250",
                 "year": "2026",
-                "roundValues": "2:240,000"
+                "roundValues": "2:240,000;3:300,000"
             },
             "1096": {
                 "id": "1096",
@@ -2716,7 +2716,7 @@
                 "prevpoints": "0",
                 "injury": "",
                 "round1": "225",
-                "round2": "0",
+                "round2": "100",
                 "round3": "0",
                 "round4": "0",
                 "round5": "0",
@@ -2731,9 +2731,9 @@
                 "round14": "0",
                 "round15": "0",
                 "round16": "0",
-                "totalpoints": "225",
+                "totalpoints": "325",
                 "year": "2026",
-                "roundValues": "2:235,000"
+                "roundValues": "2:235,000;3:220,000"
             },
             "1015": {
                 "id": "1015",
@@ -2769,7 +2769,7 @@
                 "round16": "0",
                 "totalpoints": "450",
                 "year": "2026",
-                "roundValues": "2:215,000"
+                "roundValues": "2:215,000;3:240,000"
             },
             "50": {
                 "id": "50",
@@ -2788,7 +2788,7 @@
                 "prevpoints": "0",
                 "injury": "",
                 "round1": "325",
-                "round2": "0",
+                "round2": "250",
                 "round3": "0",
                 "round4": "0",
                 "round5": "0",
@@ -2803,9 +2803,9 @@
                 "round14": "0",
                 "round15": "0",
                 "round16": "0",
-                "totalpoints": "325",
+                "totalpoints": "575",
                 "year": "2026",
-                "roundValues": "2:210,000"
+                "roundValues": "2:210,000;3:340,000"
             },
             "67": {
                 "id": "67",
@@ -2824,7 +2824,7 @@
                 "prevpoints": "0",
                 "injury": "",
                 "round1": "125",
-                "round2": "0",
+                "round2": "300",
                 "round3": "0",
                 "round4": "0",
                 "round5": "0",
@@ -2839,9 +2839,9 @@
                 "round14": "0",
                 "round15": "0",
                 "round16": "0",
-                "totalpoints": "125",
+                "totalpoints": "425",
                 "year": "2026",
-                "roundValues": "2:200,000"
+                "roundValues": "2:200,000;3:330,000"
             },
             "1013": {
                 "id": "1013",
@@ -2860,7 +2860,7 @@
                 "prevpoints": "0",
                 "injury": "",
                 "round1": "375",
-                "round2": "0",
+                "round2": "225",
                 "round3": "0",
                 "round4": "0",
                 "round5": "0",
@@ -2875,9 +2875,9 @@
                 "round14": "0",
                 "round15": "0",
                 "round16": "0",
-                "totalpoints": "375",
+                "totalpoints": "600",
                 "year": "2026",
-                "roundValues": "2:195,000"
+                "roundValues": "2:195,000;3:310,000"
             },
             "55": {
                 "id": "55",
@@ -2913,7 +2913,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "1:0;2:175,000;3:0;4:0;5:0;6:0;7:0;8:0;9:0;10:0"
+                "roundValues": "1:0;2:175,000;3:90,000;4:0;5:0;6:0;7:0;8:0;9:0;10:0"
             },
             "134": {
                 "id": "134",
@@ -2949,7 +2949,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "2:170,000"
+                "roundValues": "2:170,000;3:95,000"
             },
             "1017": {
                 "id": "1017",
@@ -2985,7 +2985,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "2:155,000"
+                "roundValues": "2:155,000;3:85,000"
             },
             "126": {
                 "id": "126",
@@ -3004,7 +3004,7 @@
                 "prevpoints": "0",
                 "injury": "",
                 "round1": "100",
-                "round2": "0",
+                "round2": "200",
                 "round3": "0",
                 "round4": "0",
                 "round5": "0",
@@ -3019,9 +3019,9 @@
                 "round14": "0",
                 "round15": "0",
                 "round16": "0",
-                "totalpoints": "100",
+                "totalpoints": "300",
                 "year": "2026",
-                "roundValues": "2:130,000"
+                "roundValues": "2:130,000;3:180,000"
             },
             "63": {
                 "id": "63",
@@ -3057,7 +3057,7 @@
                 "round16": "0",
                 "totalpoints": "75",
                 "year": "2026",
-                "roundValues": "2:120,000"
+                "roundValues": "2:120,000;3:160,000"
             },
             "58": {
                 "id": "58",
@@ -3093,7 +3093,7 @@
                 "round16": "0",
                 "totalpoints": "10",
                 "year": "2026",
-                "roundValues": "2:95,000"
+                "roundValues": "2:95,000;3:120,000"
             },
             "1097": {
                 "id": "1097",
@@ -3129,7 +3129,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "2:70,000"
+                "roundValues": "2:70,000;3:35,000"
             },
             "1150": {
                 "id": "1150",
@@ -3148,7 +3148,7 @@
                 "prevpoints": "0",
                 "injury": "",
                 "round1": "0",
-                "round2": "0",
+                "round2": "50",
                 "round3": "0",
                 "round4": "0",
                 "round5": "0",
@@ -3163,9 +3163,9 @@
                 "round14": "0",
                 "round15": "0",
                 "round16": "0",
-                "totalpoints": "0",
+                "totalpoints": "50",
                 "year": "2026",
-                "roundValues": "2:70,000"
+                "roundValues": "2:70,000;3:140,000"
             },
             "1151": {
                 "id": "1151",
@@ -3201,7 +3201,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "2:60,000"
+                "roundValues": "2:60,000;3:80,000"
             },
             "54": {
                 "id": "54",
@@ -3237,7 +3237,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "2:50,000"
+                "roundValues": "2:50,000;3:75,000"
             },
             "1152": {
                 "id": "1152",
@@ -3273,7 +3273,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "2:45,000"
+                "roundValues": "2:45,000;3:70,000"
             },
             "1098": {
                 "id": "1098",
@@ -3309,7 +3309,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "2:40,000"
+                "roundValues": "2:40,000;3:65,000"
             },
             "60": {
                 "id": "60",
@@ -3345,7 +3345,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "2:35,000"
+                "roundValues": "2:35,000;3:60,000"
             },
             "1153": {
                 "id": "1153",
@@ -3381,7 +3381,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "2:30,000"
+                "roundValues": "2:30,000;3:55,000"
             },
             "57": {
                 "id": "57",
@@ -3417,7 +3417,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "2:25,000"
+                "roundValues": "2:25,000;3:0"
             },
             "1100": {
                 "id": "1100",
@@ -3436,7 +3436,7 @@
                 "prevpoints": "0",
                 "injury": "",
                 "round1": "0",
-                "round2": "0",
+                "round2": "25",
                 "round3": "0",
                 "round4": "0",
                 "round5": "0",
@@ -3451,9 +3451,9 @@
                 "round14": "0",
                 "round15": "0",
                 "round16": "0",
-                "totalpoints": "0",
+                "totalpoints": "25",
                 "year": "2026",
-                "roundValues": "2:25,000"
+                "roundValues": "2:25,000;3:100,000"
             },
             "62": {
                 "id": "62",
@@ -3489,7 +3489,7 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "2:20,000"
+                "roundValues": "2:20,000;3:40,000"
             },
             "129": {
                 "id": "129",
@@ -3525,6 +3525,6 @@
                 "round16": "0",
                 "totalpoints": "0",
                 "year": "2026",
-                "roundValues": "2:20,000"
+                "roundValues": "2:20,000;3:45,000"
             }
         }
