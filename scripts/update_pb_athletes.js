@@ -4,7 +4,7 @@
 // @version      1.1
 // @description  Extracts aAthletesKeyed from the page and adds a copy button
 // @match        https://www.pinkbike.com/contest/fantasy/dh/athletes*
-// @grant        GM_setClipboard
+// @grant        GM_setClipboardabout:blank#blocked
 // @run-at       document-idle
 // ==/UserScript==
 
