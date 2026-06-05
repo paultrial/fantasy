@@ -116,51 +116,81 @@ h4.nrathletePerTeam {
   .filters {
     display: flex;
     flex-direction: column;
-    padding: 1rem;
+    gap: 0.35rem;
+    padding: 0.75rem;
     border: 1px solid #ccc;
     border-radius: 12px;
     background-color: #f9f9f9;
     font-family: Arial, sans-serif;
 
+    h3 {
+      margin: 0 0 0.2rem;
+      font-size: 1.45rem;
+      line-height: 1.1;
+    }
+
     .filter-row {
-      margin-bottom: 0.5rem;
+      display: grid;
+      grid-template-columns: minmax(140px, 1fr) minmax(96px, 182px);
+      align-items: center;
+      column-gap: 0.4rem;
       width: 100%;
+
+      label {
+        margin: 0;
+        font-size: 0.92rem;
+      }
 
       &.checkbox {
         border-bottom: 1px solid gray;
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
+        grid-template-columns: 1fr auto;
+        padding-bottom: 0.35rem;
+        margin-bottom: 0.15rem;
 
         label {
-          margin-top: 0;
           font-weight: bold;
-          font-size: 14px;
+          font-size: 1rem;
         }
 
-        input {
-          display: block;
-          clear: none;
+        input[type="checkbox"] {
+          width: 16px;
+          height: 16px;
+          margin: 0;
         }
       }
 
-      &.totalPoints {
-        input {
-          width: 50% !important;
-        }
+      &.min-max {
+        grid-template-columns: minmax(140px, 1fr) minmax(76px, 88px) minmax(76px, 88px);
       }
+
+      &.byCountry {
+        grid-template-columns: minmax(140px, 1fr) minmax(96px, 182px);
+      }
+
+      &.min {
+        grid-template-columns: minmax(140px, 1fr) minmax(76px, 88px);
+      }
+      
     }
 
     select,
     input[type="number"],
     input[type="text"] {
-      padding: 0.4rem;
-      margin-bottom: 0.5rem;
-      font-size: 14px;
+      padding: 0.3rem 0.4rem;
+      margin-bottom: 0;
+      font-size: 0.9rem;
       border: 1px solid #ccc;
       border-radius: 6px;
-      width: 53px;
+      width: 100%;
+      min-width: 0;
+      line-height: 1.2;
       box-sizing: border-box;
+    }
+
+    button {
+      margin-top: 0.4rem;
+      padding: 0.35rem 0.6rem;
+      line-height: 1.2;
     }
 
     .reset-button {

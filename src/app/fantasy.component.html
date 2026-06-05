@@ -112,20 +112,22 @@
             <input type="checkbox" id="injuryFilter" [(ngModel)]="injuryfilter" (change)="applyFilters()">
           </div>
 
-          <div class="filter-row">
+          <div class="filter-row short">
             <label for="nameFilter">Filter by name</label>
             <input id="nameFilter" type="text" [(ngModel)]="nameFilter" (input)="applyFilters()"
               placeholder="Filter by name" />
           </div>
 
-          <label for="gender">by gender</label>
-          <select id="gender" [(ngModel)]="filterGender" (change)="applyFilters()">
-            <option value="">All Genders</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-          </select>
+          <div class="filter-row">
+            <label for="gender">by gender</label>
+            <select id="gender" [(ngModel)]="filterGender" (change)="applyFilters()">
+              <option value="">All Genders</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </div>
 
-          <div class="filter-row totalPoints">
+          <div class="filter-row min-max">
             <label>by price</label>
             <input type="number" step="1000" min="25000" max="500000" placeholder="min" [(ngModel)]="priceFilter.min"
               (input)="applyFilters()" />
@@ -133,7 +135,7 @@
               (input)="applyFilters()" />
           </div>
 
-          <div class="filter-row totalPoints">
+          <div class="filter-row min-max">
             <label>by total Points</label>
             <input type="number" min="0" placeholder="Min" [(ngModel)]="totalPointsfilter.min"
               (input)="applyFilters()" />
@@ -149,7 +151,7 @@
             </select>
           </div>
 
-          <div class="filter-row totalPoints">
+          <div class="filter-row min-max">
             <label>by total weightedPointDelta</label>
             <input type="number" min="{{minweightedPointDelta}}" step="0.1" placeholder="{{minweightedPointDelta}}"
               [(ngModel)]="weightedPointDeltaFilter.min" (input)="applyFilters()" />
@@ -157,7 +159,7 @@
               [(ngModel)]="weightedPointDeltaFilter.max" (input)="applyFilters()" />
           </div>
 
-          <div class="filter-row totalPoints">
+          <div class="filter-row min-max">
             <label>by total weightedPriceDelta</label>
             <input type="number" step="1000" min="{{minweightedPriceDelta}}" placeholder="{{minweightedPriceDelta}}"
               [(ngModel)]="weightedPriceDeltaFilter.min" (input)="applyFilters()" />
@@ -165,7 +167,7 @@
               [(ngModel)]="weightedPriceDeltaFilter.max" (input)="applyFilters()" />
           </div>
 
-          <div *ngFor="let round of rounds, index as i" class="filter-row">
+          <div *ngFor="let round of rounds, index as i" class="filter-row min">
             <label>by # points &#64; {{roundsAliases[i]}}</label>
             <input type="number" placeholder="Min" [(ngModel)]="roundFilters[round].min" (input)="applyFilters()" />
           </div>
