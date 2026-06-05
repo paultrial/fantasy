@@ -6,6 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
+    "update:athletes": "python3 scripts/update_pb_athletes.py",
     "test": "ng test"
   },
   "private": true,
