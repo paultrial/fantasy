@@ -72,6 +72,7 @@ export class FantasyComponent implements OnInit {
   bestTeams: any = [];
   prevTeam: any = {};
   nor = 2; // number of rounds in the season
+  isFindingHighScoringTeam = false;
 
   roundFilters: { [key: string]: { min?: number; max?: number } } = {};
   rounds = Array.from({ length: this.nor }, (_, i) => `round${i + 1}`);
@@ -100,8 +101,6 @@ export class FantasyComponent implements OnInit {
     "Dry",
     "Dry"
   ]
-
-  predictNextRoundTeamsMinPioints = 120;
 
   constructor(private dataService: DataService, private route: ActivatedRoute) {
     // for (let rn = 1; rn <= 5; rn++) { this.rounds.push("round" + rn.toString()) }
@@ -833,12 +832,26 @@ export class FantasyComponent implements OnInit {
     return bestTeam;
   }
 
-  findHighScoringTeam(points: number) {
-    const athletes = this.data as any[],
-      budget = 1500000
-    // Filter eligible athletes
-    const males = athletes.filter(a => a.gender === 'Male' && a.totalpoints >= points);
-    const females = athletes.filter(a => a.gender === 'Female' && a.totalpoints >= points);
+  private computeHighScoringTeam() {
+    const athletes = this.data as any[];
+    const budget = this.money;
+
+    const predictAthlete = (athlete: any) => {
+      const weightedPointDelta = Number(athlete.progressionScore?.weightedPointDelta || 0);
+      const weightedPriceDelta = Number(athlete.progressionScore?.weightedPriceDelta || 0);
+      const predictedPoints = Number(athlete.totalpoints || 0) + weightedPointDelta;
+      const projectedValue = Math.max(0, Number(athlete.value || 0) + weightedPriceDelta);
+
+      return {
+        ...athlete,
+        predictedPoints,
+        projectedValue
+      };
+    };
+
+    const eligibleAthletes = athletes.filter(a => !a.injury);
+    const males = eligibleAthletes.filter(a => a.gender === 'Male').map(predictAthlete);
+    const females = eligibleAthletes.filter(a => a.gender === 'Female').map(predictAthlete);
 
     let bestTeam = null;
     let bestPoints = -1;
@@ -849,10 +862,10 @@ export class FantasyComponent implements OnInit {
     for (const m of maleCombos) {
       for (const f of femaleCombos) {
         const team = [...m, ...f];
-        const totalValue = team.reduce((sum, a) => sum + a.value, 0);
-        if (totalValue > budget) continue; // skip if over budget
+        const totalValue = team.reduce((sum, a) => sum + a.projectedValue, 0);
+        if (totalValue > budget) continue;
 
-        const totalPoints = team.reduce((sum, a) => sum + a.totalpoints, 0);
+        const totalPoints = team.reduce((sum, a) => sum + a.predictedPoints, 0);
 
         if (totalPoints > bestPoints) {
           bestPoints = totalPoints;
@@ -860,8 +873,22 @@ export class FantasyComponent implements OnInit {
         }
       }
     }
-    this.bt = of(bestTeam);
+
     return bestTeam;
+  }
+
+  findHighScoringTeam() {
+    if (this.isFindingHighScoringTeam) return;
+
+    this.isFindingHighScoringTeam = true;
+    setTimeout(() => {
+      try {
+        const bestTeam = this.computeHighScoringTeam();
+        this.bt = of(bestTeam);
+      } finally {
+        this.isFindingHighScoringTeam = false;
+      }
+    }, 0);
   }
 
   barHeightCalcperPoints(points: number): string{

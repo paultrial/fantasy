@@ -73,10 +73,9 @@
           | currency: 'USD':'symbol':'1.0-0'}}</h4>
         <h4 class="errorMessage">{{errorMessage}}</h4>
         <h4 class="nrathletePerTeam">
-          <span
-            [ngClass]="{insuficient: nrWomenPerTeam/maxNrWomenPerTeam < 1, cool: nrWomenPerTeam/maxNrWomenPerTeam == 1, wrong: nrWomenPerTeam/maxNrWomenPerTeam > 1}">women
-            {{nrWomenPerTeam}} / {{maxNrWomenPerTeam}}</span><br> <span
-            [ngClass]="{insuficient: nrMenPerTeam/maxNrMenPerTeam < 1, cool: nrMenPerTeam/maxNrMenPerTeam == 1, wrong: nrMenPerTeam/maxNrMenPerTeam > 1}">
+          <span [ngClass]="{insuficient: nrWomenPerTeam/maxNrWomenPerTeam < 1, cool: nrWomenPerTeam/maxNrWomenPerTeam == 1, wrong: nrWomenPerTeam/maxNrWomenPerTeam > 1}">women
+            {{nrWomenPerTeam}} / {{maxNrWomenPerTeam}}</span>
+            <span [ngClass]="{insuficient: nrMenPerTeam/maxNrMenPerTeam < 1, cool: nrMenPerTeam/maxNrMenPerTeam == 1, wrong: nrMenPerTeam/maxNrMenPerTeam > 1}">
             men {{nrMenPerTeam}} / {{maxNrMenPerTeam}}</span>
         </h4>
 
@@ -200,13 +199,6 @@
 
       <section class="predictNextRoundTeams history">
         <h4>Predicted next best team</h4>
-        <div class="filters">
-          <div class="filter-row">
-            <label for="minpoints">min points</label>
-            <input id="minpoints" type="number" min="1" step="1"
-              [(ngModel)]="predictNextRoundTeamsMinPioints" />
-          </div>
-        </div>
         <div class="container" *ngIf="bt | async as bestTeam">
           <div class="stats" title="{{bt | json}}">predicted points: {{bestTeam.predictedPoints}} - total price:
             {{bestTeam.totalValue | currency: 'USD':'symbol':'1.0-0'}} leftovers: {{1500000 - bestTeam.totalValue |
@@ -224,7 +216,9 @@
           </ul>
         </div>
       </section>
-      <button (click)="findHighScoringTeam(predictNextRoundTeamsMinPioints)">Predict next best team</button>
+      <button (click)="findHighScoringTeam()" [disabled]="isFindingHighScoringTeam">
+        {{ isFindingHighScoringTeam ? 'Loading...' : 'Predict next best team' }}
+      </button>
 
     </div>
   </div>
