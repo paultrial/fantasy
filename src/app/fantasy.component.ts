@@ -878,6 +878,7 @@ export class FantasyComponent implements OnInit {
   }
 
   findHighScoringTeam() {
+    const start = performance.now();
     if (this.isFindingHighScoringTeam) return;
 
     this.isFindingHighScoringTeam = true;
@@ -885,6 +886,8 @@ export class FantasyComponent implements OnInit {
       try {
         const bestTeam = this.computeHighScoringTeam();
         this.bt = of(bestTeam);
+        const end = performance.now();
+        alert(`High scoring team calculated in ${(end - start).toFixed(2)} ms.`);
       } finally {
         this.isFindingHighScoringTeam = false;
       }
