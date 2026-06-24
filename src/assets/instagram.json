@@ -367,7 +367,38 @@
     {
       "name": "Sophie Smith",
         "instagram_handle": "sophiesmithmtb"
+    },
+    {
+      "name": "Mia Smith",
+        "instagram_handle": "mia_smith_"
+    },
+    {
+      "name": "Ethan Smith",
+        "instagram_handle": "ethan_smith_"
+    },
+    {
+      "name": "Olivia Brown",
+        "instagram_handle": "olivia_brown_dh"
+    },
+    {
+      "name": "Liam Johnson",
+        "instagram_handle": "liam_johnson_dh"
+    },
+    {
+      "name": "Ava Wilson",
+        "instagram_handle": "ava_wilson_dh"
+    },
+    {
+      "name": "Noah Davis",
+        "instagram_handle": "noah_davis_dh"
+    },
+    {
+      "name": "Isabella Martinez",
+        "instagram_handle": "isabella_martinez_dh"
+    },
+    {
+      "name": "Angel Suarez",
+        "instagram_handle": "angelsuarezdh"
     }
-
   ]
 }
