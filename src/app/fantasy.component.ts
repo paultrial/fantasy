@@ -71,7 +71,7 @@ export class FantasyComponent implements OnInit {
   historyTeams: any[] = [];
   bestTeams: any = [];
   prevTeam: any = {};
-  nor = 4; // number of rounds in the season
+  nor = 5; // number of rounds in the season
   isFindingHighScoringTeam = false;
 
   roundFilters: { [key: string]: { min?: number; max?: number } } = {};
