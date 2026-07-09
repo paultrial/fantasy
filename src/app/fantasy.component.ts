@@ -26,6 +26,11 @@ export class FantasyComponent implements OnInit {
     max: undefined
   }
 
+  pointsAtLeastOneRoundFilter: { min?: number; max?: number } = {
+    min: undefined,
+    max: undefined
+  }
+
   priceFilter = {
     min: undefined,
     max: undefined
@@ -236,9 +241,18 @@ export class FantasyComponent implements OnInit {
       const weightedPriceDeltaFilterMatch = (!this.weightedPriceDeltaFilter?.min || athlete.progressionScore.weightedPriceDelta >= this.weightedPriceDeltaFilter.min) && (!this.weightedPriceDeltaFilter?.max || athlete.progressionScore.weightedPriceDelta <= this.weightedPriceDeltaFilter.max);
       const injuryFilterMatch = this.injuryfilter !== athlete.injury;
 
+      const minPointsAtLeastOneRound = this.pointsAtLeastOneRoundFilter?.min;
+      const maxPointsAtLeastOneRound = this.pointsAtLeastOneRoundFilter?.max;
+      const pointsAtLeastOneRoundFilterMatch = athlete.points.some((p:number) => {
+        const minMatch = !minPointsAtLeastOneRound || p >= minPointsAtLeastOneRound;
+        const maxMatch = !maxPointsAtLeastOneRound || p <= maxPointsAtLeastOneRound;
+        return minMatch && maxMatch;
+      });
+
       const countryMatch = !this.countryFilter || athlete.country === this.countryFilter;
       return genderMatch &&
         roundsMatch &&
+        pointsAtLeastOneRoundFilterMatch &&
         totalPointsfilterMatch &&
         priceFilterMatch &&
         injuryFilterMatch &&
@@ -257,6 +271,10 @@ export class FantasyComponent implements OnInit {
       max: undefined
     };
     this.totalPointsfilter = {
+      min: undefined,
+      max: undefined
+    };
+    this.pointsAtLeastOneRoundFilter = {
       min: undefined,
       max: undefined
     };
