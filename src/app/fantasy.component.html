@@ -135,6 +135,14 @@
           </div>
 
           <div class="filter-row min-max">
+            <label>by points at least one round</label>
+            <input type="number" step="10" min="0" max="600" placeholder="min" [(ngModel)]="pointsAtLeastOneRoundFilter.min"
+              (input)="applyFilters()" />
+            <input type="number" step="10" min="0" max="600" placeholder="max" [(ngModel)]="pointsAtLeastOneRoundFilter.max"
+              (input)="applyFilters()" />
+          </div>
+
+          <div class="filter-row min-max">
             <label>by total Points</label>
             <input type="number" min="0" placeholder="Min" [(ngModel)]="totalPointsfilter.min"
               (input)="applyFilters()" />
