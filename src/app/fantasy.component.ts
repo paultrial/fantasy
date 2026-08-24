@@ -76,7 +76,7 @@ export class FantasyComponent implements OnInit {
   historyTeams: any[] = [];
   bestTeams: any = [];
   prevTeam: any = {};
-  nor = 6; // number of rounds in the season
+  nor = 7; // number of rounds in the season
   isFindingHighScoringTeam = false;
 
   roundFilters: { [key: string]: { min?: number; max?: number } } = {};
@@ -121,17 +121,20 @@ export class FantasyComponent implements OnInit {
   ngOnInit(): void {
     const dataFile = this.route.snapshot.data['dataFile'] || 'assets/PBathletes.json';
     this.dataService.getData(dataFile).subscribe((res) => {
-      this.data = Object.keys(res).map(i => {
-        const athlete = res[i];
+      this.data = Object.keys(res).map(f => {
+        const athlete = res[f];
         athlete.value = +athlete.value;
         athlete.prices = [];
         athlete.injury = !!athlete.injury;
-        const values = athlete.roundValues.replace(/,/g, "").split(";");
+        const values = typeof athlete.roundValues === 'string'
+          ? athlete.roundValues.replace(/,/g, "").split(";")
+          : [];
         const valorileVechi = {} as any;
 
         for (let i = 0; i < this.nor; i++) {
-          valorileVechi['round' + i.toString()] = +values[i].split(":")[1];
-          athlete.prices.push(+values[i].split(":")[1]);
+          const price = Number(values[i]?.split(":")[1] ?? 0);
+          valorileVechi['round' + i.toString()] = price;
+          athlete.prices.push(price);
         }
 
         athlete["valorileVechi"] = valorileVechi;
@@ -139,9 +142,9 @@ export class FantasyComponent implements OnInit {
         athlete.totalpoints = +athlete.totalpoints;
         athlete.points = [];
 
-        athlete.roundsPoints = this.rounds.map((r, i) => {
+        athlete.roundsPoints = this.rounds.map((r, ir) => {
           const ob: any = {};
-          ob[this.roundsAliases[i]] = athlete[r];
+          ob[this.roundsAliases[ir]] = athlete[r];
           athlete.points.push(athlete[r])
           return ob;
         });
@@ -342,7 +345,10 @@ export class FantasyComponent implements OnInit {
 
     const priceDeltas = [];
     const pointDeltas = [];
-    const aPrices = athlete.roundValues.replace(/,/g, "").split(";").map((e: any) => +e.split(":")[1]);
+    const aPrices = (typeof athlete.roundValues === 'string'
+      ? athlete.roundValues.replace(/,/g, "").split(";")
+      : [])
+      .map((e: any) => Number(e?.split(":")[1] ?? 0));
     const aPoints = allrounds.map(r => +athlete[r])
 
     for (let i = 1; i < aPrices.length; i++) {
