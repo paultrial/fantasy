@@ -160,9 +160,9 @@
 
           <div class="filter-row min-max">
             <label>by total weightedPointDelta</label>
-            <input type="number" min="{{minweightedPointDelta}}" step="0.1" placeholder="{{minweightedPointDelta}}"
+            <input type="number" min="{{minweightedPointDelta}}" step="5" placeholder="{{minweightedPointDelta}}"
               [(ngModel)]="weightedPointDeltaFilter.min" (input)="applyFilters()" />
-            <input type="number" max="{{maxweightedPointDelta}}" step="0.1" placeholder="{{maxweightedPointDelta}}"
+            <input type="number" max="{{maxweightedPointDelta}}" step="5" placeholder="{{maxweightedPointDelta}}"
               [(ngModel)]="weightedPointDeltaFilter.max" (input)="applyFilters()" />
           </div>
 
@@ -182,7 +182,7 @@
           <button (click)="resetFilters()">Reset</button>
         </div>
       </section>
-      
+
       <section class="history" *ngIf="historyTeams">
         <h4>History</h4>
         <!-- historyTeams -->
@@ -257,7 +257,7 @@
           </div>
         </li>
         <!-- title="{{athlete.roundsPoints | json}} {{athlete.progressionScore | json}} {{athlete.valorileVechi | json}}" -->
-        <li class="athlete" *ngFor="let athlete of filteredAthletes"          
+        <li class="athlete" *ngFor="let athlete of filteredAthletes"
           [ngClass]="{overBudget: athlete.overBudget, selected: athlete.selected}">
           <div class="name" [ngClass]="{ notinQuali: athlete.inQuali }">
             <div class="flag"><img src="{{'assets/flags/' + athlete.country + '.gif'}}" alt=""></div>

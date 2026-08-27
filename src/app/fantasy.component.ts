@@ -451,7 +451,7 @@ export class FantasyComponent implements OnInit {
   valueTogreenBlackColor(value: number): string {
     const clamped = Math.max(this.minweightedPointDelta, Math.min(value, this.maxweightedPointDelta));
     const normalized = (clamped - this.minweightedPointDelta) / (this.maxweightedPointDelta - this.minweightedPointDelta);
-    const green = Math.round(255 * normalized);
+    const green = Math.round(220 * (1 - normalized));
     return `rgb(0, ${green}, 0)`;
   };
 
